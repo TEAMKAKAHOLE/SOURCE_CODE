@@ -27,10 +27,6 @@ void MainGame::Start()
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
     g_pScnManager->AddScene("rpg", new GameScene());
-    g_pScnManager->AddScene("dungeon", new Dungeon());
-    g_pScnManager->AddScene("rungame", new RungameScene());
-    g_pScnManager->AddScene("dodonpachi", new DodonpachiScene());
-    g_pScnManager->AddScene("fortress", new FortressScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 
     g_pScnManager->ChangeScene("splash");
