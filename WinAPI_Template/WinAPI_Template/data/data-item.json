@@ -1,0 +1,26 @@
+{
+    "items":[
+        {
+            "item-id":0,
+            "img-id":0,
+            "name":"healing potion",
+            "price":100,
+            "heal":50,
+            "atk":0,
+            "def":0,
+            "hp":0,
+            "mp":0
+        },
+        {
+            "item-id":1,
+            "img-id":1,
+            "name":"great healing potion",
+            "price":200,
+            "heal":75,
+            "atk":0,
+            "def":0,
+            "hp":0,
+            "mp"
+        }
+    ]
+}

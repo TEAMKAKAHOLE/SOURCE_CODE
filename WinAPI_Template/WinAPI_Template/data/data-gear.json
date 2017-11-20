@@ -1,0 +1,28 @@
+{
+    "gears":[
+        {
+            "gear-id":0,
+            "img-id":0,
+            "name":"short sword",
+            "price":100,
+            "atk":5,
+            "def":0,
+            "hp":0,
+            "mp":0,
+            "hp-gen":0,
+            "mp-gen":0
+        },
+        {
+            "gear-id":1,
+            "img-id":1,
+            "name":"steel mail",
+            "price":150,
+            "atk":0,
+            "def":10,
+            "hp":0,
+            "mp":0,
+            "hp-gen":0,
+            "mp-gen":0
+        }
+    ]
+}

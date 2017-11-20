@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="GameFramework2D">
+      <UniqueIdentifier>{c55583b2-112c-4779-8ee1-4ce70aaa0b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\001-MainGame">
+      <UniqueIdentifier>{77d85270-29a6-41e2-9f00-b34efad795c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager">
+      <UniqueIdentifier>{f67891c6-fda0-450c-8ab2-264a2d21bd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\003-Helper">
+      <UniqueIdentifier>{8cab1dd3-426c-444f-9787-ad57b6e5eafb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\004-Scene">
+      <UniqueIdentifier>{4a7ab6e4-47a0-4c60-abc0-a4bdd7e94ece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\000-Objects">
+      <UniqueIdentifier>{4723d75d-951f-4f26-8927-be6d5bab1342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\100-Source">
+      <UniqueIdentifier>{29244c4a-56cb-4285-8ecf-433ab4b5b5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\999-ExtLibs">
+      <UniqueIdentifier>{2b31ca71-e104-49d2-88c0-0f624ee90219}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\001-Scene">
+      <UniqueIdentifier>{57b0b29d-8800-4053-a4bc-1d296a4c5105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\002-Resource">
+      <UniqueIdentifier>{e46aa4c8-fb83-4430-8d5d-bd938d0e1ffc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\003-Data">
+      <UniqueIdentifier>{f4b59e1a-bb0f-4a47-a1a8-e28016fc1015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\005-IO">
+      <UniqueIdentifier>{4a41312d-4ade-44d2-bfc5-745749e8ac99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\006-Utility">
+      <UniqueIdentifier>{c887a201-1d70-4724-b095-82ce86845a5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\002-Manager\004-Physics">
+      <UniqueIdentifier>{837b21b9-0a2e-48ec-a336-0ba060b3e922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene">
+      <UniqueIdentifier>{3e72346d-d9fd-4c93-b701-4e148b5904dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene\RPG">
+      <UniqueIdentifier>{f1010a99-5d17-491a-89f9-0bcd8917c741}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WinAPITemplate.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameNode.h">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SingletonBase.h">
+      <Filter>GameFramework2D\002-Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="RatingHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SpritesObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationHelper.h">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgressBarObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewPortObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SplashScene.h">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ExitScene.h">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>GameFramework2D\999-ExtLibs</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScene.h">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>GameFramework2D\002-Manager\001-Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DbManager.h">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructure.h">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumState.h">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelCollision.h">
+      <Filter>GameFramework2D\002-Manager\004-Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>GameFramework2D\002-Manager\002-Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>GameFramework2D\002-Manager\002-Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>GameFramework2D\002-Manager\005-IO</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDataManager.h">
+      <Filter>GameFramework2D\002-Manager\005-IO</Filter>
+    </ClInclude>
+    <ClInclude Include="LogManager.h">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerManager.h">
+      <Filter>GameFramework2D\002-Manager\006-Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundObject.h">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="WinAPITemplate.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GameNode.cpp">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="RatingHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SpritesObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationHelper.cpp">
+      <Filter>GameFramework2D\003-Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="ProgressBarObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>GameFramework2D\001-MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewPortObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SplashScene.cpp">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ExitScene.cpp">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScene.cpp">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>GameFramework2D\002-Manager\001-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DbManager.cpp">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelCollision.cpp">
+      <Filter>GameFramework2D\002-Manager\004-Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>GameFramework2D\002-Manager\002-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>GameFramework2D\002-Manager\002-Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>GameFramework2D\002-Manager\005-IO</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDataManager.cpp">
+      <Filter>GameFramework2D\002-Manager\005-IO</Filter>
+    </ClCompile>
+    <ClCompile Include="LogManager.cpp">
+      <Filter>GameFramework2D\002-Manager\003-Data</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerManager.cpp">
+      <Filter>GameFramework2D\002-Manager\006-Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundObject.cpp">
+      <Filter>GameFramework2D\000-Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinAPITemplate.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="WinAPITemplate.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
