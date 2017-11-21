@@ -11,12 +11,12 @@ TelePort::TelePort()
 	AGateIn.x  = 385*4;
 	AGateIn.y  = 300 * 4;
 
-	AGateOut.x = 250 * 4;
+	AGateOut.x = 255 * 4;
 	AGateOut.y = 250 * 4;
 
 
 	BGateIn.x = 418*4;
-	BGateIn.y = 208*4;
+	BGateIn.y = 190*4;
 
 	BGateOut.x = 92 * 4;
 	BGateOut.y = 290 * 4;
