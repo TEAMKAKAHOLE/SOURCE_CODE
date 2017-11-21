@@ -1,6 +1,7 @@
 #pragma once
 #include "GameNode.h"
 #include "Player.h"
+#include "Enemy.h"
 
 
 
@@ -12,6 +13,8 @@ private:
 	ImageObject* m_imgWorldMap;  //원본 맵 이미지
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
 	Player*		 m_pPlayer;
+	Enemy*		 m_pEnemy;
+
 
 public:
 	FieldScene();

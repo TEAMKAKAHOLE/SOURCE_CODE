@@ -21,37 +21,37 @@ void Player::Update()
 	SpritesObject::Update();
 
 	
-	UnitPos ProbePos = m_dPos;
-	//ProbePos.x = m_nSize.w / 4;
-	//ProbePos.y = m_nSize.h / 4;
+	//UnitPos ProbePos = m_dPos;
+	////ProbePos.x = m_nSize.w / 4;
+	////ProbePos.y = m_nSize.h / 4;
 
-	if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos)==true)
-	{
-		int rollbackPosX = 0;
-		int rollbackPosY = 0;
+	//if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos)==true)
+	//{
+	//	int rollbackPosX = 0;
+	//	int rollbackPosY = 0;
 
-		if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x - rollbackPosX - 1, ProbePos.y))
-		{
-			rollbackPosX++;
-			m_dPos.x = m_dPos.x - rollbackPosX;
-		}
-		if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x + rollbackPosX + 1, ProbePos.y))
-		{
-			rollbackPosX--;
-			m_dPos.x = m_dPos.x + rollbackPosX;
-		}
+	//	if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x - rollbackPosX - 1, ProbePos.y))
+	//	{
+	//		rollbackPosX++;
+	//		m_dPos.x = m_dPos.x - rollbackPosX;
+	//	}
+	//	if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x + rollbackPosX + 1, ProbePos.y))
+	//	{
+	//		rollbackPosX--;
+	//		m_dPos.x = m_dPos.x + rollbackPosX;
+	//	}
 
-		if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x, ProbePos.y - rollbackPosY - 1))
-		{
-			rollbackPosY++;
-			m_dPos.y = m_dPos.y - rollbackPosY;
-		}
-		if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x, ProbePos.y + rollbackPosY + 1))
-		{
-			rollbackPosY--;
-			m_dPos.y = m_dPos.y + rollbackPosY;
-		}
-	}
+	//	if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x, ProbePos.y - rollbackPosY - 1))
+	//	{
+	//		rollbackPosY++;
+	//		m_dPos.y = m_dPos.y - rollbackPosY;
+	//	}
+	//	if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos.x, ProbePos.y + rollbackPosY + 1))
+	//	{
+	//		rollbackPosY--;
+	//		m_dPos.y = m_dPos.y + rollbackPosY;
+	//	}
+	//}
 }
 
 void Player::Render(HDC hdc)
