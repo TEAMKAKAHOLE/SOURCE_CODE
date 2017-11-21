@@ -394,5 +394,37 @@
                 "loop":true
             }
         ]
+    },
+    "field":{
+    	"images":[
+    		{
+    			"id":0,
+    			"key" : "field-map",
+    			"filename":"field-map.bmp",
+    			"width":512,
+    			"height":512
+    		},
+    		{
+    			"id":1,
+    			"key":"field-map-magenta",
+    			"filename":"field-map_magenta.bmp",
+    			"width":512,
+    			"height":512
+    		},
+    		{
+    			"id":2,
+    			"key":"enemy-knight",
+    			"filename":"EnemyKnight.bmp",
+    			"width":192,
+    			"height":192
+    		},
+    		{
+    			"id":3,
+    			"key":"enemy-jellyfish",
+    			"filename":"Jellyfishbmp",
+    			"width":57,
+    			"height":17
+    		}
+  		]
     }
 }
