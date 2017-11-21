@@ -38,6 +38,10 @@ using json = nlohmann::json;
 #define W_START_POS_Y		0
 #define W_WIDTH		        768
 #define W_HEIGHT		    672
+
+#define VIEWPORT_WIDTH      256
+#define VIEWPORT_HEIGHT     224
+
 #define WINDOW_STYLE		WS_CAPTION | WS_SYSMENU
 #define PURE			    = 0
 
