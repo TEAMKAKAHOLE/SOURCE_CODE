@@ -50,6 +50,4 @@ bool GameScene::LoadGame()
 
 void GameScene::PlayerController()
 {
-    
-    }
 }

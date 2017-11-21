@@ -1,1 +1,21 @@
-{"author":"komastar","contact":"komastar.dev@gmail.com","ver":{"build":111,"hotfix":0,"major":0,"minor":2}}
+{
+    "author": "komastar",
+    "contact": "komastar.dev@gmail.com",
+    "ver": {
+        "build": 1,
+        "hotfix": 0,
+        "major": 0,
+        "minor": 1
+    },
+    "team":[
+        {
+            "member": "Kim dae hwan"
+        },
+        {
+            "member": "Lee dong eun"
+        },
+        {
+            "member": "Choi su ho"
+        }
+    ]
+}
