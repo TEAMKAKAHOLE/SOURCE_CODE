@@ -16,6 +16,7 @@ SplashScene::~SplashScene()
 
 void SplashScene::Start()
 {
+    m_imgLogo = g_pImgManager->FindImage("logo");
 }
 
 void SplashScene::Update()
@@ -34,7 +35,7 @@ void SplashScene::Update()
 
 void SplashScene::Render()
 {
-    g_pImgManager->Render("logo", g_hDC);
+    m_imgLogo->Render(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 #ifdef _DEBUG
     TextOut(g_hDC, W_WIDTH - 100, 0, m_szTagName.c_str(), (int)strlen(m_szTagName.c_str()));
 #endif // _DEBUG

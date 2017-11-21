@@ -5,6 +5,8 @@
 class SplashScene : public GameNode
 {
 private:
+    ImageObject*    m_imgLogo;
+
     bool    m_isStart;
     float   m_fDestTime;
 public:

@@ -5,10 +5,7 @@
 class TitleScene : public GameNode
 {
 private:
-    SpritesObject       m_btnGoRungame;
-    SpritesObject       m_btnGoDodonpachi;
-    SpritesObject       m_btnGoFortress;
-    SpritesObject       m_btnGoRpg;
+    ImageObject*    m_imgTitleBg;
 
 public:
     TitleScene();
@@ -21,5 +18,4 @@ public:
     virtual void Release() override;
 
     void InputController();
-    void GoSelectedScene(string Scene);
 };
