@@ -200,6 +200,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="PixelCollision.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressBarObject.h" />
     <ClInclude Include="RatingHelper.h" />
     <ClInclude Include="EnumState.h" />
@@ -224,6 +225,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TownScene.h" />
     <ClInclude Include="ViewPortObject.h" />
     <ClInclude Include="WinAPITemplate.h" />
   </ItemGroup>
@@ -237,6 +239,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="PixelCollision.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProgressBarObject.cpp" />
     <ClCompile Include="RatingHelper.cpp" />
     <ClCompile Include="GameNode.cpp" />
@@ -262,6 +265,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TownScene.cpp" />
     <ClCompile Include="ViewPortObject.cpp" />
     <ClCompile Include="WinAPITemplate.cpp" />
   </ItemGroup>

@@ -5,6 +5,7 @@
 #include "SplashScene.h"
 #include "TitleScene.h"
 #include "LoadingScene.h"
+#include "TownScene.h"
 #include "ExitScene.h"
 #pragma endregion
 

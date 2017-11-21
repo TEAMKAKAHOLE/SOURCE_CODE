@@ -30,22 +30,6 @@
                 "width": 256,
                 "height": 144
             }
-        ],
-        "sounds":[
-            {
-                "id": 0,
-                "key": "title-bgm",
-                "filename": "title-bgm.mp3",
-                "bgm": true,
-                "loop": true
-            },
-            {
-                "id": 1,
-                "key": "btn-click",
-                "filename": "btn-click.mp3",
-                "bgm": false,
-                "loop": false
-            }
         ]
     },
     "loading": {
@@ -63,6 +47,31 @@
                 "filename": "fg-gauge.bmp",
                 "width": 200,
                 "height": 20
+            }
+        ]
+    },
+    "town": {
+        "images": [
+            {
+                "id": 0,
+                "key": "player",
+                "filename": "Link.bmp",
+                "width": 336,
+                "height": 384
+            },
+            {
+                "id": 1,
+                "key": "town-map",
+                "filename": "Town.bmp",
+                "width": 512,
+                "height": 512
+            },
+            {
+                "id": 2,
+                "key": "town-terrain",
+                "filename": "Town-terrain.bmp",
+                "width": 512,
+                "height": 512
             }
         ]
     }

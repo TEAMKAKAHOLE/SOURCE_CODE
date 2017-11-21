@@ -58,6 +58,9 @@
     <Filter Include="GameFramework2D\004-Scene\GameScene">
       <UniqueIdentifier>{3e72346d-d9fd-4c93-b701-4e148b5904dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene\Town">
+      <UniqueIdentifier>{f1010a99-5d17-491a-89f9-0bcd8917c741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -174,6 +177,12 @@
     <ClInclude Include="TitleScene.h">
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
+    <ClInclude Include="TownScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Town</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -268,6 +277,12 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TownScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Town</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

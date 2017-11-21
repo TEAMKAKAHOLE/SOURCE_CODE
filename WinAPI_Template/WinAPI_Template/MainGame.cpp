@@ -26,9 +26,11 @@ void MainGame::Start()
     g_pScnManager->AddScene("splash", new SplashScene());
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
+    g_pScnManager->AddScene("town", new TownScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 
-    g_pScnManager->ChangeScene("splash");
+    g_pScnManager->SetNextScene("town");
+    g_pScnManager->ChangeScene("loading");
 }
 
 void MainGame::Update()
