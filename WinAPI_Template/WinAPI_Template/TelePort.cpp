@@ -7,6 +7,7 @@ TelePort::TelePort()
 	//시작과 동시에  위치 이동 세팅을 한다.
 	//if out일 경우에는 센터에서 이격거리를 준다
 	//안그러면 충돌체크 다시 발생해서 이상한 위치로 이동
+	
 	AGateIn.x  = 385*4;
 	AGateIn.y  = 300 * 4;
 
@@ -31,8 +32,6 @@ TelePort::TelePort()
 
 	DGateOut.x = 385 * 4;
 	DGateOut.y = 300 * 4;
-
-
 
 
 

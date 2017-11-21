@@ -13,7 +13,10 @@ private:
 	ImageObject* m_imgTerrainBuffer;
 
 	Player   m_player;
-	TelePort m_teleport;
+	TelePort m_teleportA;
+	TelePort m_teleportB;
+	TelePort m_teleportC;
+	TelePort m_teleportD;
 
 
 public:
