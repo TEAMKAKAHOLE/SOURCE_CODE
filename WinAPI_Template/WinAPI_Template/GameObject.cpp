@@ -165,25 +165,25 @@ void GameObject::Setup(UnitPos Pos, UnitSize Size)
 
 void GameObject::WndLocker()
 {
-    if (m_rtBody.left + m_dSpeed.x < m_rtLockArea.left)
+    if (m_rtHitBox.left + m_dSpeed.x < m_rtLockArea.left)
     {
-        m_dPos.x = m_rtLockArea.left + m_nSize.w * 0.5f;
+        m_dPos.x = m_rtLockArea.left + m_nSizeHBox.w * 0.5f;
         m_dSpeed.x = 0.0f;
     }
-    if(m_rtBody.right + m_dSpeed.x > m_rtLockArea.right)
+    if(m_rtHitBox.right + m_dSpeed.x > m_rtLockArea.right)
     {
-        m_dPos.x = m_rtLockArea.right - m_nSize.w * 0.5f;
+        m_dPos.x = m_rtLockArea.right - m_nSizeHBox.w * 0.5f;
         m_dSpeed.x = 0.0f;
     }
 
-    if (m_rtBody.top + m_dSpeed.y < m_rtLockArea.top)
+    if (m_rtHitBox.top + m_dSpeed.y < m_rtLockArea.top)
     {
-        m_dPos.y = m_rtLockArea.top + m_nSize.h * 0.5f;
+        m_dPos.y = m_rtLockArea.top + m_nSizeHBox.h * 0.5f;
         m_dSpeed.y = 0.0f;
     }
-    if(m_rtBody.bottom + m_dSpeed.y > m_rtLockArea.bottom)
+    if(m_rtHitBox.bottom + m_dSpeed.y > m_rtLockArea.bottom)
     {
-        m_dPos.y = m_rtLockArea.bottom - m_nSize.h * 0.5f;
+        m_dPos.y = m_rtLockArea.bottom - m_nSizeHBox.h * 0.5f;
         m_dSpeed.y = 0.0f;
     }
 }

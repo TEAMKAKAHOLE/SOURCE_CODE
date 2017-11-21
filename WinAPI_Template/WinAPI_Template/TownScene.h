@@ -8,6 +8,8 @@ private:
     ImageObject*    m_imgWorldBuffer;
     ImageObject*    m_imgWorldMap;
     ImageObject*    m_imgTerrainBuffer;
+    ImageObject*    m_imgHud;
+    ImageObject*    m_imgUiBuffer;
 
     Player  m_player;
 

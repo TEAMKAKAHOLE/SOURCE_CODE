@@ -33,7 +33,7 @@ using json = nlohmann::json;
 //==================================================================
 //		## 디파인문 - 메크로 ## (윈도우창 초기화)
 //==================================================================
-#define W_NAME (LPCWSTR)(TEXT("TITLE"))
+#define W_NAME (LPCWSTR)(TEXT("THE LEGEND OF ZELDA : A LINK TO THE PAST"))
 #define W_START_POS_X		0
 #define W_START_POS_Y		0
 #define W_WIDTH		        768

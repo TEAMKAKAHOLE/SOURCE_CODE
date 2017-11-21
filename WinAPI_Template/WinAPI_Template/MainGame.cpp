@@ -23,6 +23,7 @@ MainGame::~MainGame()
 
 void MainGame::Start()
 {
+    g_pImgManager->AddImage("ui-buffer", VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
     g_pScnManager->AddScene("splash", new SplashScene());
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
