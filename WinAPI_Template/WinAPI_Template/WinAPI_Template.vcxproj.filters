@@ -58,9 +58,6 @@
     <Filter Include="GameFramework2D\004-Scene\GameScene">
       <UniqueIdentifier>{3e72346d-d9fd-4c93-b701-4e148b5904dd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameFramework2D\004-Scene\GameScene\RPG">
-      <UniqueIdentifier>{f1010a99-5d17-491a-89f9-0bcd8917c741}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -177,9 +174,6 @@
     <ClInclude Include="TitleScene.h">
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -274,9 +268,6 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>GameFramework2D\004-Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
