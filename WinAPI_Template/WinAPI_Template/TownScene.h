@@ -10,6 +10,8 @@ private:
     ImageObject*    m_imgTerrainBuffer;
     ImageObject*    m_imgHud;
     ImageObject*    m_imgUiBuffer;
+    SpritesObject*  m_sprHudNumber;
+    SpritesObject*  m_sprHudLife;
 
     Player  m_player;
 

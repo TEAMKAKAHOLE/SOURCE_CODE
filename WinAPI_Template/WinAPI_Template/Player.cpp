@@ -7,6 +7,9 @@ Player::Player()
     m_playerStatus = PLAYER_IDLE;
     m_weaponType = WEAPON_SWORD;
     m_rtAtkArea = { 0, 0, 0, 0 };
+    m_nLife = 5;
+    m_currFrameY = 0;
+    m_nHealPotion = 0;
 }
 
 Player::~Player()
@@ -21,6 +24,26 @@ void Player::Start()
 void Player::Update()
 {
     PlayerController();
+
+    if (g_pKeyManager->isOnceKeyDown('1'))
+    {
+        m_nHealPotion++;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('2'))
+    {
+        m_nHealPotion--;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('3'))
+    {
+        m_nHealPotion += 50;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('4'))
+    {
+        m_nHealPotion -= 50;
+    }
+
+    m_nHealPotion = m_nHealPotion < 0 ? 0 : m_nHealPotion;
+    m_nHealPotion = m_nHealPotion > 999 ? 999 : m_nHealPotion;
 
     switch (m_playerStatus)
     {

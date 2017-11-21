@@ -14,6 +14,20 @@
                 "filename": "HUD-frame.bmp",
                 "width": 256,
                 "height": 224
+            },
+            {
+                "id": 2,
+                "key": "hud-life",
+                "filename": "HUD-LifeIcon.bmp",
+                "width": 21,
+                "height": 7
+            },
+            {
+                "id": 3,
+                "key": "hud-number",
+                "filename": "HUD-Number.bmp",
+                "width": 70,
+                "height": 7
             }
         ]
     },
@@ -28,8 +42,8 @@
             }
         ]
     },
-    "title":{
-        "images":[
+    "title": {
+        "images": [
             {
                 "id": 0,
                 "key": "title-bg",

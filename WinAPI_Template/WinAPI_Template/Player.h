@@ -21,6 +21,8 @@ private:
     int             m_currFrameY;
     RECT            m_rtAtkArea;
 
+    int             m_nHealPotion;
+
 public:
     Player();
     ~Player();
@@ -36,6 +38,7 @@ public:
     void SetAtkArea();
 
     RECT GetAtkArea() { return m_rtAtkArea; }
+    int GetHealPotion() { return m_nHealPotion; }
 
     void CheckCollision();
 };
