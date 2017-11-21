@@ -177,7 +177,13 @@
     <ClInclude Include="TitleScene.h">
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
+    <ClInclude Include="PuzzleScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
+    <ClInclude Include="PuzzleGameScene.h">
       <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
     </ClInclude>
   </ItemGroup>
@@ -275,7 +281,13 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
+    <ClCompile Include="PuzzleScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PuzzleGameScene.cpp">
       <Filter>GameFramework2D\004-Scene\GameScene\RPG</Filter>
     </ClCompile>
   </ItemGroup>

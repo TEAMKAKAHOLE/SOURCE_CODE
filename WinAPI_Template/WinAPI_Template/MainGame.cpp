@@ -26,10 +26,12 @@ void MainGame::Start()
     g_pScnManager->AddScene("splash", new SplashScene());
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
-    g_pScnManager->AddScene("rpg", new GameScene());
+    g_pScnManager->AddScene("puzzle", new PuzzleScene());
+	g_pScnManager->AddScene("puzzleGame", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 
-    g_pScnManager->ChangeScene("splash");
+	g_pScnManager->SetNextScene("puzzle");
+	g_pScnManager->ChangeScene("loading");
 }
 
 void MainGame::Update()

@@ -23,7 +23,7 @@
     <ProjectGuid>{D22BF8F3-B79C-4424-9179-E53964D25B1A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>WinAPI_Template</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -195,13 +195,15 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="DrawHelper.h" />
     <ClInclude Include="ExitScene.h" />
     <ClInclude Include="FileDataManager.h" />
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MapObject.h" />
     <ClInclude Include="PixelCollision.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressBarObject.h" />
+    <ClInclude Include="PuzzleGameScene.h" />
+    <ClInclude Include="PuzzleScene.h" />
     <ClInclude Include="RatingHelper.h" />
     <ClInclude Include="EnumState.h" />
     <ClInclude Include="GameNode.h" />
@@ -234,12 +236,14 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="DrawHelper.cpp" />
     <ClCompile Include="ExitScene.cpp" />
     <ClCompile Include="FileDataManager.cpp" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MapObject.cpp" />
     <ClCompile Include="PixelCollision.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProgressBarObject.cpp" />
+    <ClCompile Include="PuzzleGameScene.cpp" />
+    <ClCompile Include="PuzzleScene.cpp" />
     <ClCompile Include="RatingHelper.cpp" />
     <ClCompile Include="GameNode.cpp" />
     <ClCompile Include="GameObject.cpp" />

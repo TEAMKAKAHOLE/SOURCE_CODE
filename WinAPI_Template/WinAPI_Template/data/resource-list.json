@@ -21,8 +21,8 @@
             }
         ]
     },
-    "title":{
-        "images":[
+    "title": {
+        "images": [
             {
                 "id": 0,
                 "key": "btn-rungame",
@@ -52,7 +52,7 @@
                 "height": 80
             }
         ],
-        "sounds":[
+        "sounds": [
             {
                 "id": 0,
                 "key": "title-bgm",
@@ -132,25 +132,25 @@
                 "height": 512
             }
         ],
-        "sounds":[
+        "sounds": [
             {
-                "id":0,
-                "key":"rpg-bgm",
-                "filename":"Angel Attack.mp3",
-                "bgm":true,
-                "loop":true
+                "id": 0,
+                "key": "rpg-bgm",
+                "filename": "Angel Attack.mp3",
+                "bgm": true,
+                "loop": true
             },
             {
-                "id":1,
-                "key":"rpg-sword-swing",
-                "filename":"sword_1.mp3",
-                "bgm":false,
-                "loop":false
+                "id": 1,
+                "key": "rpg-sword-swing",
+                "filename": "sword_1.mp3",
+                "bgm": false,
+                "loop": false
             }
         ]
     },
-    "dungeon":{
-        "images":[
+    "dungeon": {
+        "images": [
             {
                 "id": 0,
                 "key": "rpg-player",
@@ -181,218 +181,261 @@
             }
         ]
     },
-    "fortress":{
-        "images":[
+    "fortress": {
+        "images": [
             {
-                "id":0,
-                "key":"bullet-0",
-                "filename":"bullet.bmp",
-                "width":30,
-                "height":30
+                "id": 0,
+                "key": "bullet-0",
+                "filename": "bullet.bmp",
+                "width": 30,
+                "height": 30
             },
             {
-                "id":1,
-                "key":"bullet-1",
-                "filename":"bullet-2.bmp",
-                "width":30,
-                "height":30
+                "id": 1,
+                "key": "bullet-1",
+                "filename": "bullet-2.bmp",
+                "width": 30,
+                "height": 30
             },
             {
-                "id":2,
-                "key":"bullet-2",
-                "filename":"bullet-3.bmp",
-                "width":28,
-                "height":28
+                "id": 2,
+                "key": "bullet-2",
+                "filename": "bullet-3.bmp",
+                "width": 28,
+                "height": 28
             },
             {
-                "id":3,
-                "key":"cannon",
-                "filename":"cannon.bmp",
-                "width":60,
-                "height":180
+                "id": 3,
+                "key": "cannon",
+                "filename": "cannon.bmp",
+                "width": 60,
+                "height": 180
             },
             {
-                "id":4,
-                "key":"carrottank",
-                "filename":"carrottank.bmp",
-                "width":60,
-                "height":180
+                "id": 4,
+                "key": "carrottank",
+                "filename": "carrottank.bmp",
+                "width": 60,
+                "height": 180
             },
             {
-                "id":5,
-                "key":"fortress-map-bg",
-                "filename":"map-haloween-bg.bmp",
-                "width":2000,
-                "height":1066
+                "id": 5,
+                "key": "fortress-map-bg",
+                "filename": "map-haloween-bg.bmp",
+                "width": 2000,
+                "height": 1066
             },
             {
-                "id":6,
-                "key":"fortress-map-terrain",
-                "filename":"map-haloween-terrain.bmp",
-                "width":2000,
-                "height":1066
+                "id": 6,
+                "key": "fortress-map-terrain",
+                "filename": "map-haloween-terrain.bmp",
+                "width": 2000,
+                "height": 1066
             },
             {
-                "id":7,
-                "key":"fortress-hp-bar",
-                "filename":"ui-hp-bar.bmp",
-                "width":500,
-                "height":50
+                "id": 7,
+                "key": "fortress-hp-bar",
+                "filename": "ui-hp-bar.bmp",
+                "width": 500,
+                "height": 50
             },
             {
-                "id":8,
-                "key":"fortress-move-bar",
-                "filename":"ui-move-bar.bmp",
-                "width":500,
-                "height":50
+                "id": 8,
+                "key": "fortress-move-bar",
+                "filename": "ui-move-bar.bmp",
+                "width": 500,
+                "height": 50
             },
             {
-                "id":9,
-                "key":"fortress-power-bar",
-                "filename":"ui-power-bar.bmp",
-                "width":500,
-                "height":50
+                "id": 9,
+                "key": "fortress-power-bar",
+                "filename": "ui-power-bar.bmp",
+                "width": 500,
+                "height": 50
             }
         ],
-        "sounds":[
+        "sounds": [
             {
-                "id":0,
-                "key":"fortress-bgm",
-                "filename":"SHK-Mystic_cave.mp3",
-                "bgm":true,
-                "loop":true
+                "id": 0,
+                "key": "fortress-bgm",
+                "filename": "SHK-Mystic_cave.mp3",
+                "bgm": true,
+                "loop": true
             },
             {
-                "id":1,
-                "key":"fortress-gun-shot",
-                "filename":"GunShot.mp3",
-                "bgm":false,
-                "loop":false
+                "id": 1,
+                "key": "fortress-gun-shot",
+                "filename": "GunShot.mp3",
+                "bgm": false,
+                "loop": false
             },
             {
-                "id":2,
-                "key":"fortress-explosion",
-                "filename":"Explosion.mp3",
-                "bgm":false,
-                "loop":false
+                "id": 2,
+                "key": "fortress-explosion",
+                "filename": "Explosion.mp3",
+                "bgm": false,
+                "loop": false
             }
         ]
     },
-    "dodonpachi":{
-        "images":[
+    "dodonpachi": {
+        "images": [
             {
-                "id":0,
-                "key":"dd-player",
-                "filename":"sprites-player.bmp",
-                "width":60,
-                "height":210
+                "id": 0,
+                "key": "dd-player",
+                "filename": "sprites-player.bmp",
+                "width": 60,
+                "height": 210
             },
             {
-                "id":1,
-                "key":"dd-player-2",
-                "filename":"sprites-player-2.bmp",
-                "width":60,
-                "height":210
+                "id": 1,
+                "key": "dd-player-2",
+                "filename": "sprites-player-2.bmp",
+                "width": 60,
+                "height": 210
             },
             {
-                "id":2,
-                "key":"dd-bullet",
-                "filename":"sprites-bullet.bmp",
-                "width":64,
-                "height":64
+                "id": 2,
+                "key": "dd-bullet",
+                "filename": "sprites-bullet.bmp",
+                "width": 64,
+                "height": 64
             },
             {
-                "id":3,
-                "key":"dd-enemy",
-                "filename":"sprites-boss.bmp",
-                "width":480,
-                "height":351
+                "id": 3,
+                "key": "dd-enemy",
+                "filename": "sprites-boss.bmp",
+                "width": 480,
+                "height": 351
             },
             {
-                "id":4,
-                "key":"dd-map",
-                "filename":"img-map.bmp",
-                "width":512,
-                "height":1024
+                "id": 4,
+                "key": "dd-map",
+                "filename": "img-map.bmp",
+                "width": 512,
+                "height": 1024
             },
             {
-                "id":5,
-                "key":"dd-item",
-                "filename":"img-item.bmp",
-                "width":100,
-                "height":100
+                "id": 5,
+                "key": "dd-item",
+                "filename": "img-item.bmp",
+                "width": 100,
+                "height": 100
             },
             {
-                "id":6,
-                "key":"dd-number",
-                "filename":"sprites-number.bmp",
-                "width":500,
-                "height":50
+                "id": 6,
+                "key": "dd-number",
+                "filename": "sprites-number.bmp",
+                "width": 500,
+                "height": 50
             },
             {
-                "id":7,
-                "key":"dd-hp-frame",
-                "filename":"sprites-health-frame.bmp",
-                "width":480,
-                "height":46
+                "id": 7,
+                "key": "dd-hp-frame",
+                "filename": "sprites-health-frame.bmp",
+                "width": 480,
+                "height": 46
             },
             {
-                "id":8,
-                "key":"dd-hp-bar",
-                "filename":"sprites-health-bar.bmp",
-                "width":456,
-                "height":96
+                "id": 8,
+                "key": "dd-hp-bar",
+                "filename": "sprites-health-bar.bmp",
+                "width": 456,
+                "height": 96
             },
             {
-                "id":9,
-                "key":"dd-hp-bar-2",
-                "filename":"sprites-health-bar-2.bmp",
-                "width":456,
-                "height":96
+                "id": 9,
+                "key": "dd-hp-bar-2",
+                "filename": "sprites-health-bar-2.bmp",
+                "width": 456,
+                "height": 96
             }
         ],
-        "sounds":[
+        "sounds": [
             {
-                "id":0,
-                "key":"dd-bgm",
-                "filename":"SHK-Battle_Arena(loop).mp3",
-                "bgm":true,
-                "loop":true
+                "id": 0,
+                "key": "dd-bgm",
+                "filename": "SHK-Battle_Arena(loop).mp3",
+                "bgm": true,
+                "loop": true
             }
         ]
     },
-    "rungame":{
-        "images":[
+    "rungame": {
+        "images": [
             {
-                "id":0,
-                "key":"rungame-bg",
-                "filename":"bg.bmp",
-                "width":6600,
-                "height":675
+                "id": 0,
+                "key": "rungame-bg",
+                "filename": "bg.bmp",
+                "width": 6600,
+                "height": 675
             },
             {
-                "id":1,
-                "key":"rungame-player",
-                "filename":"sprites-player.bmp",
-                "width":864,
-                "height":120
+                "id": 1,
+                "key": "rungame-player",
+                "filename": "sprites-player.bmp",
+                "width": 864,
+                "height": 120
             },
             {
-                "id":2,
-                "key":"rungame-item",
-                "filename":"sprites-item-score.bmp",
-                "width":400,
-                "height":50
+                "id": 2,
+                "key": "rungame-item",
+                "filename": "sprites-item-score.bmp",
+                "width": 400,
+                "height": 50
             }
         ],
-        "sounds":[
+        "sounds": [
             {
-                "id":0,
-                "key":"rungame-bgm",
-                "filename":"SHK-Endless_Challenge.mp3",
-                "bgm":true,
-                "loop":true
+                "id": 0,
+                "key": "rungame-bgm",
+                "filename": "SHK-Endless_Challenge.mp3",
+                "bgm": true,
+                "loop": true
             }
         ]
+    },
+    "puzzle": {
+        "images": [
+            {
+            	"id": 0,
+                "key": "Player",
+                "filename": "Link.bmp",
+                "width": 336,
+                "height": 384
+            },
+            {
+            	"id": 1,
+                "key": "puzzle-map",
+                "filename": "puzzleMap1.bmp",
+                "width": 512,
+                "height": 512
+            },
+            {
+            	"id": 2,
+                "key": "puzzle-terrain",
+                "filename": "puzzleMap1-magenta.bmp",
+                "width": 512,
+                "height": 512
+            }
+        ]
+    },
+    "puzzleGame": {
+    	"images": [
+    		{
+    			"id": 0,
+                "key": "puzzleBase",
+                "filename": "puzzleGame.bmp",
+                "width": 500,
+                "height": 503
+    		},
+    		{
+    			"id": 1,
+                "key": "puzzleBg",
+                "filename": "Wall.bmp",
+                "width": 1000,
+                "height": 1000
+    		}
+    	]
     }
 }

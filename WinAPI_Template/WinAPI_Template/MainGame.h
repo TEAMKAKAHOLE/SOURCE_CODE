@@ -5,8 +5,9 @@
 #include "SplashScene.h"
 #include "TitleScene.h"
 #include "LoadingScene.h"
-#include "GameScene.h"
 #include "ExitScene.h"
+#include "PuzzleScene.h"
+#include "PuzzleGameScene.h"
 #pragma endregion
 
 class MainGame : public GameNode
