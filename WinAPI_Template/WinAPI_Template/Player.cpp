@@ -45,7 +45,7 @@ void Player::Update()
         break;
     }
     }
-
+    CheckCollision();
     SpritesObject::Update();
 }
 
@@ -132,4 +132,13 @@ void Player::SetAtkArea()
     }
 
     m_rtAtkArea = g_pDrawHelper->MakeRect(atkAreaPos, ATK_SWORD_BOX);
+}
+
+void Player::CheckCollision()
+{
+    UnitPos ProbePos = m_dPos;
+    ProbePos.x += m_dSpeed.x;
+    ProbePos.y += m_dSpeed.y;
+    if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos))
+        m_dSpeed = { 0.0f, 0.0f };
 }

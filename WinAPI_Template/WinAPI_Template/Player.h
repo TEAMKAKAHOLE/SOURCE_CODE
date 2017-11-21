@@ -36,5 +36,7 @@ public:
     void SetAtkArea();
 
     RECT GetAtkArea() { return m_rtAtkArea; }
+
+    void CheckCollision();
 };
 
