@@ -101,7 +101,7 @@ void ImageObject::ViewportRender(HDC hdc, RECT ViewPort)
 {
     GdiTransparentBlt(hdc
         , 0, 0
-        , ViewPort.right - ViewPort.left, ViewPort.bottom - ViewPort.top
+        , W_WIDTH, W_HEIGHT
         , m_pImageInfo->hMemDC
         , ViewPort.left, ViewPort.top
         , ViewPort.right - ViewPort.left, ViewPort.bottom - ViewPort.top

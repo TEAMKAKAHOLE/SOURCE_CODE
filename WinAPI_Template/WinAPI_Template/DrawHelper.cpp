@@ -91,9 +91,15 @@ RECT DrawHelper::MakeViewPort(UnitPos Pos, ImageObject* WorldMap)
 
 RECT DrawHelper::MakeViewPort(UnitPos Pos, RectMargin Margin, ImageObject * WorldMap)
 {
-    int w = W_WIDTH - Margin.left - Margin.right;
-    int h = W_HEIGHT - Margin.top - Margin.bottom;
-    RECT rtViewPort = MakeRect(Pos, { w, h });
+    RECT rtViewPort = MakeRect(Pos, { VIEWPORT_WIDTH, VIEWPORT_HEIGHT });
+    rtViewPort.left += Margin.left;
+    rtViewPort.right -= Margin.right;
+    rtViewPort.top += Margin.top;
+    rtViewPort.bottom -= Margin.bottom;
+
+    int w = rtViewPort.right - rtViewPort.left;
+    int h = rtViewPort.bottom - rtViewPort.top;
+
     if (rtViewPort.left < 0)
     {
         rtViewPort.left = 0;
