@@ -193,7 +193,7 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Field</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>GameFramework2D\004-Scene\GameScene\Field</Filter>
+      <Filter>GameFramework2D\100-Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -303,7 +303,7 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Field</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>GameFramework2D\004-Scene\GameScene\Field</Filter>
+      <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

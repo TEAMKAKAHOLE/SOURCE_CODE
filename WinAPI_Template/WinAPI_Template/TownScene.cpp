@@ -43,6 +43,12 @@ void TownScene::Start()
 
 void TownScene::Update()
 {
+    if (g_pKeyManager->isOnceKeyDown(VK_F2))
+    {
+        g_pScnManager->SetNextScene("field");
+        g_pScnManager->ChangeScene("loading");
+    }
+
     m_player.Update();
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 }

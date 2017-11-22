@@ -14,6 +14,27 @@
             	"filename":"Link.bmp",
             	"width":336,
             	"height":384
+            },
+            {
+                "id": 2,
+                "key": "hud",
+                "filename": "HUD-frame.bmp",
+                "width": 256,
+                "height": 224
+            },
+            {
+                "id": 3,
+                "key": "hud-life",
+                "filename": "HUD-LifeIcon.bmp",
+                "width": 21,
+                "height": 7
+            },
+            {
+                "id": 4,
+                "key": "hud-number",
+                "filename": "HUD-Number.bmp",
+                "width": 70,
+                "height": 7
             }
         ]
     },
