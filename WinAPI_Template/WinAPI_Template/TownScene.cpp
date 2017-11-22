@@ -4,6 +4,7 @@
 
 TownScene::TownScene()
 {
+    m_nTownLvl = 1;
 }
 
 
@@ -13,6 +14,9 @@ TownScene::~TownScene()
 
 void TownScene::Start()
 {
+    //  clear
+    m_vecBullet.clear();
+
     //  world map
     m_imgWorldBuffer = g_pImgManager->AddImage("town-map-buffer", 512, 512);
     m_imgWorldMap = g_pImgManager->FindImage("town-map");
@@ -39,6 +43,8 @@ void TownScene::Start()
     m_player.Update();
     m_player.SetLockArea({ 0, 0, 512, 512 });
     m_player.LockInWnd();
+
+    m_chief.Start();
 }
 
 void TownScene::Update()
@@ -53,8 +59,49 @@ void TownScene::Update()
         g_pScnManager->SetNextScene("puzzle");
         g_pScnManager->ChangeScene("loading");
     }
+    else if (g_pKeyManager->isOnceKeyDown('T'))
+    {
+        m_chief.SetHostile();
+    }
 
     m_player.Update();
+    m_chief.Update();
+    m_chief.MakeBullet(m_vecBullet, m_player.GetBodyPos());
+
+    for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
+    {
+        iter->Update();
+        RECT rt;
+        if (IntersectRect(&rt, &m_player.GetHBoxRect(), &iter->GetHBoxRect()) &&
+            iter->IsAlive() &&
+            iter->GetTagName() == "enemy")
+        {
+            iter->SetDead();
+            m_player.SumLife(-1);
+        }
+
+        RECT rt2;
+        if (IntersectRect(&rt2, &m_chief.GetHBoxRect(), &iter->GetHBoxRect()) &&
+            iter->IsAlive() &&
+            iter->GetTagName() == "player")
+        {
+            iter->SetDead();
+            m_chief.SumLife(-1);
+        }
+    }
+
+    for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end();)
+    {
+        if (iter->IsAlive() == false)
+        {
+            iter = m_vecBullet.erase(iter);
+        }
+        else
+        {
+            ++iter;
+        }
+    }
+    
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 }
 
@@ -62,6 +109,12 @@ void TownScene::Render()
 {
     m_imgWorldMap->Render(m_imgWorldBuffer->GetMemDC(), 0, 0);
     m_player.Render(m_imgWorldBuffer->GetMemDC());
+    m_chief.Render(m_imgWorldBuffer->GetMemDC());
+
+    for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
+    {
+        iter->Render(m_imgWorldBuffer->GetMemDC());
+    }
 
     //  world render
     m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
@@ -90,6 +143,9 @@ void TownScene::Render()
         , 255.0f);
 
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
+
+    string bulletCnt = to_string((int)m_vecBullet.size());
+    TextOut(g_hDC, W_WIDTH - 20, 45, bulletCnt.c_str(), (int)strlen(bulletCnt.c_str()));
 }
 
 void TownScene::Release()
