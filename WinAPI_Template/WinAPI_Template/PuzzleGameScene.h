@@ -13,7 +13,9 @@ private:
 	ImageObject*		m_imgBg;
 	tagBlock			m_stBlock[9];
 	int					m_nLastBlock;
+	int					m_nChageSceneDelay;
 	bool				m_isPlaying;
+	bool				m_isPuzzleClear;
 	int m_nAlpha;
 
 public:

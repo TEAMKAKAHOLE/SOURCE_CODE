@@ -3,16 +3,42 @@
 
 MainGame::MainGame()
 {
-    g_pLogManager->Setup("\\Log\\");
-    g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
-    g_pKeyManager->Setup();
-    g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
-    g_pImgManager->AddImageList("global");
-    while(g_pImgManager->AddImageByJson("global"));
+	g_pLogManager->Setup("\\Log\\");
+	g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
+	g_pKeyManager->Setup();
+	g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
+	g_pImgManager->AddImageList("global");
+	while (g_pImgManager->AddImageByJson("global"));
 
-    VerInfoStamp();
-    MouseLock();
-    Start();
+	VerInfoStamp();
+	MouseLock();
+	Start();
+
+	/*
+	json jData;
+	jData["player"]["hp"] = 10;
+	jData["player"]["is-puzzle-clear"] = false;
+
+	ofstream o;
+	o.open("data/player.json", ios_base::out);
+	o << jData;
+	o.close();
+
+	json jDataRead;
+	ifstream i;
+	i.open("data/player.json", ios_base::in);
+	i >> jDataRead;
+	i.close();
+
+	cout << "hp : " << jDataRead["player"]["hp"] << endl;
+	cout << "is clear : " << jDataRead["player"]["is-puzzle-clear"] << endl;
+
+	int hp = jDataRead["player"]["hp"];
+	hp -= 5;
+	jDataRead["player"]["hp"] = hp;
+
+	cout << "hp : " << jDataRead["player"]["hp"] << endl;
+	*/
 }
 
 

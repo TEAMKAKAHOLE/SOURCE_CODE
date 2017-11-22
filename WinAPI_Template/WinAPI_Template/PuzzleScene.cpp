@@ -50,9 +50,9 @@ void PuzzleScene::Start()
 	m_Object.SetBodyImg(g_pImgManager->FindImage("hint"));
 	m_Object.SetupForSprites(1, 1);
 	m_Object.SetBodySize({ 15, 10 });
-	m_Object.SetBodyPos({ 270, 200 });
+	m_Object.SetBodyPos({ 280, 185 });
 	m_Object.Update();
-
+	
 	m_imgHintLetter1.SetBodyImg(g_pImgManager->FindImage("hint-letter-1"));
 	m_imgHintLetter1.SetupForSprites(1, 1);
 	m_imgHintLetter1.SetBodySize({ 459, 647 });
@@ -90,6 +90,16 @@ void PuzzleScene::Start()
 	m_imgNormalway.SetBodySize({ 390, 282 });
 	m_imgNormalway.SetBodyPos({ W_WIDTH / 2, W_HEIGHT / 2 });
 	m_imgNormalway.Update();
+
+	//제이썬에 데이터 넣기
+	json jData;
+	jData["player"]["is-puzzle-clear"] = false;
+
+	//아웃풋 스트림 열고 데이타 넣기 
+	ofstream outClearData;
+	outClearData.open("data/player.json", ios_base::out);
+	outClearData << jData;
+	outClearData.close();
 }
 
 void PuzzleScene::Update()
@@ -97,11 +107,6 @@ void PuzzleScene::Update()
 	m_Player.Update();
 	//플레이어 기준으로 뷰포트 사이즈 만큼만 그려줌
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_Player.GetBodyPos(), m_imgWorldBuffer);
-
-	if (g_pKeyManager->isOnceKeyDown('1'))
-	{
-		m_isPuzzleClear = true;
-	}
 
 	//퍼즐 게임 씬 전환 충돌
 	RECT rt2;
@@ -116,12 +121,9 @@ void PuzzleScene::Update()
 	if (IntersectRect(&rt, &m_Player.GetHBoxRect(), &m_Object.GetBodyRect()) && g_pKeyManager->isToggleKy(VK_SPACE))
 	{
 		m_isHint1On = true;
-		//오브젝트에 막히는 부분 설정 해야함.
 	}
 	else
-	{
 		m_isHint1On = false;
-	}
 
 	//출구 충돌
 	RECT rt3;
@@ -156,7 +158,15 @@ void PuzzleScene::Update()
 	{
 		m_isExitMessage2 = false;
 	}
-		
+	
+	//제이썬 데이타 인풋스트림에 넣기
+	json jDataRead;
+	ifstream inClearData;
+	inClearData.open("data/player.json", ios_base::in);
+	inClearData >> jDataRead;
+	inClearData.close();
+
+	m_isPuzzleClear = jDataRead["player"]["is-puzzle-clear"];
 }
 
 void PuzzleScene::Render()
@@ -170,8 +180,8 @@ void PuzzleScene::Render()
 	m_Exit1.Render(m_imgWorldBuffer->GetMemDC());
 	m_Exit2.Render(m_imgWorldBuffer->GetMemDC());
 
-	//퍼즐클리어시 힌트 생성
-	if(m_isPuzzleClear)
+	//퍼즐 클리어시 힌트 생성
+	if(m_isPuzzleClear == true)
 		m_Object.Render(m_imgWorldBuffer->GetMemDC());
 
 	//그려준 버퍼를 뷰포트렌더를 이용해 창 사이즈 만큼만 보이게

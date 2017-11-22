@@ -4,7 +4,9 @@
 
 PuzzleGameScene::PuzzleGameScene()
 	: m_isPlaying(true)
+	, m_isPuzzleClear(false)
 	, m_nAlpha(0)
+	, m_nChageSceneDelay(150)
 {
 	//로딩없이 퍼즐게임으로 전환
 	m_szTagName = "puzzle-game";
@@ -81,11 +83,24 @@ void PuzzleGameScene::Update()
 	}
 	else if (!m_isPlaying)
 	{
+		//제이썬에 데이터 넣기
+		json jData;
+		jData["player"]["is-puzzle-clear"] = true;
+
+		//아웃풋 스트림 열고 데이타 넣기 
+		ofstream outClearData;
+		outClearData.open("data/player.json", ios_base::out);
+		outClearData << jData;
+		outClearData.close();
+
 		if (m_nAlpha < 255)
 			m_nAlpha += 3;
+
+		m_nChageSceneDelay--;
 	}
 		
-	if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
+	if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE) ||
+		!m_isPlaying && m_nChageSceneDelay < 0)
 	{
 		g_pScnManager->ChangeScene("puzzle");
 	}
