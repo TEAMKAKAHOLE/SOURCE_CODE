@@ -29,11 +29,11 @@ void PuzzleScene::Start()
 	//애니메이션 키기
 	m_Player.StartAnimation();
 	m_Player.SetBodySize({ 64, 64 });
-    m_Player.SetTerrainBuffer(m_imgTerrainBuffer);
-    m_Player.SetHBoxMargin({ 16, 16, 16, 16 });
-    m_Player.Update();
-    m_Player.SetLockArea({ 0, 0, 512, 512 });
-    m_Player.LockInWnd();
+	m_Player.SetTerrainBuffer(m_imgTerrainBuffer);
+	m_Player.SetHBoxMargin({ 16, 16, 16, 16 });
+	m_Player.Update();
+	m_Player.SetLockArea({ 0, 0, 512, 512 });
+	m_Player.LockInWnd();
 	//애니메이션 딜레이
 	m_Player.SetFrameDelay(6);
 }
@@ -44,7 +44,7 @@ void PuzzleScene::Update()
 	//플레이어 기준으로 뷰포트 사이즈 만큼만 그려줌
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_Player.GetBodyPos(), m_imgWorldBuffer);
 
-	if (g_pKeyManager->isOnceKeyDown('1'))
+	if (g_pKeyManager->isOnceKeyDown('1') || g_pKeyManager->isOnceKeyDown('2'))
 	{
 		//로딩없이 바로 씬 전환
 		g_pScnManager->ChangeScene("puzzle-game");

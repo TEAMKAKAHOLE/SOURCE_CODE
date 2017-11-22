@@ -28,4 +28,3 @@ public:
 	void Suffle();
 	void Swap(int dest, int sour);
 };
-

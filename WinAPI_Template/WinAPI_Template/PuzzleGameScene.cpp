@@ -84,7 +84,7 @@ void PuzzleGameScene::Update()
 		if (m_nAlpha < 255)
 			m_nAlpha += 3;
 	}
-		
+
 	if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
 	{
 		g_pScnManager->ChangeScene("puzzle");

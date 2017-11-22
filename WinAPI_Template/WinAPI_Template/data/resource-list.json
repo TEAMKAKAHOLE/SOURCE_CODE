@@ -175,6 +175,27 @@
                 "filename": "escape-terrain.bmp",
                 "width": 512,
                 "height": 512
+            },
+            {
+            	"id":2,
+            	"key":"keyItem",
+            	"filename":"Key.bmp",
+            	"width":46,
+            	"height":46
+            },
+             {
+            	"id":3,
+            	"key":"EnemyKnight",
+            	"filename":"EnemyKnight.bmp",
+            	"width":192,
+            	"height":192
+            },
+            {
+            	"id":4,
+            	"key":"Diration",
+            	"filename":"Diration.bmp",
+            	"width":63,
+            	"height":48
             }
         ]
     },
