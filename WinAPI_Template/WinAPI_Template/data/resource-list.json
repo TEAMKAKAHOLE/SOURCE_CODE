@@ -175,6 +175,13 @@
                 "filename": "escape-terrain.bmp",
                 "width": 512,
                 "height": 512
+            },
+            {
+            	"id":2,
+            	"key":"keyItem",
+            	"filename":"Key.bmp",
+            	"width":46,
+            	"height":46
             }
         ]
     },
