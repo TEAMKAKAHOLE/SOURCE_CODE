@@ -56,6 +56,9 @@ void TownScene::Update()
 
     m_player.Update();
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
+
+
+
 }
 
 void TownScene::Render()
