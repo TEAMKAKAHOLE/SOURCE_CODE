@@ -174,8 +174,44 @@
                 "key": "escape-terrain",
                 "filename": "escape-terrain.bmp",
                 "width": 512,
-                "height": 512	
+                "height": 512
             }
         ]
+    },
+    "puzzle": {
+        "images": [
+            {
+            	"id": 0,
+                "key": "puzzle-map",
+                "filename": "puzzle-map.bmp",
+                "width": 512,
+                "height": 512
+            },
+            {
+            	"id": 1,
+                "key": "puzzle-terrain",
+                "filename": "puzzle-terrain.bmp",
+                "width": 512,
+                "height": 512
+            }
+        ]
+    },
+    "puzzleGame": {
+    	"images": [
+    		{
+    			"id": 0,
+                "key": "puzzleBase",
+                "filename": "puzzleGame.bmp",
+                "width": 500,
+                "height": 503
+    		},
+    		{
+    			"id": 1,
+                "key": "puzzleBg",
+                "filename": "Wall.bmp",
+                "width": 1000,
+                "height": 1000
+    		}
+    	]
     }
 }

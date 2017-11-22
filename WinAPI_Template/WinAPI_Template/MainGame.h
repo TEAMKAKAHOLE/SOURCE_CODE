@@ -9,6 +9,8 @@
 #include "EscapeScene.h"
 #include "ExitScene.h"
 #include "FieldScene.h"
+#include "PuzzleScene.h"
+#include "PuzzleGameScene.h"
 #pragma endregion
 
 class MainGame : public GameNode

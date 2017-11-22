@@ -18,7 +18,6 @@ Player::~Player()
 
 void Player::Start()
 {
-
 }
 
 void Player::Update()
@@ -74,7 +73,7 @@ void Player::Update()
 
 void Player::Render(HDC hdc)
 {
-    SpritesObject::Render(hdc);
+	SpritesObject::Render(hdc);
 }
 
 void Player::PlayerController()
