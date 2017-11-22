@@ -44,7 +44,7 @@ void PuzzleScene::Update()
 	//플레이어 기준으로 뷰포트 사이즈 만큼만 그려줌
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_Player.GetBodyPos(), m_imgWorldBuffer);
 
-	if (g_pKeyManager->isOnceKeyDown('1'))
+	if (g_pKeyManager->isOnceKeyDown('1') || g_pKeyManager->isOnceKeyDown('2'))
 	{
 		//로딩없이 바로 씬 전환
 		g_pScnManager->ChangeScene("puzzle-game");
