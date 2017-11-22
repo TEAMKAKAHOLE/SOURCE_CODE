@@ -40,19 +40,19 @@ void EscapeScene::Start()
 	//}  일단 하드코딩
 
 	m_teleportA.SetBodyPos({ (int)385, (int)300 });
-	m_teleportA.SetBodySize({ (int)100, (int)100 });
+	m_teleportA.SetBodySize({ (int)20, (int)20 });
 
 	
 	m_teleportB.SetBodyPos({ (int)418, (int)190 });
-	m_teleportB.SetBodySize({ (int)100, (int)100 });
+	m_teleportB.SetBodySize({ (int)20, (int)20 });
 
 	
 	m_teleportC.SetBodyPos({ (int)255, (int)250 });
-	m_teleportC.SetBodySize({ (int)100, (int)100 });
+	m_teleportC.SetBodySize({ (int)20, (int)20 });
 
 	
 	m_teleportD.SetBodyPos({ (int)95, (int)285 });
-	m_teleportD.SetBodySize({ (int)100, (int)100 });
+	m_teleportD.SetBodySize({ (int)20, (int)20 });
 }
 
 void EscapeScene::Update()
@@ -70,19 +70,19 @@ void EscapeScene::Update()
 	//탈출시 위치가 또다른 충돌박스에 있지 않게 한다.추가 위치 보정필요
 	if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_teleportA.GetBodyRect()))
 	{
-		m_player.SetBodyPos({ (int)250, (int)250 + 180});
+		m_player.SetBodyPos({ (int)250, (int)250 + 50});
 	}
 	else if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_teleportB.GetBodyRect()))
 	{
-		m_player.SetBodyPos({ (int)92, (int)280 + 180});
+		m_player.SetBodyPos({ (int)92, (int)280 + 50});
 	}
 	else if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_teleportC.GetBodyRect()))
 	{
-		m_player.SetBodyPos({ (int)80 + 200, (int)170 });
+		m_player.SetBodyPos({ (int)80 + 50, (int)170 });
 	}
 	else if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_teleportD.GetBodyRect()))
 	{
-		m_player.SetBodyPos({ (int)385, (int)300 + 180 });
+		m_player.SetBodyPos({ (int)385, (int)300 + 50 });
 	}
 }
 

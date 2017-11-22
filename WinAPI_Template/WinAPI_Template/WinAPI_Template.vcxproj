@@ -23,7 +23,7 @@
     <ProjectGuid>{D22BF8F3-B79C-4424-9179-E53964D25B1A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>WinAPI_Template</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)inc;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Team_P\SOURCE_CODE\WinAPI_Template\WinAPI_Template\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Team_P\SOURCE_CODE\WinAPI_Template\WinAPI_Template\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

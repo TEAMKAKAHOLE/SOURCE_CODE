@@ -37,7 +37,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("exit", new ExitScene());
 	
 
-    g_pScnManager->SetNextScene("town");
+    g_pScnManager->SetNextScene("escape");
     g_pScnManager->ChangeScene("loading");
 }
 
