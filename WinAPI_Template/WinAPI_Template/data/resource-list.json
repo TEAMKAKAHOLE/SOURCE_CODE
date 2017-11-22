@@ -196,19 +196,19 @@
             }
         ]
     },
-    "puzzleGame": {
+    "puzzle-game": {
     	"images": [
     		{
     			"id": 0,
-                "key": "puzzleBase",
-                "filename": "puzzleGame.bmp",
+                "key": "puzzle-img",
+                "filename": "puzzle-img.bmp",
                 "width": 500,
                 "height": 503
     		},
     		{
     			"id": 1,
-                "key": "puzzleBg",
-                "filename": "Wall.bmp",
+                "key": "puzzle-bg",
+                "filename": "puzzle-game-bg.bmp",
                 "width": 1000,
                 "height": 1000
     		}
