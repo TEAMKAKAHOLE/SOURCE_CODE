@@ -1,10 +1,13 @@
 ﻿#pragma once
 #include "GameNode.h"
 #include "Player.h"
+#include "Chief.h"
 
 class TownScene : public GameNode
 {
 private:
+    int     m_nTownLvl;
+
     ImageObject*    m_imgWorldBuffer;
     ImageObject*    m_imgWorldMap;
     ImageObject*    m_imgTerrainBuffer;
@@ -14,6 +17,8 @@ private:
     SpritesObject*  m_sprHudLife;
 
     Player  m_player;
+    Chief   m_chief;
+    vector<Projectile>  m_vecBullet;
 
 public:
     TownScene();

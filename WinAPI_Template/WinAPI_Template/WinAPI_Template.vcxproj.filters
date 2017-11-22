@@ -210,6 +210,12 @@
     <ClInclude Include="TelePort.h">
       <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
     </ClInclude>
+    <ClInclude Include="Chief.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Town</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -328,6 +334,12 @@
     </ClCompile>
     <ClCompile Include="TelePort.cpp">
       <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
+    </ClCompile>
+    <ClCompile Include="Chief.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Town</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

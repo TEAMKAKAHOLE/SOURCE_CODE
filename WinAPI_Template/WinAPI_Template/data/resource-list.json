@@ -125,6 +125,27 @@
                 "filename": "Town-terrain.bmp",
                 "width": 512,
                 "height": 512
+            },
+            {
+                "id": 3,
+                "key": "chief",
+                "filename": "Chief.bmp",
+                "width": 48,
+                "height": 48
+            },
+            {
+                "id": 4,
+                "key": "agahnim",
+                "filename": "Agahnim.bmp",
+                "width": 48,
+                "height": 144
+            },
+            {
+                "id": 5,
+                "key": "agahnim-bullet",
+                "filename": "Agahnim-Bullet.bmp",
+                "width": 144,
+                "height": 288
             }
         ]
     },  

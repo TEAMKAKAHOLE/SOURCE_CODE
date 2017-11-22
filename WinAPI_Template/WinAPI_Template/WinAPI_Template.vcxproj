@@ -190,6 +190,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationHelper.h" />
+    <ClInclude Include="Chief.h" />
     <ClInclude Include="DataStructure.h" />
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="DrawHelper.h" />
@@ -205,6 +206,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="PixelCollision.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ProgressBarObject.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="PuzzleGameScene.h" />
     <ClInclude Include="PuzzleScene.h" />
     <ClInclude Include="RatingHelper.h" />
@@ -237,6 +239,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimationHelper.cpp" />
+    <ClCompile Include="Chief.cpp" />
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="DrawHelper.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -250,6 +253,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="PixelCollision.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProgressBarObject.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="PuzzleGameScene.cpp" />
     <ClCompile Include="PuzzleScene.cpp" />
     <ClCompile Include="RatingHelper.cpp" />
