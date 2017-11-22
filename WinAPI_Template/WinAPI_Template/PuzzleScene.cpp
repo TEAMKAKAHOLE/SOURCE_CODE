@@ -6,13 +6,22 @@ PuzzleScene::PuzzleScene()
 : m_isStageClear(false)
 , m_isPuzzleClear(false)
 , m_isHint1On(false)
-, m_isHint2On(false)
-, m_isHint3On(false)
 , m_isSignUp(false)
 , m_isExitMessage1(false)
 , m_isExitMessage2(false)
+, m_isHintCheck(false)
 {
 	m_szTagName = "puzzle";
+
+	//제이썬에 데이터 초기화
+	json jData;
+	jData["player"]["is-puzzle-clear"] = false;
+
+	//아웃풋 스트림 열고 데이타 넣기 
+	ofstream outClearData;
+	outClearData.open("data/player.json", ios_base::out);
+	outClearData << jData;
+	outClearData.close();
 }
 
 
@@ -91,15 +100,6 @@ void PuzzleScene::Start()
 	m_imgNormalway.SetBodyPos({ W_WIDTH / 2, W_HEIGHT / 2 });
 	m_imgNormalway.Update();
 
-	//제이썬에 데이터 넣기
-	json jData;
-	jData["player"]["is-puzzle-clear"] = false;
-
-	//아웃풋 스트림 열고 데이타 넣기 
-	ofstream outClearData;
-	outClearData.open("data/player.json", ios_base::out);
-	outClearData << jData;
-	outClearData.close();
 }
 
 void PuzzleScene::Update()
@@ -118,8 +118,9 @@ void PuzzleScene::Update()
 
 	//힌트 충돌
 	RECT rt;
-	if (IntersectRect(&rt, &m_Player.GetHBoxRect(), &m_Object.GetBodyRect()) && g_pKeyManager->isToggleKy(VK_SPACE))
+	if (IntersectRect(&rt, &m_Player.GetHBoxRect(), &m_Object.GetBodyRect()))
 	{
+		if (g_pKeyManager->isOnceKeyDown(VK_SPACE) && m_isPuzzleClear == true)
 		m_isHint1On = true;
 	}
 	else
@@ -138,9 +139,10 @@ void PuzzleScene::Update()
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
-	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && g_pKeyManager->isToggleKy(VK_SPACE))
+	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()))
 	{
-		m_isExitMessage1 = true;
+		if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
+			m_isExitMessage1 = true;
 	}
 	else
 		m_isExitMessage1 = false;
@@ -150,14 +152,19 @@ void PuzzleScene::Update()
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
-	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit2.GetBodyRect()) && g_pKeyManager->isToggleKy(VK_SPACE))
+	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit2.GetBodyRect()))
 	{
-		m_isExitMessage2 = true;
+		if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
+			m_isExitMessage2 = true;
 	}
 	else
 	{
 		m_isExitMessage2 = false;
 	}
+
+	//스테이지 클리어 
+	if (m_isPuzzleClear == true && m_isHint1On == true)
+		m_isStageClear = true;
 	
 	//제이썬 데이타 인풋스트림에 넣기
 	json jDataRead;

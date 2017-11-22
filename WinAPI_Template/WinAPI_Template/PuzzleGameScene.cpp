@@ -6,7 +6,7 @@ PuzzleGameScene::PuzzleGameScene()
 	: m_isPlaying(true)
 	, m_isPuzzleClear(false)
 	, m_nAlpha(0)
-	, m_nChageSceneDelay(150)
+	, m_nChageSceneDelay(300)
 {
 	//로딩없이 퍼즐게임으로 전환
 	m_szTagName = "puzzle-game";
@@ -37,6 +37,9 @@ void PuzzleGameScene::Start()
 	}
 
 	Suffle();
+
+	if (!m_isPlaying)
+		m_nChageSceneDelay = 4500;
 }
 
 void PuzzleGameScene::Update()

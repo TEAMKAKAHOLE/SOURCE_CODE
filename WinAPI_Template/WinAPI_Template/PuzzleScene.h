@@ -29,8 +29,7 @@ private:
 	bool		m_isExitMessage1;
 	bool		m_isExitMessage2;
 	bool		m_isHint1On;
-	bool		m_isHint2On;
-	bool		m_isHint3On;
+	bool		m_isHintCheck;
 	bool		m_isSignUp;
 
 public:
