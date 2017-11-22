@@ -3,16 +3,16 @@
 
 MainGame::MainGame()
 {
-    g_pLogManager->Setup("\\Log\\");
-    g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
-    g_pKeyManager->Setup();
-    g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
-    g_pImgManager->AddImageList("global");
-    while(g_pImgManager->AddImageByJson("global"));
+	g_pLogManager->Setup("\\Log\\");
+	g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
+	g_pKeyManager->Setup();
+	g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
+	g_pImgManager->AddImageList("global");
+	while (g_pImgManager->AddImageByJson("global"));
 
-    VerInfoStamp();
-    MouseLock();
-    Start();
+	VerInfoStamp();
+	MouseLock();
+	Start();
 }
 
 
@@ -36,8 +36,7 @@ void MainGame::Start()
 	g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 	
-
-    g_pScnManager->SetNextScene("escape");
+    g_pScnManager->SetNextScene("splash");
     g_pScnManager->ChangeScene("loading");
 }
 
@@ -117,6 +116,4 @@ void MainGame::Release()
     g_pDbManager->ReleaseInstance();
     //  SceneManager release
     g_pScnManager->ReleaseAll();
-
-	
 }

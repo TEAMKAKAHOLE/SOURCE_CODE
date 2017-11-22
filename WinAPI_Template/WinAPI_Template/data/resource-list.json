@@ -214,6 +214,34 @@
                 "filename": "puzzle-terrain.bmp",
                 "width": 512,
                 "height": 512
+            },
+            {
+            	"id": 2,
+                "key": "hint",
+                "filename": "hint.bmp",
+                "width": 135,
+                "height": 90
+            },
+            {
+            	"id": 3,
+                "key": "hint-letter-1",
+                "filename": "hint-letter.bmp",
+                "width": 459,
+                "height": 647
+            },
+            {
+            	"id": 4,
+                "key": "hardway",
+                "filename": "Hardway.bmp",
+                "width": 390,
+                "height": 282
+            },
+            {
+            	"id": 5,
+                "key": "normalway",
+                "filename": "Normalway.bmp",
+                "width": 390,
+                "height": 282
             }
         ]
     },
