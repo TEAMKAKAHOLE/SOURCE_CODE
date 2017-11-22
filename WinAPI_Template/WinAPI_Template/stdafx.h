@@ -14,6 +14,8 @@
 // Windows 헤더 파일:
 #include <windows.h>
 
+
+
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>
@@ -29,6 +31,8 @@
 
 using namespace std;
 using json = nlohmann::json;
+
+
 
 //==================================================================
 //		## 디파인문 - 메크로 ## (윈도우창 초기화)

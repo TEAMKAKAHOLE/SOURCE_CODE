@@ -7,6 +7,7 @@
 #include "LoadingScene.h"
 #include "TownScene.h"
 #include "ExitScene.h"
+#include "FieldScene.h"
 #pragma endregion
 
 class MainGame : public GameNode
@@ -15,6 +16,7 @@ class MainGame : public GameNode
 //  VARIABLES
 private:
     string      m_szVerInfo;
+
 //=======================================================
 //  FUNCTIONS
 private:

@@ -1,6 +1,7 @@
 #pragma once
 #include "SpritesObject.h"
 
+<<<<<<< HEAD
 #define PLAYER_RUN_MAX_FRAME 6
 #define PLAYER_ATK_MAX_FRAME 5
 
@@ -10,6 +11,8 @@
 #define DIR_DOWN    0
 
 #define ATK_SWORD_BOX {50, 50}
+=======
+>>>>>>> field-scene
 
 class Player : public SpritesObject
 {
@@ -42,4 +45,3 @@ public:
 
     void CheckCollision();
 };
-

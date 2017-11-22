@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -193,7 +193,9 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="DataStructure.h" />
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="DrawHelper.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="ExitScene.h" />
+    <ClInclude Include="FieldScene.h" />
     <ClInclude Include="FileDataManager.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="json.hpp" />
@@ -233,7 +235,9 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="AnimationHelper.cpp" />
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="DrawHelper.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="ExitScene.cpp" />
+    <ClCompile Include="FieldScene.cpp" />
     <ClCompile Include="FileDataManager.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="LoadingScene.cpp" />

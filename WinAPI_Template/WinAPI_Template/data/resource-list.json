@@ -9,6 +9,28 @@
                 "height": 128
             },
             {
+            	"id":1,
+            	"key": "player",
+            	"filename":"Link.bmp",
+            	"width":336,
+            	"height":384
+            }
+        ]
+    },
+    "splash": {
+        "images": [
+            {
+                "id": 0,
+                "key": "logo",
+                "filename": "logo-komastar.bmp",
+                "width": 800,
+                "height": 600
+            }
+        ]
+    },
+    "title":{
+        "images":[
+            {
                 "id": 1,
                 "key": "hud",
                 "filename": "HUD-frame.bmp",
@@ -74,13 +96,6 @@
     "town": {
         "images": [
             {
-                "id": 0,
-                "key": "player",
-                "filename": "Link.bmp",
-                "width": 336,
-                "height": 384
-            },
-            {
                 "id": 1,
                 "key": "town-map",
                 "filename": "Town.bmp",
@@ -95,5 +110,37 @@
                 "height": 512
             }
         ]
+    },  
+    "field":{
+    	"images":[
+    		{
+    			"id":0,
+    			"key" : "field-map",
+    			"filename":"field-map.bmp",
+    			"width":512,
+    			"height":512
+    		},
+    		{
+    			"id":1,
+    			"key":"field-map-magenta",
+    			"filename":"field-map_magenta.bmp",
+    			"width":512,
+    			"height":512
+    		},
+    		{
+    			"id":2,
+    			"key":"enemy-knight",
+    			"filename":"EnemyKnight.bmp",
+    			"width":192,
+    			"height":192
+    		},
+    		{
+    			"id":3,
+    			"key":"enemy-jellyfish",
+    			"filename":"Jellyfishbmp",
+    			"width":57,
+    			"height":17
+    		}
+  		]
     }
 }

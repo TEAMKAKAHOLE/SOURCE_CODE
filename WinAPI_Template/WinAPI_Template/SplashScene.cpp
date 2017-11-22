@@ -28,7 +28,7 @@ void SplashScene::Update()
     }
     else if (m_fDestTime < g_pTimerManager->GetWorldTime())
     {
-        g_pScnManager->SetNextScene("title");
+        g_pScnManager->SetNextScene("field");
         g_pScnManager->ChangeScene("loading");
     }
 }

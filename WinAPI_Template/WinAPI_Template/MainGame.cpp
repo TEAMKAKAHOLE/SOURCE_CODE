@@ -9,6 +9,7 @@ MainGame::MainGame()
     g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
     g_pImgManager->AddImageList("global");
     while(g_pImgManager->AddImageByJson("global"));
+
     VerInfoStamp();
     MouseLock();
     Start();
@@ -24,10 +25,12 @@ MainGame::~MainGame()
 void MainGame::Start()
 {
     g_pImgManager->AddImage("ui-buffer", VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+    
     g_pScnManager->AddScene("splash", new SplashScene());
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
     g_pScnManager->AddScene("town", new TownScene());
+	g_pScnManager->AddScene("field", new FieldScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 
     g_pScnManager->SetNextScene("town");
@@ -110,4 +113,6 @@ void MainGame::Release()
     g_pDbManager->ReleaseInstance();
     //  SceneManager release
     g_pScnManager->ReleaseAll();
+
+	
 }
