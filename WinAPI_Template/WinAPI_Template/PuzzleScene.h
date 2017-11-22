@@ -7,7 +7,7 @@ class PuzzleScene : public GameNode
 private:
 	//플레이어와 월드맵이 들어갈 버퍼
 	ImageObject*	m_imgWorldBuffer;
-	//마젠타 처리가 안된 월드맵 사이즈는 2048 * 2048
+	//마젠타 처리가 안된 월드맵 사이즈는 512 * 512
 	ImageObject*	m_imgWorldMap;
 	//충돌 처리할떄만 그리는
 	ImageObject*	m_imgTerrainBuffer;

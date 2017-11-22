@@ -64,6 +64,12 @@
     <Filter Include="GameFramework2D\004-Scene\GameScene\Field">
       <UniqueIdentifier>{f99b3991-567c-4d4c-850e-4e301b7c425e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene\Escape">
+      <UniqueIdentifier>{224c4d8d-0564-4ff9-8c77-f4c1a7759fb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene\Puzzle">
+      <UniqueIdentifier>{efcac3da-99e5-4a37-9844-e13f504fabbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -192,17 +198,17 @@
     <ClInclude Include="Enemy.h">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClInclude>
-    <ClInclude Include="EscapeScene.h">
-      <Filter>GameFramework2D\100-Source</Filter>
-    </ClInclude>
-    <ClInclude Include="TelePort.h">
-      <Filter>GameFramework2D\100-Source</Filter>
+    <ClInclude Include="PuzzleGameScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Puzzle</Filter>
     </ClInclude>
     <ClInclude Include="PuzzleScene.h">
-      <Filter>GameFramework2D\004-Scene</Filter>
+      <Filter>GameFramework2D\004-Scene\GameScene\Puzzle</Filter>
     </ClInclude>
-    <ClInclude Include="PuzzleGameScene.h">
-      <Filter>GameFramework2D\004-Scene</Filter>
+    <ClInclude Include="EscapeScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
+    </ClInclude>
+    <ClInclude Include="TelePort.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -308,20 +314,20 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
-    <ClCompile Include="EscapeScene.cpp">
-      <Filter>GameFramework2D\100-Source</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
-    <ClCompile Include="TelePort.cpp">
-      <Filter>GameFramework2D\100-Source</Filter>
+    <ClCompile Include="PuzzleGameScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Puzzle</Filter>
     </ClCompile>
     <ClCompile Include="PuzzleScene.cpp">
-      <Filter>GameFramework2D\004-Scene</Filter>
+      <Filter>GameFramework2D\004-Scene\GameScene\Puzzle</Filter>
     </ClCompile>
-    <ClCompile Include="PuzzleGameScene.cpp">
-      <Filter>GameFramework2D\004-Scene</Filter>
+    <ClCompile Include="EscapeScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
+    </ClCompile>
+    <ClCompile Include="TelePort.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Escape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

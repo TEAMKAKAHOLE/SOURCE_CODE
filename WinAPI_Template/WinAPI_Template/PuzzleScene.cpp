@@ -18,17 +18,22 @@ void PuzzleScene::Start()
 	while (g_pImgManager->AddImageByJson(m_szTagName));
 
 	//버퍼는 애드 이미지로 추가
-	m_imgWorldBuffer = g_pImgManager->AddImage("puzzle-map-buffer", 2048, 2048);
+	m_imgWorldBuffer = g_pImgManager->AddImage("puzzle-map-buffer", 512, 512);
 	m_imgWorldMap = g_pImgManager->FindImage("puzzle-map");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("puzzle-terrain");
 
 	//플레이어 세팅
-	m_Player.SetBodyImg(g_pImgManager->FindImage("Player"));
+	m_Player.SetBodyImg(g_pImgManager->FindImage("player"));
 	//스프라이트 이미지 x, y축 프레임 갯수 세팅
 	m_Player.SetupForSprites(7, 8);
 	//애니메이션 키기
 	m_Player.StartAnimation();
-	m_Player.SetBodySize({ 128, 128 });
+	m_Player.SetBodySize({ 64, 64 });
+    m_Player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_Player.SetHBoxMargin({ 16, 16, 16, 16 });
+    m_Player.Update();
+    m_Player.SetLockArea({ 0, 0, 512, 512 });
+    m_Player.LockInWnd();
 	//애니메이션 딜레이
 	m_Player.SetFrameDelay(6);
 }
@@ -42,14 +47,14 @@ void PuzzleScene::Update()
 	if (g_pKeyManager->isOnceKeyDown('1'))
 	{
 		//로딩없이 바로 씬 전환
-		g_pScnManager->ChangeScene("puzzleGame");
+		g_pScnManager->ChangeScene("puzzle-game");
 	}
 }
 
 void PuzzleScene::Render()
 {
 	//맵과 플레이어 맵버퍼에 그려줌.
-	m_imgWorldMap->Render(m_imgWorldBuffer->GetMemDC(), 0, 0, 2048, 2048);
+	m_imgWorldMap->Render(m_imgWorldBuffer->GetMemDC(), 0, 0);
 	m_Player.Render(m_imgWorldBuffer->GetMemDC());
 
 	//그려준 버퍼를 뷰포트렌더를 이용해 창 사이즈 만큼만 보이게

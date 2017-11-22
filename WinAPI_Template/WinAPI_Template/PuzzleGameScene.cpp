@@ -7,7 +7,7 @@ PuzzleGameScene::PuzzleGameScene()
 	, m_nAlpha(0)
 {
 	//로딩없이 퍼즐게임으로 전환
-	m_szTagName = "puzzleGame";
+	m_szTagName = "puzzle-game";
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
 }
@@ -22,8 +22,8 @@ void PuzzleGameScene::Start()
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
 
-	m_imgPuzzle = g_pImgManager->FindImage("puzzleBase");
-	m_imgBg = g_pImgManager->FindImage("puzzleBg");
+	m_imgPuzzle = g_pImgManager->FindImage("puzzle-img");
+	m_imgBg = g_pImgManager->FindImage("puzzle-bg");
 
 	for (int i = 0; i < 3 * 3; i++)
 	{
