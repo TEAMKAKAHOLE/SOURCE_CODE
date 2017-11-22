@@ -49,8 +49,15 @@
             }
         ]
     },
-    "title":{
-        "images":[
+    "title": {
+        "images": [
+            {
+                "id": 0,
+                "key": "title-bg",
+                "filename": "title.bmp",
+                "width": 256,
+                "height": 144
+            },
             {
                 "id": 1,
                 "key": "hud",
@@ -82,17 +89,6 @@
                 "filename": "logo-kakahole.bmp",
                 "width": 256,
                 "height": 200
-            }
-        ]
-    },
-    "title": {
-        "images": [
-            {
-                "id": 0,
-                "key": "title-bg",
-                "filename": "title.bmp",
-                "width": 256,
-                "height": 144
             }
         ]
     },
@@ -163,5 +159,23 @@
     			"height":17
     		}
   		]
+    },
+   "escape":{
+       "images": [
+            {
+                "id": 0,
+                "key": "escape-map",
+                "filename": "escape-map.bmp",
+                "width": 512,
+                "height": 512
+            },
+            {
+                "id": 1,
+                "key": "escape-terrain",
+                "filename": "escape-terrain.bmp",
+                "width": 512,
+                "height": 512	
+            }
+        ]
     }
 }

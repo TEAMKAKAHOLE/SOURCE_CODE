@@ -6,6 +6,7 @@
 #include "TitleScene.h"
 #include "LoadingScene.h"
 #include "TownScene.h"
+#include "EscapeScene.h"
 #include "ExitScene.h"
 #include "FieldScene.h"
 #pragma endregion

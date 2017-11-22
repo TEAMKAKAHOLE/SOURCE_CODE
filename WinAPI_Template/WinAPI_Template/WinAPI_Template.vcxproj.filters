@@ -195,6 +195,15 @@
     <ClInclude Include="Enemy.h">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClInclude>
+    <ClInclude Include="EscapeScene.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
+    <ClInclude Include="TelePort.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -303,6 +312,15 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Field</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="EscapeScene.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TelePort.cpp">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
   </ItemGroup>
