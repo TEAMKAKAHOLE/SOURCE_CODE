@@ -9,7 +9,7 @@ private:
 
 public:
     TitleScene();
-    ~TitleScene();
+    virtual ~TitleScene();
 
     // GameNode을(를) 통해 상속됨
     virtual void Start() override;

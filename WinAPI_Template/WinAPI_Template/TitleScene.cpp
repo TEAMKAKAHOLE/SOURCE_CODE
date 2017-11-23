@@ -5,6 +5,7 @@
 TitleScene::TitleScene()
 {
     m_szTagName = "title";
+	
 }
 
 
