@@ -17,22 +17,28 @@ EscapeScene::~EscapeScene()
 
 void EscapeScene::Start()
 {
-	m_imgWorldBuffer     = g_pImgManager->AddImage("eacape-map-buffer", 512, 512);
-	m_imgWorldMap        = g_pImgManager->FindImage("escape-map");
-	m_imgTerrainBuffer   = g_pImgManager->FindImage("escape-terrain");
-	
+	m_imgWorldBuffer = g_pImgManager->AddImage("eacape-map-buffer", 512, 512);
+	m_imgWorldMap = g_pImgManager->FindImage("escape-map");
+	m_imgTerrainBuffer = g_pImgManager->FindImage("escape-terrain");
+
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
-	m_player.SetupForSprites(7,8);
+	m_player.SetupForSprites(7, 8);
 	m_player.StartAnimation();
-    m_player.SetBodySize({ 64, 64 });
+	m_player.SetBodySize({ 64, 64 });
 	m_player.SetFrameDelay(6);
-    m_player.SetBodyPos({ (int)350,(int)390 });
-    m_player.SetHBoxMargin({ 16, 16, 16, 16 });
-    m_player.SetTerrainBuffer(m_imgTerrainBuffer);
-    m_player.Update();
-    m_player.SetLockArea({ 0, 0, 512, 512 });
-    m_player.LockInWnd();
+	m_player.SetBodyPos({ (int)350,(int)390 });
+	m_player.SetHBoxMargin({ 16, 16, 16, 16 });
+	m_player.SetTerrainBuffer(m_imgTerrainBuffer);
+	m_player.Update();
+	m_player.SetLockArea({ 0, 0, 512, 512 });
+	m_player.LockInWnd();
+
+
+
+
+
+
 
 	m_teleportA.SetBodyPos({ (int)385, (int)300 });
 	m_teleportA.SetBodySize({ (int)20, (int)20 });
@@ -51,11 +57,20 @@ void EscapeScene::Start()
 
 	//Item 초기위치,bool 설정
 	m_KeyItem1.SetBodyImg(g_pImgManager->FindImage("keyItem"));
-	m_KeyItem1.SetupForSprites(1,1);
+	m_KeyItem1.SetupForSprites(1, 1);
 	m_KeyItem1.StartAnimation();
 	m_KeyItem1.SetBodySize({ 46,46 });
 	m_KeyItem1.SetBodyPos({ 420,260 });
 	m_bKeyItem1 = false;
+
+
+	m_Trap.SetBodyImg(g_pImgManager->FindImage("Trap"));
+	m_Trap.SetupForSprites(1, 16);
+	m_Trap.StartAnimation();
+	m_Trap.SetBodySize({ 44,44 });
+	m_Trap.SetBodyPos({ 420,200 });
+
+
 
 	m_BackScene.SetBodyImg(g_pImgManager->FindImage("Diration"));
 	m_BackScene.SetupForSprites(1, 1);
@@ -76,23 +91,23 @@ void EscapeScene::Start()
 		m_KeyItem1.SetInvisible();
 	}
 	else {
-	for (int i = 0; i < 3; ++i) {
-	
-		//Enemy 
-		m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
-		m_cEnemy[i].SetupForSprites(4, 4);
-        m_cEnemy[i].SetTerrainBuffer(m_imgTerrainBuffer);
-		m_cEnemy[i].StartAnimation();
-		m_cEnemy[i].SetBodySize({ 64, 64 });
-		m_cEnemy[i].SetFrameDelay(6);
-		m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
-		m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
-		m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
-		m_cEnemy[i].LockInWnd();
-	}
-	
-}
+		for (int i = 0; i < 3; ++i) {
 
+			//Enemy 
+			m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
+			m_cEnemy[i].SetupForSprites(4, 4);
+			m_cEnemy[i].SetTerrainBuffer(m_imgTerrainBuffer);
+			m_cEnemy[i].StartAnimation();
+			m_cEnemy[i].SetBodySize({ 64, 64 });
+			m_cEnemy[i].SetFrameDelay(6);
+			m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
+			m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
+			m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
+			m_cEnemy[i].LockInWnd();
+		}
+
+	}
+}
 void EscapeScene::Update()
 {
 	m_player.Update();

@@ -31,6 +31,7 @@ private:
 	//마지막 탈출시 필요한 열쇠아이템 RECT이미지
 	SpritesObject m_KeyItem1;
 	//SpriteObject m_KeyItem2;
+	SpritesObject m_Trap;
 	//뒤로 돌아가는 씬
 	SpritesObject m_BackScene;
 	bool m_bKeyItem1;

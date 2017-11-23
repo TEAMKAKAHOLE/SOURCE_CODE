@@ -206,6 +206,13 @@
             	"filename":"Diration.bmp",
             	"width":63,
             	"height":48
+            },
+             {
+            	"id":5,
+            	"key":"Trap",
+            	"filename":"Trap.bmp",
+            	"width":512,
+            	"height":44
             }
         ]
     },
