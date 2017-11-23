@@ -4,7 +4,6 @@
 
 SplashScene::SplashScene()
 {
-    m_isStart = true;
     m_szTagName = "splash";
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
@@ -16,6 +15,7 @@ SplashScene::~SplashScene()
 
 void SplashScene::Start()
 {
+    m_isStart = true;
     m_imgLogo = g_pImgManager->FindImage("logo");
 }
 
@@ -28,7 +28,7 @@ void SplashScene::Update()
     }
     else if (m_fDestTime < g_pTimerManager->GetWorldTime())
     {
-        g_pScnManager->SetNextScene("field");
+        g_pScnManager->SetNextScene("title");
         g_pScnManager->ChangeScene("loading");
     }
 }

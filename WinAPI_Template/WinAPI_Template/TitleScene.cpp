@@ -35,7 +35,7 @@ void TitleScene::InputController()
 {
     if (g_pKeyManager->isOnceKeyDown(VK_RETURN))
     {
-        g_pScnManager->SetNextScene("load-game");
+        g_pScnManager->SetNextScene("town");
         g_pScnManager->ChangeScene("loading");
     }
 

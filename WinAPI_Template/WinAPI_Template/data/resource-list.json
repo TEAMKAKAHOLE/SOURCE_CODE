@@ -43,9 +43,9 @@
             {
                 "id": 0,
                 "key": "logo",
-                "filename": "logo-komastar.bmp",
-                "width": 800,
-                "height": 600
+                "filename": "logo-kakahole.bmp",
+                "width": 256,
+                "height": 200
             }
         ]
     },
@@ -78,17 +78,6 @@
                 "filename": "HUD-Number.bmp",
                 "width": 70,
                 "height": 7
-            }
-        ]
-    },
-    "splash": {
-        "images": [
-            {
-                "id": 0,
-                "key": "logo",
-                "filename": "logo-kakahole.bmp",
-                "width": 256,
-                "height": 200
             }
         ]
     },

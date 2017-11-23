@@ -1,1 +1,8 @@
-{"player":{"atk":5,"hp":5,"potion":5,"scn-level":1}}
+{
+    "player": {
+        "atk": 1,
+        "hp": 5,
+        "potion": 0,
+        "scn-level": 0
+    }
+}
