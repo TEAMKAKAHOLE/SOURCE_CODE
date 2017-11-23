@@ -4,13 +4,15 @@
 
 Chief::Chief()
 {
+	m_sprBullet = NULL;
     m_isHostile = false;
 }
 
 
 Chief::~Chief()
 {
-    SAFE_DELETE(m_sprBullet);
+	if(m_sprBullet != NULL)
+		SAFE_DELETE(m_sprBullet);
 }
 
 void Chief::Start()

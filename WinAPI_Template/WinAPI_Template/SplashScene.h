@@ -9,6 +9,9 @@ private:
 
     bool    m_isStart;
     float   m_fDestTime;
+	int		m_nAlpha;
+	int		m_nAlphaPlus;
+
 public:
     SplashScene();
     virtual ~SplashScene();
