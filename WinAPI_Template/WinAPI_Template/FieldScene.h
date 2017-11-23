@@ -2,21 +2,17 @@
 #include "GameNode.h"
 #include "Player.h"
 #include "Enemy.h"
-
-
+#include "Projectile.h"
 
 class FieldScene : public GameNode
 {
-
 private:
-	json		m_playerData;
+	json		 m_playerData;
 	ImageObject* m_imgWorldBuffer; // 맵 이미지를 그릴 버퍼
 	ImageObject* m_imgWorldMap;  //원본 맵 이미지
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
 	Player		 m_player;
 	Enemy		 m_enemy;
-
-
 
 	RECT m_rtTownPortal;
 	RECT m_rtEscapePortal;
@@ -44,6 +40,5 @@ public:
 	void MakeEnemy(int count);
 
 	int GetRandom(int min, int max);
-
+    void SaveGame();
 };
-

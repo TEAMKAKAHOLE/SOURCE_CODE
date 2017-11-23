@@ -13,6 +13,7 @@ FieldScene::~FieldScene()
 void FieldScene::Start()
 {
 	m_playerData = g_pFileManager->JsonFind("player");
+
 	m_vecEnemy.clear();
 
 	m_nEnemyPosY[0] = 420;
@@ -57,28 +58,23 @@ void FieldScene::Start()
 	m_isTutorial = false;
 }
 
-
-
 void FieldScene::Update()  
 {
-	RECT rt;
-
 	m_player.Update();
-
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Update();
-		
 	}
-	
+
+    RECT rt;
 	if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetBodyRect()))
 	{
 		g_pScnManager->SetNextScene("town");
 		g_pScnManager->ChangeScene("loading");
 	}
 
-
-	if (IntersectRect(&rt, &m_rtEscapePortal, &m_player.GetBodyRect()))
+    RECT rt2;
+	if (IntersectRect(&rt2, &m_rtEscapePortal, &m_player.GetBodyRect()))
 	{
 		if (m_isTutorial == false)
 		{
@@ -87,17 +83,8 @@ void FieldScene::Update()
 		}
 	}
 
-
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
-
-		/*if (IntersectRect(&rt, &iter->GetAwarenessRect(), &m_player.GetBodyRect()))
-		{
-			m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iter->GetBodyPos(), m_player.GetBodyPos());
-			g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f);
-			iter->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f));
-		}*/
-
 		if (IntersectRect(&rt, &iter->GetBodyRect(), &m_player.GetAtkArea()))
 		{
 			iter->SumLife(-1);
@@ -111,7 +98,6 @@ void FieldScene::Update()
 
 	//¸Ê ¿òÁ÷ÀÌ±â
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
-	
 }
 
 void FieldScene::Render()
@@ -121,12 +107,10 @@ void FieldScene::Render()
 
 	g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtEscapePortal);
 
-
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Render(m_imgWorldBuffer->GetMemDC());
 		g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtAwareness);
-
 	}
 
 	m_player.Render(m_imgWorldBuffer->GetMemDC());
@@ -141,7 +125,7 @@ void FieldScene::MakeEnemy(int count)
 {
 	if (count)
 	{		
-		m_enemy.SetBodyPos({ (double)GetRandom(100,500),(double)m_nEnemyPosY[rand() % 5]});
+        m_enemy.SetBodyPos({ (double)GetRandom(100, 500), (double)m_nEnemyPosY[rand() % 5] });
 		
 		m_enemy.SetBodySize({ 64, 64 });
 		m_enemy.SetupForSprites(4, 4);
@@ -154,8 +138,6 @@ void FieldScene::MakeEnemy(int count)
 			
 		m_vecEnemy.push_back(m_enemy);
 	}
-
-	
 }
 
 int FieldScene::GetRandom(int min, int max)
@@ -163,4 +145,11 @@ int FieldScene::GetRandom(int min, int max)
 	// 0 ~ 5 : 5 - 0 + 1 => 0 ~ 5
 	// 5 ~ 9 : 9 - 5 + 1 => 0 ~ 4 + 5 => 5 ~ 9
 	return rand() % (max - min + 1) + min;
+}
+
+void FieldScene::SaveGame()
+{
+    m_playerData["player"]["hp"] = m_player.GetLife();
+    m_playerData["player"]["potion"] = m_player.GetHealPotion();
+    g_pFileManager->JsonSave(PLAYER_DATA_PATH, m_playerData);
 }
