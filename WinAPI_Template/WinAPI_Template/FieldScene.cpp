@@ -46,41 +46,51 @@ void FieldScene::Start()
 
 	m_enemy.SetBodyImg(g_pImgManager->FindImage("enemy-knight"));
 	m_enemy.SetTerrainBuffer(m_imgTerrainBuffer);
+	m_nscnLevel = m_playerData["player"]["scn-level"];
 
-	for (int i = 0; i <= 5; ++i)
+	if (m_nscnLevel == 0)
 	{
-		MakeEnemy(i);
+		for (int i = 0; i <= 3; ++i)
+		{
+			MakeEnemy(i);
+		}
+	}
+	else
+	{
+		for (int i = 0; i <= 5; ++i)
+		{
+			MakeEnemy(i);
+		}
+
 	}
 	
 	m_rtTownPortal = g_pDrawHelper->MakeRect({ 0,400 }, { 30,70 });
 	m_rtEscapePortal = g_pDrawHelper->MakeRect({ 500,380 }, { 20,130 });
 
-	m_isTutorial = false;
+
 }
 
 void FieldScene::Update()  
 {
 	m_player.Update();
     m_player.MakeBullet(m_vecBullets, m_player.GetBodyPos());
-
+	
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Update();
 	}
-
+	
     if (m_isClear)
-    {
-        int scnLevel = m_playerData["player"]["scn-level"];
-
+    {      
         RECT rt;
         if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetHBoxRect()))
         {
-            if (scnLevel == 0)
+            if (m_nscnLevel == 0)
             {
-                scnLevel = 1;
+				m_nscnLevel = 1;
                 g_pScnManager->SetNextScene("town");
                 g_pScnManager->ChangeScene("loading");
-                m_playerData["player"]["scn-level"] = scnLevel;
+                m_playerData["player"]["scn-level"] = m_nscnLevel;
                 g_pFileManager->JsonUpdate("player", m_playerData);
             }
             else
@@ -93,7 +103,7 @@ void FieldScene::Update()
         RECT rt2;
         if (IntersectRect(&rt2, &m_rtEscapePortal, &m_player.GetHBoxRect()))
         {
-            if (scnLevel != 0)
+            if (m_nscnLevel != 0)
             {
                 g_pScnManager->SetNextScene("escape");
                 g_pScnManager->ChangeScene("loading");
@@ -116,15 +126,47 @@ void FieldScene::Update()
         for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
         {
             RECT rt2;
+			double dbAngle = 0.0f;
+
             if (IntersectRect(&rt2, &iterEnemy->GetHBoxRect(), &iterBullet->GetHBoxRect()) &&
                 iterBullet->IsAlive() &&
                 iterBullet->GetTagName() == "player")
             {
                 iterBullet->SetDead();
                 iterEnemy->SumLife(-1);
-            }
+
+				dbAngle = g_pGeoHelper->GetAngleFromCoord(iterEnemy->GetBodyPos(), m_player.GetBodyPos());
+				iterEnemy->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-dbAngle, -7.0f));
+            }		
         }
     }
+
+	
+	for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
+	{
+		RECT rt3;
+		//적이 플레이어를 따라온다
+		if (IntersectRect(&rt3, &iterEnemy->GetAwarenessRect(), &m_player.GetHBoxRect()))
+		{
+			iterEnemy->SetTrackingPlayer(true);
+
+			if (iterEnemy->GetTrackingPlayer() == true)
+			{
+				m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iterEnemy->GetBodyPos(), m_player.GetBodyPos());
+				iterEnemy->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-m_dbAngle, 0.5f));			
+			}
+		}
+		else
+			iterEnemy->SetTrackingPlayer(false);
+	
+		/*RECT rt5;
+		double dbAngle1 = 0.0f;
+		if (IntersectRect(&rt5, &iterEnemy->GetHBoxRect(), &m_player.GetHBoxRect()))
+		{
+			dbAngle1 = g_pGeoHelper->GetAngleFromCoord(iterEnemy->GetBodyPos(), m_player.GetBodyPos());
+			m_player.SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-dbAngle1, -7.0f));
+		}*/
+	}
 
     CheckClear();
 
@@ -217,7 +259,7 @@ void FieldScene::SaveGame()
     g_pFileManager->JsonSave(PLAYER_DATA_PATH, m_playerData);
 }
 
-void FieldScene::CheckClear()
+void FieldScene::CheckClear() //적 다 죽으면 클리어
 {
     if (m_isClear == false)
     {

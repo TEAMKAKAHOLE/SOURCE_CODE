@@ -12,9 +12,9 @@ private:
 	E_DIRECTION m_eDirection;
 	float m_fGoalsTime;
 	bool  m_isCheck;
+	bool m_isTrackingPlayer;
 	RECT  m_rtAwareness;
 	
-
 	ImageObject*    m_imgTerrainBuffer;
 
 public:
@@ -28,10 +28,10 @@ public:
 	int GetRandom(int min, int max);
 
 	RECT  GetAwarenessRect() { return m_rtAwareness; }
-
+	bool  GetTrackingPlayer() { return m_isTrackingPlayer; }
 
 	void SetTerrainBuffer(ImageObject* ImgTerrain) { m_imgTerrainBuffer = ImgTerrain; }
-
+	void SetTrackingPlayer(bool isTrackingPlayer) { m_isTrackingPlayer = isTrackingPlayer; }
 	void CheckCollision();
 	
 };
