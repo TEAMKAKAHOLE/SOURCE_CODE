@@ -21,6 +21,7 @@ PuzzleGameScene::~PuzzleGameScene()
 
 void PuzzleGameScene::Start()
 {
+	m_playerData = g_pFileManager->JsonFind("player");
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
 
@@ -46,10 +47,8 @@ void PuzzleGameScene::Update()
 {
 	if (m_isPlaying)
 	{
-		// 왼쪽 버튼을 누르면 빈칸이 가장 왼쪽 줄(% 3이 0인 경우)이 아닌지 확인 하고 스왑 처리
 		if (g_pKeyManager->isOnceKeyDown(VK_LEFT) && m_nLastBlock % 3 > 0)
 		{
-			// 왼쪽 칸의 경우 인덱스 번호 -1
 			Swap(m_nLastBlock, m_nLastBlock - 1);
 			// 스왑 후 마지막칸 위치 변경
 			m_nLastBlock -= 1;
@@ -77,7 +76,6 @@ void PuzzleGameScene::Update()
 				m_stBlock[i].ptDest.y - 100 != m_stBlock[i].ptSour.y)
 				break;
 
-			//만일 7까지 돌았다면 
 			if (i == 7)
 			{
 				m_isPlaying = false;
@@ -87,23 +85,26 @@ void PuzzleGameScene::Update()
 	else if (!m_isPlaying)
 	{
 		//제이썬에 데이터 넣기
-		json jData;
-		jData["player"]["is-puzzle-clear"] = true;
-
+		int m_nScnLevel;
+		m_nScnLevel = 2;
+		m_playerData["player"]["scn-level"] = m_nScnLevel;
 		//아웃풋 스트림 열고 데이타 넣기 
-		ofstream outClearData;
-		outClearData.open("data/player.json", ios_base::out);
-		outClearData << jData;
-		outClearData.close();
+		//ofstream outClearData;
+		//outClearData.open("data/player.json", ios_base::out);
+		//outClearData << m_playerData;
+		//outClearData.close();
 
+		//클리어 효과
 		if (m_nAlpha < 255)
 			m_nAlpha += 3;
 
+		//클리어 후 씬 자동전환
 		m_nChageSceneDelay--;
 	}
 	if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE) ||
 		!m_isPlaying && m_nChageSceneDelay < 0)
 	{
+		g_pFileManager->JsonUpdate("player", m_playerData);
 		g_pScnManager->ChangeScene("puzzle");
 	}
 }
@@ -127,9 +128,8 @@ void PuzzleGameScene::Render()
 		}
 	}
 	else if (!m_isPlaying)
-	{
 		m_imgPuzzle->AlphaRender(g_hDC, 150, 100, m_nAlpha);
-	}
+	
 }
 
 void PuzzleGameScene::Release()

@@ -12,6 +12,7 @@ FieldScene::~FieldScene()
 
 void FieldScene::Start()
 {
+	m_playerData = g_pFileManager->JsonFind("player");
 	m_vecEnemy.clear();
 
 	m_nEnemyPosY[0] = 420;

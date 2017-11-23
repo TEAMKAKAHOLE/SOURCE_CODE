@@ -6,7 +6,8 @@
 class PuzzleScene : public GameNode
 {
 private:
-	//
+	json			m_playerData;
+	//플레이어와 월드맵이 들어갈 버퍼
 	ImageObject*	m_imgWorldBuffer;
 	//
 	ImageObject*	m_imgWorldMap;
@@ -24,6 +25,7 @@ private:
 
 	Player		m_Player;
 
+	int			m_nScnLevel;
 	bool		m_isStageClear;
 	bool		m_isPuzzleClear;
 	bool		m_isExitMessage1;

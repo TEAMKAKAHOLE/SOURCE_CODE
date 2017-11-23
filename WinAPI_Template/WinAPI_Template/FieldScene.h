@@ -9,6 +9,7 @@ class FieldScene : public GameNode
 {
 
 private:
+	json		m_playerData;
 	ImageObject* m_imgWorldBuffer; // 맵 이미지를 그릴 버퍼
 	ImageObject* m_imgWorldMap;  //원본 맵 이미지
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
