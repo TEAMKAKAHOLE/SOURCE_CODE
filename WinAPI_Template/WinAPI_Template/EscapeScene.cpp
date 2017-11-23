@@ -76,21 +76,22 @@ void EscapeScene::Start()
 		m_KeyItem1.SetInvisible();
 	}
 	else {
-		//Enemy Level <4   시작시 레벨체크후 적군을 출현시킴
-		for (int i = 0; i < 3; ++i) {
-			m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
-			m_cEnemy[i].SetupForSprites(4, 4);
-			m_cEnemy[i].StartAnimation();
-			m_cEnemy[i].SetBodySize({ 64, 64 });
-			m_cEnemy[i].SetFrameDelay(6);
-			m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
-			m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
-			//밑부분 에러부분
-			//m_cEnemy.SetTerrainBuffer(m_imgTerrainBuffer);
-			//m_cEnemy.Update();
-			m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
-			m_cEnemy[i].LockInWnd();
-		}
+
+		////Enemy Level <4   시작시 레벨체크후 적군을 출현시킴
+		//for (int i = 0; i < 3; ++i) {
+		//	m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
+		//	m_cEnemy[i].SetupForSprites(4, 4);
+		//	m_cEnemy[i].StartAnimation();
+		//	m_cEnemy[i].SetBodySize({ 64, 64 });
+		//	m_cEnemy[i].SetFrameDelay(6);
+		//	m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
+		//	m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
+		//	//밑부분 에러부분
+		//	//m_cEnemy.SetTerrainBuffer(m_imgTerrainBuffer);
+		//	//m_cEnemy.Update();
+		//	m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
+		//	m_cEnemy[i].LockInWnd();
+		//}
 	}
 	
 }
@@ -109,10 +110,11 @@ void EscapeScene::Update()
 
 	m_StartPoint.Update();
 
-	for (int i = 0; i < 3; ++i)
+	//적군 생성
+	/*for (int i = 0; i < 3; ++i)
 	{
 		m_cEnemy[i].Update();
-	}
+	}*/
 
 	int distance = 10;
 
@@ -167,8 +169,9 @@ void EscapeScene::Update()
 
 #pragma region oneTest
 
-	//충돌처리 부분 한번만 충돌하게 할것 부딪친 상태에서는 지속적인 일러나지 않게 한다.
-	for (int i = 0; i < 3; i++)
+	//충돌처리 부분 한번만 충돌하게 할것 부딪친 상태에서는 
+	//같은 적에게 지속적인 데미지일어나지 않게 한다.
+	/*for (int i = 0; i < 3; i++)
 	{
 		if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_cEnemy[i].GetBodyRect()))
 		{
@@ -183,9 +186,9 @@ void EscapeScene::Update()
 				m_bIsAct = false;
 			}
 		}
-	}
+	}*/
 
-#pragma endregion
+#pragma endregion DEBUGInput
 
 	if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
 	{
