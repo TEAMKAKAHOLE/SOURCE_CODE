@@ -25,7 +25,7 @@ void ExitScene::Start()
 	m_sprJunimoDance->SetupForSprites(4, 1);
 	m_sprJunimoDance->StartAnimation();
 	m_sprJunimoDance->SetBodySize({ 50, 50 });
-	m_sprJunimoDance->SetFrameDelay(6);
+	m_sprJunimoDance->SetFrameDelay(8);
 	m_sprJunimoDance->SetBodyPos({W_WIDTH / 2 , W_HEIGHT / 2 + 80});	
 }
 
@@ -33,7 +33,7 @@ void ExitScene::Update()
 {
 	m_sprJunimoDance->Update();
 
-    if (m_fCurrTime + 3.0f < g_pTimerManager->GetWorldTime())
+    if (m_fCurrTime + 4.0f < g_pTimerManager->GetWorldTime())
     {
         PostQuitMessage(0);
     }
