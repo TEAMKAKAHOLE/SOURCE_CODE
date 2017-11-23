@@ -54,6 +54,7 @@ void Player::Update()
 
 void Player::Render(HDC hdc)
 {
+	g_pDrawHelper->DrawRect(hdc, m_rtAtkArea);
 	SpritesObject::Render(hdc);
 }
 
