@@ -4,6 +4,7 @@
 
 Projectile::Projectile()
 {
+    m_fExistTime = 0.1f;
 }
 
 
@@ -18,7 +19,7 @@ void Projectile::Start()
 
 void Projectile::Update()
 {
-    if (m_fGenTime + 3.0f < g_pTimerManager->GetWorldTime())
+    if (m_fGenTime + m_fExistTime < g_pTimerManager->GetWorldTime())
         SetDead();
     
     SpritesObject::Update();

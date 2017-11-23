@@ -68,6 +68,7 @@ void Chief::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
             UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(-angle, 1.0f);
             genBullet.SetBodySize({ 48, 48 });
             genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
+            genBullet.SetExistTime(5.0f);
             genBullet.SetBodySpeed(bulletSpeed);
             genBullet.SetBodyPos(m_dPos);
             genBullet.SetBodyImg(m_sprBullet->GetBodyImg());

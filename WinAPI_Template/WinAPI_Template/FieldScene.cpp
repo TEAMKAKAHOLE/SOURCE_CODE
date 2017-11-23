@@ -14,6 +14,7 @@ void FieldScene::Start()
 {
 	m_playerData = g_pFileManager->JsonFind("player");
 	m_vecEnemy.clear();
+    m_isClear = false;
 
 	m_nEnemyPosY[0] = 420;
 	m_nEnemyPosY[1] = 340;
@@ -57,61 +58,104 @@ void FieldScene::Start()
 	m_isTutorial = false;
 }
 
-
-
 void FieldScene::Update()  
 {
-	RECT rt;
-
 	m_player.Update();
+    m_player.MakeBullet(m_vecBullets, m_player.GetBodyPos());
 
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Update();
-		
-	}
-	
-	if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetBodyRect()))
-	{
-		g_pScnManager->SetNextScene("town");
-		g_pScnManager->ChangeScene("loading");
 	}
 
+    if (m_isClear)
+    {
+        int scnLevel = m_playerData["player"]["scn-level"];
 
-	if (IntersectRect(&rt, &m_rtEscapePortal, &m_player.GetBodyRect()))
-	{
-		if (m_isTutorial == false)
-		{
-			g_pScnManager->SetNextScene("escape");
-			g_pScnManager->ChangeScene("loading");
-		}
-	}
+        RECT rt;
+        if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetHBoxRect()))
+        {
+            if (scnLevel == 0)
+            {
+                scnLevel = 1;
+                g_pScnManager->SetNextScene("town");
+                g_pScnManager->ChangeScene("loading");
+                m_playerData["player"]["scn-level"] = scnLevel;
+                g_pFileManager->JsonUpdate("player", m_playerData);
+            }
+            else
+            {
+                g_pScnManager->SetNextScene("puzzle");
+                g_pScnManager->ChangeScene("loading");
+            }
+        }
 
+        RECT rt2;
+        if (IntersectRect(&rt2, &m_rtEscapePortal, &m_player.GetHBoxRect()))
+        {
+            if (scnLevel != 0)
+            {
+                g_pScnManager->SetNextScene("escape");
+                g_pScnManager->ChangeScene("loading");
+            }
+        }
+    }
 
-	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
-	{
+    for (auto iterBullet = m_vecBullets.begin(); iterBullet != m_vecBullets.end(); iterBullet++)
+    {
+        iterBullet->Update();
+        RECT rt;
+        if (IntersectRect(&rt, &m_player.GetHBoxRect(), &iterBullet->GetHBoxRect()) &&
+            iterBullet->IsAlive() &&
+            iterBullet->GetTagName() == "enemy")
+        {
+            iterBullet->SetDead();
+            m_player.SumLife(-1);
+        }
 
-		/*if (IntersectRect(&rt, &iter->GetAwarenessRect(), &m_player.GetBodyRect()))
-		{
-			m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iter->GetBodyPos(), m_player.GetBodyPos());
-			g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f);
-			iter->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f));
-		}*/
+        for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
+        {
+            RECT rt2;
+            if (IntersectRect(&rt2, &iterEnemy->GetHBoxRect(), &iterBullet->GetHBoxRect()) &&
+                iterBullet->IsAlive() &&
+                iterBullet->GetTagName() == "player")
+            {
+                iterBullet->SetDead();
+                iterEnemy->SumLife(-1);
+            }
+        }
+    }
 
-		if (IntersectRect(&rt, &iter->GetBodyRect(), &m_player.GetAtkArea()))
-		{
-			iter->SumLife(-1);
-			if (iter->GetLife() == 0)
-			{
-				m_vecEnemy.erase(iter);
-				break;
-			}
-		}
-	}
+    CheckClear();
+
+    //  적 제거
+    for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end();)
+    {
+        if (iterEnemy->IsAlive() == false)
+        {
+            iterEnemy = m_vecEnemy.erase(iterEnemy);
+        }
+        else
+        {
+            ++iterEnemy;
+        }
+    }
+
+    //  총알 제거
+    for (auto iterBullet = m_vecBullets.begin(); iterBullet != m_vecBullets.end();)
+    {
+        if (iterBullet->IsAlive() == false)
+        {
+            iterBullet = m_vecBullets.erase(iterBullet);
+        }
+        else
+        {
+            ++iterBullet;
+        }
+    }
 
 	//맵 움직이기
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
-	
 }
 
 void FieldScene::Render()
@@ -121,13 +165,16 @@ void FieldScene::Render()
 
 	g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtEscapePortal);
 
-
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Render(m_imgWorldBuffer->GetMemDC());
 		g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtAwareness);
-
 	}
+
+    for (auto iter = m_vecBullets.begin(); iter != m_vecBullets.end(); iter++)
+    {
+        iter->Render(m_imgWorldBuffer->GetMemDC());
+    }
 
 	m_player.Render(m_imgWorldBuffer->GetMemDC());
 	m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
@@ -141,7 +188,7 @@ void FieldScene::MakeEnemy(int count)
 {
 	if (count)
 	{		
-		m_enemy.SetBodyPos({ (double)GetRandom(100,500),(double)m_nEnemyPosY[rand() % 5]});
+        m_enemy.SetBodyPos({ (double)GetRandom(100, 500), (double)m_nEnemyPosY[rand() % 5] });
 		
 		m_enemy.SetBodySize({ 64, 64 });
 		m_enemy.SetupForSprites(4, 4);
@@ -154,8 +201,6 @@ void FieldScene::MakeEnemy(int count)
 			
 		m_vecEnemy.push_back(m_enemy);
 	}
-
-	
 }
 
 int FieldScene::GetRandom(int min, int max)
@@ -163,4 +208,24 @@ int FieldScene::GetRandom(int min, int max)
 	// 0 ~ 5 : 5 - 0 + 1 => 0 ~ 5
 	// 5 ~ 9 : 9 - 5 + 1 => 0 ~ 4 + 5 => 5 ~ 9
 	return rand() % (max - min + 1) + min;
+}
+
+void FieldScene::SaveGame()
+{
+    m_playerData["player"]["hp"] = m_player.GetLife();
+    m_playerData["player"]["potion"] = m_player.GetHealPotion();
+    g_pFileManager->JsonSave(PLAYER_DATA_PATH, m_playerData);
+}
+
+void FieldScene::CheckClear()
+{
+    if (m_isClear == false)
+    {
+        //  enemy count
+        int remainEnemies = (int)m_vecEnemy.size();
+        if (remainEnemies == 0)
+        {
+            m_isClear = true;
+        }
+    }
 }

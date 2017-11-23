@@ -23,6 +23,9 @@ Enemy::~Enemy()
 
 void Enemy::Update()
 {
+    if (m_nLife <= 0)
+        SetDead();
+
 	EnemyMove();
 
 	CheckCollision();
