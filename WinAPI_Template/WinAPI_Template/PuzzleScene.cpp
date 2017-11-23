@@ -14,14 +14,10 @@ PuzzleScene::PuzzleScene()
 	m_szTagName = "puzzle";
 
 	//제이썬에 데이터 초기화
-	json jData;
-	jData["player"]["is-puzzle-clear"] = false;
+	
 
 	//아웃풋 스트림 열고 데이타 넣기 
-	ofstream outClearData;
-	outClearData.open("data/player.json", ios_base::out);
-	outClearData << jData;
-	outClearData.close();
+
 }
 
 
@@ -31,6 +27,10 @@ PuzzleScene::~PuzzleScene()
 
 void PuzzleScene::Start()
 {
+	//제이썬 파일데이타 가져오기
+	m_playerData = g_pFileManager->JsonFind("player");
+	m_nScnLevel = m_playerData["player"]["scn-level"];
+
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
 
@@ -99,7 +99,6 @@ void PuzzleScene::Start()
 	m_imgNormalway.SetBodySize({ 390, 282 });
 	m_imgNormalway.SetBodyPos({ W_WIDTH / 2, W_HEIGHT / 2 });
 	m_imgNormalway.Update();
-
 }
 
 void PuzzleScene::Update()
@@ -134,8 +133,10 @@ void PuzzleScene::Update()
 		g_pScnManager->ChangeScene("loading");
 	}
 	
+	//오답 길
 	if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && m_isStageClear)
 	{
+		g_pFileManager->JsonUpdate("player", m_playerData);
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
@@ -147,8 +148,17 @@ void PuzzleScene::Update()
 	else
 		m_isExitMessage1 = false;
 
+	//정답 길 (공격력 보너스 추가)
 	if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit2.GetBodyRect()) && m_isStageClear)
 	{
+		//공격력 +3 보너스
+		int playerAtk;
+		playerAtk = m_playerData["player"]["atk"];
+		playerAtk = 8;
+		m_playerData["player"]["atk"] = playerAtk;
+
+		g_pFileManager->JsonUpdate("player", m_playerData);
+		g_pFileManager->JsonUpdate("player", m_playerData);
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
@@ -158,22 +168,17 @@ void PuzzleScene::Update()
 			m_isExitMessage2 = true;
 	}
 	else
-	{
 		m_isExitMessage2 = false;
-	}
 
 	//스테이지 클리어 
 	if (m_isPuzzleClear == true && m_isHint1On == true)
 		m_isStageClear = true;
 	
-	//제이썬 데이타 인풋스트림에 넣기
-	json jDataRead;
-	ifstream inClearData;
-	inClearData.open("data/player.json", ios_base::in);
-	inClearData >> jDataRead;
-	inClearData.close();
-
-	m_isPuzzleClear = jDataRead["player"]["is-puzzle-clear"];
+	//제이썬 데이타
+	if (m_nScnLevel == 2)
+		m_isPuzzleClear = true;
+	else if(m_nScnLevel == 1)
+		m_isPuzzleClear = false;
 }
 
 void PuzzleScene::Render()
@@ -196,9 +201,9 @@ void PuzzleScene::Render()
 
 	//힌트메세지
 	if (m_isHint1On)
-	{	
 		m_imgHintLetter1.Render(g_hDC);
-	}
+	
+	//출구 메세지
 	if (m_isExitMessage1)
 		m_imgHardway.Render(g_hDC);
 	else if (m_isExitMessage2)

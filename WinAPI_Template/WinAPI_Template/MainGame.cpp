@@ -14,6 +14,13 @@ MainGame::MainGame()
 	MouseLock();
 	Start();
 
+	json data;
+	data["player"]["scn-level"] = 1;
+	data["player"]["hp"] = 5;
+	data["player"]["atk"] = 5;
+	data["player"]["potion"] = 5;
+	g_pFileManager->JsonSave("data/player.json", data);
+	g_pFileManager->JsonLoad("player", "data/player.json");
 	/*
 	json jData;
 	jData["player"]["hp"] = 10;

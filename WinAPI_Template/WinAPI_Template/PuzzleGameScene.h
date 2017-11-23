@@ -9,6 +9,7 @@ struct tagBlock
 class PuzzleGameScene : public GameNode
 {
 private:
+	json				m_playerData;
 	ImageObject*		m_imgPuzzle;
 	ImageObject*		m_imgBg;
 	tagBlock			m_stBlock[9];

@@ -12,6 +12,8 @@ FieldScene::~FieldScene()
 
 void FieldScene::Start()
 {
+	m_playerData = g_pFileManager->JsonFind("player");
+
 	m_imgWorldBuffer = g_pImgManager->AddImage("WorldBuffer", 512, 512);
 
 	m_imgWorldBuffer = g_pImgManager->FindImage("WorldBuffer");
