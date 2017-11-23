@@ -20,7 +20,7 @@ void FieldScene::Start()
 	m_nEnemyPosY[3] = 370;
 	m_nEnemyPosY[4] = 430;
 
-	m_fAngle = 0.0f;
+	m_dbAngle = 0.0f;
 
 	m_dbCoordFromeAngle = 0;
 
@@ -31,7 +31,7 @@ void FieldScene::Start()
 	m_imgTerrainBuffer = g_pImgManager->FindImage("field-map-magenta");
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
-	m_player.SetBodyPos({ 210, 400 });
+	m_player.SetBodyPos({ 50, 400 });
 	m_player.SetBodySize({ 64, 64 });
 	m_player.SetupForSprites(7, 8);
 	m_player.SetFrameDelay(3);
@@ -56,21 +56,20 @@ void FieldScene::Start()
 	m_isTutorial = false;
 }
 
+
+
 void FieldScene::Update()  
 {
 	RECT rt;
 
 	m_player.Update();
-	
+
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Update();
+		
 	}
-
-	//¸Ê ¿òÁ÷ÀÌ±â
-	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
-
-
+	
 	if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetBodyRect()))
 	{
 		g_pScnManager->SetNextScene("town");
@@ -87,15 +86,30 @@ void FieldScene::Update()
 		}
 	}
 
+
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
-		if (IntersectRect(&rt, &iter->GetAwarenessRect(), &m_player.GetBodyRect()))
+
+		/*if (IntersectRect(&rt, &iter->GetAwarenessRect(), &m_player.GetBodyRect()))
 		{
-			m_fAngle = g_pGeoHelper->GetAngleFromCoord(iter->GetBodyPos(), m_player.GetBodyPos());
-			g_pGeoHelper->GetCoordFromAngle(m_fAngle, 5.0f);
-			iter->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(m_fAngle, 5.0f));
+			m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iter->GetBodyPos(), m_player.GetBodyPos());
+			g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f);
+			iter->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(m_dbAngle, 5.0f));
+		}*/
+
+		if (IntersectRect(&rt, &iter->GetBodyRect(), &m_player.GetAtkArea()))
+		{
+			iter->SumLife(-1);
+			if (iter->GetLife() == 0)
+			{
+				m_vecEnemy.erase(iter);
+				break;
+			}
 		}
 	}
+
+	//¸Ê ¿òÁ÷ÀÌ±â
+	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 	
 }
 
@@ -106,7 +120,6 @@ void FieldScene::Render()
 
 	g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtEscapePortal);
 
-	m_player.Render(m_imgWorldBuffer->GetMemDC());
 
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
@@ -114,6 +127,8 @@ void FieldScene::Render()
 		g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtAwareness);
 
 	}
+
+	m_player.Render(m_imgWorldBuffer->GetMemDC());
 	m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
 }
 

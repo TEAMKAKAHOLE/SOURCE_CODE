@@ -16,15 +16,17 @@ private:
 	Enemy		 m_enemy;
 
 
+
 	RECT m_rtTownPortal;
 	RECT m_rtEscapePortal;
 	RECT m_rtAwareness;  //적이 플레이어를 인식하는 렉트
 
 	bool m_isTutorial;
+	bool m_isDie;
 
 	int m_nEnemyPosY[5];
 
-	float m_fAngle;
+	double m_dbAngle;
 	double m_dbCoordFromeAngle;
 
 	vector<Enemy> m_vecEnemy;

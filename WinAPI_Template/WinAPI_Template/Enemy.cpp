@@ -8,6 +8,8 @@ Enemy::Enemy()
 
 	m_fGoalsTime = 3.0f;
 
+	m_nLife = 5;
+
 	m_eDirection = (E_DIRECTION)GetRandom(LEFT, MAX);
 
 	m_isCheck = false;
@@ -41,7 +43,6 @@ void Enemy::Render(HDC hdc)
 
 void Enemy::EnemyMove()
 {
-
 	UnitSpeed  speed = { 0.0f,0.0f };
 
 	switch (m_eDirection)
@@ -54,7 +55,7 @@ void Enemy::EnemyMove()
 		if (g_pTimerManager->GetWorldTime()> m_fGoalsTime)
 		{
 			m_fGoalsTime = g_pTimerManager->GetWorldTime() + 3;
-			m_eDirection = RIGHT;				
+			m_eDirection = RIGHT;
 		}
 		break;
 	case TOP:
@@ -65,9 +66,8 @@ void Enemy::EnemyMove()
 		if (g_pTimerManager->GetWorldTime() > m_fGoalsTime)
 		{
 			m_fGoalsTime = g_pTimerManager->GetWorldTime() + 3;
-			m_eDirection = BOTTOM;		
-		}
-		
+			m_eDirection = BOTTOM;
+		}		
 		break;
 	case RIGHT:
 		speed.x += 1.5f;
@@ -77,9 +77,8 @@ void Enemy::EnemyMove()
 		if (g_pTimerManager->GetWorldTime() > m_fGoalsTime)
 		{
 			m_fGoalsTime = g_pTimerManager->GetWorldTime() + 3;
-			m_eDirection = LEFT;		
-		}
-			
+			m_eDirection = LEFT;
+		}			
 		break;
 	case BOTTOM:
 		speed.y += 1.5f;
@@ -89,9 +88,8 @@ void Enemy::EnemyMove()
 		if (g_pTimerManager->GetWorldTime() > m_fGoalsTime)
 		{
 			m_fGoalsTime = g_pTimerManager->GetWorldTime() + 3;
-			m_eDirection = TOP;			
-		}
-			
+			m_eDirection = TOP;
+		}			
 		break;
 	}
 	m_dSpeed.x = speed.x;

@@ -4,6 +4,7 @@
 enum E_DIRECTION{LEFT,TOP,RIGHT,BOTTOM,MAX};
 
 
+
 class Enemy : public SpritesObject
 {
 private:
@@ -12,6 +13,7 @@ private:
 	float m_fGoalsTime;
 	bool  m_isCheck;
 	RECT  m_rtAwareness;
+	
 
 	ImageObject*    m_imgTerrainBuffer;
 
@@ -26,6 +28,7 @@ public:
 	int GetRandom(int min, int max);
 
 	RECT  GetAwarenessRect() { return m_rtAwareness; }
+
 
 	void SetTerrainBuffer(ImageObject* ImgTerrain) { m_imgTerrainBuffer = ImgTerrain; }
 
