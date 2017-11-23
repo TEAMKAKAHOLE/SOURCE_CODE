@@ -20,6 +20,7 @@ public:
 
     void SetTerrainBuffer(ImageObject* ImgTerrain) { m_imgTerrainBuffer = ImgTerrain; }
 
+    bool IsHostile() { return m_isHostile; }
     void SetHostile();
     void MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos);
 };

@@ -81,7 +81,6 @@ void FieldScene::Update()
                 g_pScnManager->SetNextScene("town");
                 g_pScnManager->ChangeScene("loading");
                 m_playerData["player"]["scn-level"] = scnLevel;
-                g_pFileManager->JsonUpdate("player", m_playerData);
             }
             else
             {
@@ -126,6 +125,21 @@ void FieldScene::Update()
         }
     }
 
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end(); itemIter++)
+    {
+        itemIter->Update();
+
+        RECT rt;
+        if (IntersectRect(&rt, &m_player.GetHBoxRect(), &itemIter->GetHBoxRect()))
+        {
+            if (itemIter->IsActive())
+            {
+                itemIter->SetDead();
+                itemIter->Deactivate();
+            }
+        }
+    }
+
     CheckClear();
 
     //  적 제거
@@ -133,6 +147,11 @@ void FieldScene::Update()
     {
         if (iterEnemy->IsAlive() == false)
         {
+            Item genItem;
+            genItem.Start();
+            genItem.SetBodyPos(iterEnemy->GetBodyPos());
+            genItem.Activate();
+            m_vecItems.push_back(genItem);
             iterEnemy = m_vecEnemy.erase(iterEnemy);
         }
         else
@@ -154,6 +173,19 @@ void FieldScene::Update()
         }
     }
 
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end();)
+    {
+        if (itemIter->IsAlive() == false)
+        {
+            itemIter = m_vecItems.erase(itemIter);
+            m_player.SumHealPotion(1);
+        }
+        else
+        {
+            ++itemIter;
+        }
+    }
+
 	//맵 움직이기
 	g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 }
@@ -168,12 +200,16 @@ void FieldScene::Render()
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
 	{
 		iter->Render(m_imgWorldBuffer->GetMemDC());
-		g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtAwareness);
 	}
 
     for (auto iter = m_vecBullets.begin(); iter != m_vecBullets.end(); iter++)
     {
         iter->Render(m_imgWorldBuffer->GetMemDC());
+    }
+
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end(); itemIter++)
+    {
+        itemIter->Render(m_imgWorldBuffer->GetMemDC());
     }
 
 	m_player.Render(m_imgWorldBuffer->GetMemDC());
@@ -182,6 +218,8 @@ void FieldScene::Render()
 
 void FieldScene::Release()
 {
+    m_playerData["player"]["potion"] = m_player.GetHealPotion();
+    g_pFileManager->JsonUpdate("player", m_playerData);
 }
 
 void FieldScene::MakeEnemy(int count)

@@ -54,7 +54,6 @@ void Player::Update()
 
 void Player::Render(HDC hdc)
 {
-	g_pDrawHelper->DrawRect(hdc, m_rtAtkArea);
 	SpritesObject::Render(hdc);
 }
 
@@ -166,9 +165,9 @@ void Player::CheckCollision()
 
 void Player::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
 {
-    if (m_playerStatus == PLAYER_ATTACK)
+    if (m_fMeleeAtkCooltime < g_pTimerManager->GetWorldTime())
     {
-        if (frameX == 1)
+        if (m_playerStatus == PLAYER_ATTACK)
         {
             Projectile genBullet;
             genBullet.SetTagName("player");
@@ -176,10 +175,12 @@ void Player::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
             genBullet.SetHBoxMargin({ 0, 0, 0, 0 });
             genBullet.SetBodySpeed({ 0.0f, 0.0f });
             genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
-            genBullet.SetExistTime(0.1f);
+            genBullet.SetExistTime(0.3f);
             genBullet.SetBodyPos(m_dPos);
             genBullet.SetBodyImg(NULL);
             VecBullets.push_back(genBullet);
+
+            m_fMeleeAtkCooltime = g_pTimerManager->GetWorldTime() + 0.4f;
         }
     }
 }

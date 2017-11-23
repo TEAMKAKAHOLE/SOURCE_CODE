@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Projectile.h"
+#include "Item.h"
 
 class FieldScene : public GameNode
 {
@@ -29,6 +30,7 @@ private:
 
 	vector<Enemy>       m_vecEnemy;
     vector<Projectile>  m_vecBullets;
+    vector<Item>        m_vecItems;
 
 public:
 	FieldScene();

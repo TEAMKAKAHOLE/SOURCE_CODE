@@ -25,7 +25,7 @@ private:
 
 	bool         m_bIsAct; //충돌중 카운트중지
 	bool         m_bIngAct; //계속 충돌중인지 판단
-	json        m_playerData;
+	json         m_playerData;
 
 
 	//마지막 탈출시 필요한 열쇠아이템 RECT이미지

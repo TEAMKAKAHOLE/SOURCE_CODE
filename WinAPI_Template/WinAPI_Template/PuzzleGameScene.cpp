@@ -81,6 +81,12 @@ void PuzzleGameScene::Update()
 				m_isPlaying = false;
 			}
 		}
+#ifdef _DEBUG
+        if (g_pKeyManager->isOnceKeyDown(VK_RBUTTON))
+        {
+            m_isPlaying = false;
+        }
+#endif // _DEBUG
 	}
 	else if (!m_isPlaying)
 	{
@@ -101,6 +107,7 @@ void PuzzleGameScene::Update()
 		//클리어 후 씬 자동전환
 		m_nChageSceneDelay--;
 	}
+
 	if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE) ||
 		!m_isPlaying && m_nChageSceneDelay < 0)
 	{

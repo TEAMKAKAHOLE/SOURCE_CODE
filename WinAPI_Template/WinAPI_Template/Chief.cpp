@@ -23,6 +23,8 @@ void Chief::Start()
     m_nMarginHBox = { 6, 6, 6, 6 };
     m_dPos = { 256, 340 };
 
+    m_nLife = 20;
+
     m_sprBullet = new SpritesObject;
     m_sprBullet->SetBodyImg(g_pImgManager->FindImage("agahnim-bullet"));
     m_sprBullet->SetupForSprites(3, 6);
@@ -32,6 +34,9 @@ void Chief::Start()
 
 void Chief::Update()
 {
+    if (IsAlive() == false)
+        return;
+
     if (m_isHostile)
     {
         //  적대적 관계
@@ -46,7 +51,11 @@ void Chief::Update()
 
 void Chief::Render(HDC hdc)
 {
-    SpritesObject::Render(hdc);
+    if (IsAlive())
+        SpritesObject::Render(hdc);
+
+    string szLife = to_string(m_nLife);
+    TextOut(hdc, m_rtBody.left, m_rtBody.top, szLife.c_str(), (int)strlen(szLife.c_str()));
 }
 
 void Chief::SetHostile()
@@ -58,6 +67,9 @@ void Chief::SetHostile()
 
 void Chief::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
 {
+    if (IsAlive() == false)
+        return;
+
     if (m_isHostile)
     {
         if (m_fBulletCooltime < g_pTimerManager->GetWorldTime())

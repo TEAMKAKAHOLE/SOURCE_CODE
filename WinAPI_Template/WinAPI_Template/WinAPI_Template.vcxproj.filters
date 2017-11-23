@@ -216,6 +216,9 @@
     <ClInclude Include="Projectile.h">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -339,6 +342,9 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Town</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
+      <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClCompile>
   </ItemGroup>

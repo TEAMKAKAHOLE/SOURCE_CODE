@@ -2,6 +2,7 @@
 #include "GameNode.h"
 #include "Player.h"
 #include "Chief.h"
+#include "Item.h"
 
 class TownScene : public GameNode
 {
@@ -19,10 +20,14 @@ private:
 
     UnitPos m_startPos;
     UnitPos m_entrancePos;
+    
+    int     m_scnLevel;
 
     Player  m_player;
     Chief   m_chief;
     bool    m_isBossLevel;
+
+    vector<Item>        m_vecItems;
     vector<Projectile>  m_vecBullet;
 
 public:

@@ -21,6 +21,7 @@ void TownScene::Start()
 
     //  clear
     m_vecBullet.clear();
+    m_vecItems.clear();
 
     //  world map
     m_imgWorldBuffer = g_pImgManager->AddImage("town-map-buffer", 512, 512);
@@ -51,8 +52,8 @@ void TownScene::Start()
 
     m_chief.Start();
 
-    int scnLevel = m_playerData["player"]["scn-level"];
-    if (scnLevel >= 4)
+    m_scnLevel = m_playerData["player"]["scn-level"];
+    if (m_scnLevel >= 4)
     {
         m_isBossLevel = true;
         m_objExit.SetDead();
@@ -62,12 +63,29 @@ void TownScene::Start()
 
 void TownScene::Update()
 {
+    if (g_pKeyManager->isOnceKeyDown('1'))
+    {
+        Item genItem;
+        genItem.Start();
+        genItem.SetBodyPos(m_player.GetBodyPos());
+        genItem.SetActiveTime(g_pTimerManager->GetWorldTime() + 3.0f);
+        m_vecItems.push_back(genItem);
+    }
+
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
         PostQuitMessage(1);
 
     m_player.Update();
+    m_player.MakeBullet(m_vecBullet, m_player.GetBodyPos());
+
     m_chief.Update();
     m_chief.MakeBullet(m_vecBullet, m_player.GetBodyPos());
+
+    if (m_chief.GetLife() <= 0)
+    {
+        m_chief.SetDead();
+        m_scnLevel = 5;
+    }
 
     if (m_objExit.IsAlive())
     {
@@ -77,14 +95,38 @@ void TownScene::Update()
         if (IntersectRect(&rt, &m_objExit.GetBodyRect(), &m_player.GetBodyRect()))
         {
             if (scnLevel == 0)
-            {
                 g_pScnManager->SetNextScene("field");
-            }
             else
-            {
                 g_pScnManager->SetNextScene("puzzle");
-            }
+
             g_pScnManager->ChangeScene("loading");
+        }
+    }
+
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end(); itemIter++)
+    {
+        itemIter->Update();
+
+        RECT rt;
+        if (IntersectRect(&rt, &m_player.GetHBoxRect(), &itemIter->GetHBoxRect()))
+        {
+            if (itemIter->IsActive())
+            {
+                itemIter->SetDead();
+                itemIter->Deactivate();
+            }
+        }
+    }
+
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end();)
+    {
+        if (itemIter->IsAlive() == false)
+        {
+            itemIter = m_vecItems.erase(itemIter);
+        }
+        else
+        {
+            ++itemIter;
         }
     }
 
@@ -105,8 +147,12 @@ void TownScene::Update()
             iter->IsAlive() &&
             iter->GetTagName() == "player")
         {
-            iter->SetDead();
-            m_chief.SumLife(-1);
+            if (m_chief.IsAlive() &&
+                m_chief.IsHostile())
+            {
+                iter->SetDead();
+                m_chief.SumLife(-1);
+            }
         }
     }
 
@@ -126,6 +172,11 @@ void TownScene::Render()
     m_imgWorldMap->Render(m_imgWorldBuffer->GetMemDC(), 0, 0);
     m_player.Render(m_imgWorldBuffer->GetMemDC());
     m_chief.Render(m_imgWorldBuffer->GetMemDC());
+
+    for (auto itemIter = m_vecItems.begin(); itemIter != m_vecItems.end(); itemIter++)
+    {
+        itemIter->Render(m_imgWorldBuffer->GetMemDC());
+    }
 
     for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
     {

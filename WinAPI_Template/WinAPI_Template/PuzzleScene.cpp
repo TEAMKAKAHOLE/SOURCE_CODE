@@ -120,7 +120,7 @@ void PuzzleScene::Update()
 	if (IntersectRect(&rt, &m_Player.GetHBoxRect(), &m_Object.GetBodyRect()))
 	{
 		if (g_pKeyManager->isOnceKeyDown(VK_SPACE) && m_isPuzzleClear == true)
-		m_isHint1On = true;
+		    m_isHint1On = true;
 	}
 	else
 		m_isHint1On = false;
@@ -136,7 +136,6 @@ void PuzzleScene::Update()
 	//오답 길
 	if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && m_isStageClear)
 	{
-		g_pFileManager->JsonUpdate("player", m_playerData);
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
@@ -156,9 +155,6 @@ void PuzzleScene::Update()
 		playerAtk = m_playerData["player"]["atk"];
 		playerAtk = 8;
 		m_playerData["player"]["atk"] = playerAtk;
-
-		g_pFileManager->JsonUpdate("player", m_playerData);
-		g_pFileManager->JsonUpdate("player", m_playerData);
 		g_pScnManager->SetNextScene("field");
 		g_pScnManager->ChangeScene("loading");
 	}
@@ -175,8 +171,11 @@ void PuzzleScene::Update()
 		m_isStageClear = true;
 	
 	//제이썬 데이타
-	if (m_nScnLevel == 2)
+    if (m_nScnLevel == 2)
+    {
+        m_nScnLevel = 3;
 		m_isPuzzleClear = true;
+    }
 	else if(m_nScnLevel == 1)
 		m_isPuzzleClear = false;
 }
@@ -212,4 +211,6 @@ void PuzzleScene::Render()
 
 void PuzzleScene::Release()
 {
+    m_playerData["player"]["scn-level"] = m_nScnLevel;
+    g_pFileManager->JsonUpdate("player", m_playerData);
 }

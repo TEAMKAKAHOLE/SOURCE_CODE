@@ -38,7 +38,9 @@ void Enemy::Update()
 
 void Enemy::Render(HDC hdc)
 {
+#ifdef _DEBUG
 	g_pDrawHelper->DrawRect(hdc, m_rtAwareness);
+#endif // _DEBUG
 
 	SpritesObject::Render(hdc);
 

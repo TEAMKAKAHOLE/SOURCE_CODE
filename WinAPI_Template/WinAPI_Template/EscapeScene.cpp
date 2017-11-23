@@ -72,25 +72,27 @@ void EscapeScene::Start()
 	m_playerData["player"]["hp"] = 100;
 
 	//클리어 상태이므로 적과 키를 보이지 않게 한다.
-	if (m_Level > 4) {
+	if (m_Level >= 4) 
+    {
 		m_KeyItem1.SetInvisible();
 	}
-	else {
-	for (int i = 0; i < 3; ++i) {
-	
-		//Enemy 
-		m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
-		m_cEnemy[i].SetupForSprites(4, 4);
-        m_cEnemy[i].SetTerrainBuffer(m_imgTerrainBuffer);
-		m_cEnemy[i].StartAnimation();
-		m_cEnemy[i].SetBodySize({ 64, 64 });
-		m_cEnemy[i].SetFrameDelay(6);
-		m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
-		m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
-		m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
-		m_cEnemy[i].LockInWnd();
-	}
-	
+    else
+    {
+        for (int i = 0; i < 3; ++i) 
+        {
+            //Enemy 
+            m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
+            m_cEnemy[i].SetupForSprites(4, 4);
+            m_cEnemy[i].SetTerrainBuffer(m_imgTerrainBuffer);
+            m_cEnemy[i].StartAnimation();
+            m_cEnemy[i].SetBodySize({ 64, 64 });
+            m_cEnemy[i].SetFrameDelay(6);
+            m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
+            m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
+            m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
+            m_cEnemy[i].LockInWnd();
+        }
+    }
 }
 
 void EscapeScene::Update()
@@ -135,7 +137,8 @@ void EscapeScene::Update()
 		m_player.SetBodyPos({ (int)385, (int)300 + 50 });
 	}
 	else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_EndPoint.GetBodyRect()))
-	{  //씬 이동을 위한 충돌 판단 부분
+	{  
+        //씬 이동을 위한 충돌 판단 부분
 		if (m_bKeyItem1)
 		{
 			SceneChange();
@@ -148,6 +151,7 @@ void EscapeScene::Update()
 	    //key item
 	else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_KeyItem1.GetBodyRect()))
 	{
+        m_Level = 4;
 		m_bKeyItem1 = true;
 		m_KeyItem1.SetInvisible();
 	}
@@ -228,6 +232,8 @@ void EscapeScene::Render()
 
 void EscapeScene::Release()
 {
+    m_playerData["player"]["scn-level"] = m_Level;
+    g_pFileManager->JsonUpdate("player", m_playerData);
 }
 
 void EscapeScene::SceneChange()

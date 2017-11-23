@@ -25,6 +25,8 @@ private:
     int             m_nAtkDamage;
     int             m_nHealPotion;
 
+    float           m_fMeleeAtkCooltime;
+
 public:
     Player();
     ~Player();
