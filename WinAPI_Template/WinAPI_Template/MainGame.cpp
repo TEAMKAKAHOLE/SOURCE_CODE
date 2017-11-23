@@ -13,12 +13,23 @@ MainGame::MainGame()
     VerInfoStamp();
     MouseLock();
     Start();
+
+	json data;
+	data["player"]["scn-level"] = 0;
+	data["player"]["hp"] = 5;
+	data["player"]["atk"] = 1;
+	data["player"]["potion"] = 5;
+	g_pFileManager->JsonSave("data/player.json", data);
+	g_pFileManager->JsonLoad("player", "data/player.json");
+
 }
 
 
 MainGame::~MainGame()
 {
     g_pLogManager->WriteLog(EL_INFO, "MainGame destructor");
+	g_pFileManager->JsonSave("data/player.json", g_pFileManager->JsonFind("player"));
+	
     Release();
 }
 
@@ -37,7 +48,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("exit", new ExitScene());
 	
 
-    g_pScnManager->SetNextScene("escape");
+    g_pScnManager->SetNextScene("escape"); //로딩후 시작위치 
     g_pScnManager->ChangeScene("loading");
 }
 

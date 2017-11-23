@@ -62,6 +62,8 @@ void EscapeScene::Start()
 	m_BackScene.SetBodySize({ 43,28 });
 	m_BackScene.SetBodyPos({ 150,415 });
 	m_HP = 100;
+	m_bIsAct = false; //충돌상태가 아닐때
+	m_bIngAct = false;//충돌상태 판단
 
 
 	for (int i = 0; i < 3; ++i) {
@@ -141,14 +143,40 @@ void EscapeScene::Update()
 		m_KeyItem1.SetInvisible();
 	}
 
+#pragma region oneTest
+
+
 	for (int i = 0; i < 3; i++)
 	{
 		if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_cEnemy[i].GetBodyRect()))
 		{
-			//Joson Data 생명력 감소 시키기 
-			m_HP -= 20;
+			if (!m_bIsAct && !m_bIngAct)
+			{
+				m_bIsAct = true;
+				m_HP -= 10;
+				
+			}
+
+		  if ( IsRectEmpty(&m_cEnemy[i].GetBodyRect()))
+			{
+				m_bIsAct = false;
+			}
+		
 		}
+		
+
 	}
+#pragma endregion
+
+	if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
+	{
+		JsonView();
+	}
+	else if (g_pKeyManager->isOnceKeyDown(VK_TAB))
+	{
+		JsonAdd();
+	}
+
 }
 
 void EscapeScene::Render()
@@ -188,6 +216,8 @@ void EscapeScene::SceneChange()
 	//클리어시 town
 	g_pScnManager->SetNextScene("town");
 	g_pScnManager->ChangeScene("loading");
+
+
 }
 
 
@@ -197,4 +227,45 @@ void EscapeScene::SceneBack()
 	//클리어시 town
 	g_pScnManager->SetNextScene("puzzle");
 	g_pScnManager->ChangeScene("loading");
+}
+
+void EscapeScene::JsonAdd()
+{
+	
+	//data["player"]["scn-level"] = 0;
+	//data["player"]["hp"] = 5;
+	//data["player"]["atk"] = 1;
+	//clear 일때 +1 해서 4
+
+	m_playerData = g_pFileManager->JsonFind("player");
+
+	int Level = m_playerData["player"]["scn-level"];
+	
+	Level++;
+	m_playerData["player"]["hp"] = m_HP; 
+	m_playerData["player"]["scn-level"] = Level;
+
+
+	g_pFileManager->JsonUpdate("player", m_playerData);
+
+}
+
+void EscapeScene::JsonView()
+{
+	json jDataRead;
+	ifstream i;
+
+
+	i.open("data/player.json", ios_base::in);
+	i >> jDataRead;
+	i.close();
+
+	cout << "hp          :" << jDataRead["player"]["hp"] << endl;
+	cout << "atk         :" << jDataRead["player"]["atk"] << endl;
+	cout << "Level       :" << jDataRead["player"]["scn-level"] << endl;
+
+	cout << "hp 1         :" << m_playerData["player"]["hp"] << endl;
+	cout << "atk  1       :" << m_playerData["player"]["atk"] << endl;
+	cout << "Level  1     :" << m_playerData["player"]["scn-level"] << endl;
+
 }
