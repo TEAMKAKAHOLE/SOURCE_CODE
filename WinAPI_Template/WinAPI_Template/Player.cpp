@@ -163,3 +163,23 @@ void Player::CheckCollision()
     if (g_pPixelManager->CheckPixelMagenta(m_imgTerrainBuffer, ProbePos))
         m_dSpeed = { 0.0f, 0.0f };
 }
+
+void Player::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
+{
+    if (m_playerStatus == PLAYER_ATTACK)
+    {
+        if (frameX == 1)
+        {
+            Projectile genBullet;
+            genBullet.SetTagName("player");
+            genBullet.SetBodySize({ 100, 100 });
+            genBullet.SetHBoxMargin({ 0, 0, 0, 0 });
+            genBullet.SetBodySpeed({ 0.0f, 0.0f });
+            genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
+            genBullet.SetExistTime(0.1f);
+            genBullet.SetBodyPos(m_dPos);
+            genBullet.SetBodyImg(NULL);
+            VecBullets.push_back(genBullet);
+        }
+    }
+}

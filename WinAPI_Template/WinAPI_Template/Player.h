@@ -1,5 +1,6 @@
 #pragma once
 #include "SpritesObject.h"
+#include "Projectile.h"
 
 #define PLAYER_RUN_MAX_FRAME 6
 #define PLAYER_ATK_MAX_FRAME 5
@@ -45,4 +46,5 @@ public:
     void SumHealPotion(int Amount = 1);
 
     void CheckCollision();
+    void MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos);
 };

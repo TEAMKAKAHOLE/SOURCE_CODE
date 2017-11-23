@@ -4,6 +4,7 @@ class Projectile : public SpritesObject
 {
 private:
     float       m_fGenTime;
+    float       m_fExistTime;
 public:
     Projectile();
     ~Projectile();
@@ -13,5 +14,6 @@ public:
     virtual void Render(HDC hdc) override;
 
     void SetGenTime(float GenTime) { m_fGenTime = GenTime; }
+    void SetExistTime(float ExistTime) { m_fExistTime = ExistTime; }
 };
 

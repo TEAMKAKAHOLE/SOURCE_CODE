@@ -71,10 +71,19 @@ void TownScene::Update()
 
     if (m_objExit.IsAlive())
     {
+        int scnLevel = m_playerData["player"]["scn-level"];
+
         RECT rt;
         if (IntersectRect(&rt, &m_objExit.GetBodyRect(), &m_player.GetBodyRect()))
         {
-            g_pScnManager->SetNextScene("field");
+            if (scnLevel == 0)
+            {
+                g_pScnManager->SetNextScene("field");
+            }
+            else
+            {
+                g_pScnManager->SetNextScene("puzzle");
+            }
             g_pScnManager->ChangeScene("loading");
         }
     }
@@ -110,9 +119,6 @@ void TownScene::Update()
     }
     
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
-
-
-
 }
 
 void TownScene::Render()
