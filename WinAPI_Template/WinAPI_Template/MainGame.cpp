@@ -19,6 +19,7 @@ MainGame::MainGame()
 	data["player"]["hp"] = 5;
 	data["player"]["atk"] = 1;
 	data["player"]["potion"] = 5;
+	data["player"]["gateOpen"] = 0; //false 
 	g_pFileManager->JsonSave("data/player.json", data);
 	g_pFileManager->JsonLoad("player", "data/player.json");
 

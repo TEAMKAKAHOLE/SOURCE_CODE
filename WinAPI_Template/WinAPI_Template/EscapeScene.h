@@ -18,6 +18,11 @@ private:
 	Player       m_player;
 	Enemy        m_cEnemy[3];
 	int          m_HP;
+	int          m_Level;
+	int          m_potion;
+	int          m_atk;
+	int          m_def;
+
 	bool         m_bIsAct; //충돌중 카운트중지
 	bool         m_bIngAct; //계속 충돌중인지 판단
 	json        m_playerData;
@@ -49,6 +54,7 @@ public:
 	void  SceneBack();
 	void  JsonAdd();
 	void  JsonView();
+	void  SetData();
 	
 
 };

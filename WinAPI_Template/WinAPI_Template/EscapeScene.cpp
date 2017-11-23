@@ -20,6 +20,7 @@ void EscapeScene::Start()
 	m_imgWorldBuffer     = g_pImgManager->AddImage("eacape-map-buffer", 512, 512);
 	m_imgWorldMap        = g_pImgManager->FindImage("escape-map");
 	m_imgTerrainBuffer   = g_pImgManager->FindImage("escape-terrain");
+	
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
 	m_player.SetupForSprites(7,8);
@@ -65,24 +66,32 @@ void EscapeScene::Start()
 	m_bIsAct = false; //충돌상태가 아닐때
 	m_bIngAct = false;//충돌상태 판단
 
+	//처음시작과 동시에json의 데이터클 클래스 변수에 담는다
+	SetData();
+	//임시로 테스트 위해서 100입력
+	m_playerData["player"]["hp"] = 100;
 
-	for (int i = 0; i < 3; ++i) {
-	
-		//Enemy 
-		m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
-		m_cEnemy[i].SetupForSprites(4, 4);
-		m_cEnemy[i].StartAnimation();
-		m_cEnemy[i].SetBodySize({ 64, 64 });
-		m_cEnemy[i].SetFrameDelay(6);
-		m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
-		m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
-		//밑부분 에러부분
-		//m_cEnemy.SetTerrainBuffer(m_imgTerrainBuffer);
-		//m_cEnemy.Update();
-		m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
-		m_cEnemy[i].LockInWnd();
+	//클리어 상태이므로 적과 키를 보이지 않게 한다.
+	if (m_Level > 4) {
+		m_KeyItem1.SetInvisible();
 	}
-	
+	else {
+		//Enemy Level <4   시작시 레벨체크후 적군을 출현시킴
+		for (int i = 0; i < 3; ++i) {
+			m_cEnemy[i].SetBodyImg(g_pImgManager->FindImage("EnemyKnight"));
+			m_cEnemy[i].SetupForSprites(4, 4);
+			m_cEnemy[i].StartAnimation();
+			m_cEnemy[i].SetBodySize({ 64, 64 });
+			m_cEnemy[i].SetFrameDelay(6);
+			m_cEnemy[i].SetBodyPos({ (int)310,(int)290 });
+			m_cEnemy[i].SetHBoxMargin({ 16, 16, 16, 16 });
+			//밑부분 에러부분
+			//m_cEnemy.SetTerrainBuffer(m_imgTerrainBuffer);
+			//m_cEnemy.Update();
+			m_cEnemy[i].SetLockArea({ 0, 0, 512, 512 });
+			m_cEnemy[i].LockInWnd();
+		}
+	}
 	
 }
 
@@ -137,15 +146,28 @@ void EscapeScene::Update()
 	{  //씬 이동을 위한 충돌 판단 부분
 		SceneBack();
 	}
+	    //key item 
 	else if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_KeyItem1.GetBodyRect()))
 	{
 		m_bKeyItem1 = true;
 		m_KeyItem1.SetInvisible();
 	}
 
+	//죽었을  경우 
+	if (m_HP <= 0)
+	{
+	   //죽었을 경우 체력5
+		m_playerData["player"]["hp"] = 5;
+		//클래스 json에 저장
+		JsonAdd();
+		//씬이동시킨다
+		SceneChange();
+
+	}
+
 #pragma region oneTest
 
-
+	//충돌처리 부분 한번만 충돌하게 할것 부딪친 상태에서는 지속적인 일러나지 않게 한다.
 	for (int i = 0; i < 3; i++)
 	{
 		if (IntersectRect(&rt, &m_player.GetBodyRect(), &m_cEnemy[i].GetBodyRect()))
@@ -154,18 +176,15 @@ void EscapeScene::Update()
 			{
 				m_bIsAct = true;
 				m_HP -= 10;
-				
 			}
 
 		  if ( IsRectEmpty(&m_cEnemy[i].GetBodyRect()))
 			{
 				m_bIsAct = false;
 			}
-		
 		}
-		
-
 	}
+
 #pragma endregion
 
 	if (g_pKeyManager->isOnceKeyDown(VK_SPACE))
@@ -229,26 +248,19 @@ void EscapeScene::SceneBack()
 	g_pScnManager->ChangeScene("loading");
 }
 
+
+//현재 클래스의 내용을 json에 저장함
 void EscapeScene::JsonAdd()
 {
-	
-	//data["player"]["scn-level"] = 0;
-	//data["player"]["hp"] = 5;
-	//data["player"]["atk"] = 1;
-	//clear 일때 +1 해서 4
-
-	m_playerData = g_pFileManager->JsonFind("player");
-
-	int Level = m_playerData["player"]["scn-level"];
-	
-	Level++;
+	//m_playerData = g_pFileManager->JsonFind("player");
 	m_playerData["player"]["hp"] = m_HP; 
-	m_playerData["player"]["scn-level"] = Level;
-
-
+	m_playerData["player"]["scn-level"] = m_Level;
+	m_playerData["player"]["potion"] = m_potion;
+	m_playerData["player"]["atk"] = m_atk;
 	g_pFileManager->JsonUpdate("player", m_playerData);
-
 }
+
+#pragma region Jsonview
 
 void EscapeScene::JsonView()
 {
@@ -267,5 +279,16 @@ void EscapeScene::JsonView()
 	cout << "hp 1         :" << m_playerData["player"]["hp"] << endl;
 	cout << "atk  1       :" << m_playerData["player"]["atk"] << endl;
 	cout << "Level  1     :" << m_playerData["player"]["scn-level"] << endl;
-
 }
+#pragma endregion
+
+
+void EscapeScene::SetData()
+{
+	m_playerData = g_pFileManager->JsonFind("player");
+	m_HP = m_playerData["player"]["hp"];
+	m_Level = m_playerData["player"]["scn-level"];
+	m_potion = m_playerData["player"]["potion"];
+	m_atk = m_playerData["player"]["atk"];
+}
+
