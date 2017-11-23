@@ -13,7 +13,7 @@ void FileDataManager::JsonSave(string Filename, json JsonData)
 {
     ofstream fileOut;
     fileOut.open(Filename, ios_base::out);
-    fileOut << JsonData.dump();
+    fileOut << JsonData.dump(4);
     fileOut.close();
 }
 
