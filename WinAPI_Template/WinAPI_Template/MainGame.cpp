@@ -23,6 +23,8 @@ MainGame::~MainGame()
 {
     //  json file save
     g_pLogManager->WriteLog(EL_INFO, "MainGame destructor");
+	g_pFileManager->JsonSave("data/player.json", g_pFileManager->JsonFind("player"));
+	
     Release();
 }
 
@@ -41,6 +43,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("exit", new ExitScene());
 	
     g_pScnManager->ChangeScene("splash");
+    g_pScnManager->ChangeScene("loading");
 }
 
 void MainGame::Update()

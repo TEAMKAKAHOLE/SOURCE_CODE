@@ -18,6 +18,14 @@ private:
 	Player       m_player;
 	Enemy        m_cEnemy[3];
 	int          m_HP;
+	int          m_Level;
+	int          m_potion;
+	int          m_atk;
+	int          m_def;
+
+	bool         m_bIsAct; //충돌중 카운트중지
+	bool         m_bIngAct; //계속 충돌중인지 판단
+	json        m_playerData;
 
 
 	//마지막 탈출시 필요한 열쇠아이템 RECT이미지
@@ -44,6 +52,10 @@ public:
 	virtual  void  Release()  override;
 	void  SceneChange();
 	void  SceneBack();
+	void  JsonAdd();
+	void  JsonView();
+	void  SetData();
+	
 
 };
 

@@ -3,6 +3,7 @@
         "atk": 1,
         "hp": 5,
         "potion": 0,
-        "scn-level": 0
+        "scn-level": 0,
+        "gateOpen":0
     }
 }
