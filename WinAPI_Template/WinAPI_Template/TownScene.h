@@ -6,7 +6,7 @@
 class TownScene : public GameNode
 {
 private:
-    int     m_nTownLvl;
+    json    m_playerData;
 
     ImageObject*    m_imgWorldBuffer;
     ImageObject*    m_imgWorldMap;
@@ -15,9 +15,14 @@ private:
     ImageObject*    m_imgUiBuffer;
     SpritesObject*  m_sprHudNumber;
     SpritesObject*  m_sprHudLife;
+    GameObject      m_objExit;
+
+    UnitPos m_startPos;
+    UnitPos m_entrancePos;
 
     Player  m_player;
     Chief   m_chief;
+    bool    m_isBossLevel;
     vector<Projectile>  m_vecBullet;
 
 public:
@@ -29,4 +34,6 @@ public:
     virtual void Update() override;
     virtual void Render() override;
     virtual void Release() override;
+
+    void SaveGame();
 };

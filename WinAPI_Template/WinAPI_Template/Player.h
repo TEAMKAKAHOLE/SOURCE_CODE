@@ -21,6 +21,7 @@ private:
     int             m_currFrameY;
     RECT            m_rtAtkArea;
 
+    int             m_nAtkDamage;
     int             m_nHealPotion;
 
 public:
@@ -39,6 +40,9 @@ public:
 
     RECT GetAtkArea() { return m_rtAtkArea; }
     int GetHealPotion() { return m_nHealPotion; }
+
+    void UseHealPotion();
+    void SumHealPotion(int Amount = 1);
 
     void CheckCollision();
 };

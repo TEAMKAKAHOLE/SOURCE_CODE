@@ -33,6 +33,8 @@ public:
     virtual void Render() override;
     virtual void Release() override;
 
+    void InitPlayerData();
+
 #pragma region CONTROLLER
     void    SystemController();
     void    MouseLock();

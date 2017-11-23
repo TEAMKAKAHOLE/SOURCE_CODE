@@ -10,6 +10,7 @@ Player::Player()
     m_nLife = 5;
     m_currFrameY = 0;
     m_nHealPotion = 0;
+    m_nAtkDamage = 1;
 }
 
 Player::~Player()
@@ -23,26 +24,6 @@ void Player::Start()
 void Player::Update()
 {
     PlayerController();
-
-    if (g_pKeyManager->isOnceKeyDown('1'))
-    {
-        m_nHealPotion++;
-    }
-    else if (g_pKeyManager->isOnceKeyDown('2'))
-    {
-        m_nHealPotion--;
-    }
-    else if (g_pKeyManager->isOnceKeyDown('3'))
-    {
-        m_nHealPotion += 50;
-    }
-    else if (g_pKeyManager->isOnceKeyDown('4'))
-    {
-        m_nHealPotion -= 50;
-    }
-
-    m_nHealPotion = m_nHealPotion < 0 ? 0 : m_nHealPotion;
-    m_nHealPotion = m_nHealPotion > 999 ? 999 : m_nHealPotion;
 
     switch (m_playerStatus)
     {
@@ -115,6 +96,9 @@ void Player::PlayerController()
         m_playerStatus = PLAYER_IDLE;
     }
 
+    if (g_pKeyManager->isOnceKeyDown('1'))
+        UseHealPotion();
+
     frameY = m_currFrameY;
     m_dSpeed = speed;
 }
@@ -154,6 +138,20 @@ void Player::SetAtkArea()
     }
 
     m_rtAtkArea = g_pDrawHelper->MakeRect(atkAreaPos, ATK_SWORD_BOX);
+}
+
+void Player::UseHealPotion()
+{
+    if (m_nHealPotion > 0)
+    {
+        --m_nHealPotion;
+        ++m_nLife;
+    }
+}
+
+void Player::SumHealPotion(int Amount)
+{
+    m_nHealPotion += Amount;
 }
 
 void Player::CheckCollision()

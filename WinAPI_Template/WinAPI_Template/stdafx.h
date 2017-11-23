@@ -14,8 +14,6 @@
 // Windows 헤더 파일:
 #include <windows.h>
 
-
-
 // C 런타임 헤더 파일입니다.
 #include <stdlib.h>
 #include <malloc.h>
@@ -31,8 +29,6 @@
 
 using namespace std;
 using json = nlohmann::json;
-
-
 
 //==================================================================
 //		## 디파인문 - 메크로 ## (윈도우창 초기화)
@@ -52,7 +48,7 @@ using json = nlohmann::json;
 #define MAGENTA_COLOR       RGB(255, 0, 255)
 
 #define RSC_LIST_KEY "rsc-list"
-
+#define PLAYER_DATA_PATH "data/player.json"
 //#define FPS_TEST
 //==================================================================
 //		## MACRO FUNCTION ##

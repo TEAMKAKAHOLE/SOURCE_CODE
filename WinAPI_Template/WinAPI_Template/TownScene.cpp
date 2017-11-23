@@ -4,7 +4,9 @@
 
 TownScene::TownScene()
 {
-    m_nTownLvl = 1;
+    m_startPos = { 290, 375 };
+    m_objExit.SetBodyRect({ 500, 390, 512, 410 });
+    m_isBossLevel = false;
 }
 
 
@@ -14,6 +16,9 @@ TownScene::~TownScene()
 
 void TownScene::Start()
 {
+    //  json load
+    m_playerData = g_pFileManager->JsonFind("player");
+
     //  clear
     m_vecBullet.clear();
 
@@ -36,7 +41,7 @@ void TownScene::Start()
     m_player.SetupForSprites(7, 8);
     m_player.StartAnimation();
     m_player.SetBodySize({ 64, 64 });
-    m_player.SetBodyPos({ 300.0f, 350.0f });
+    m_player.SetBodyPos(m_startPos);
     m_player.SetFrameDelay(6);
     m_player.SetTerrainBuffer(m_imgTerrainBuffer);
     m_player.SetHBoxMargin({ 16, 16, 16, 16 });
@@ -45,28 +50,34 @@ void TownScene::Start()
     m_player.LockInWnd();
 
     m_chief.Start();
+
+    int scnLevel = m_playerData["player"]["scn-level"];
+    if (scnLevel >= 4)
+    {
+        m_isBossLevel = true;
+        m_objExit.SetDead();
+        m_chief.SetHostile();
+    }
 }
 
 void TownScene::Update()
 {
-    if (g_pKeyManager->isOnceKeyDown(VK_F2))
-    {
-        g_pScnManager->SetNextScene("field");
-        g_pScnManager->ChangeScene("loading");
-    }
-    else if (g_pKeyManager->isOnceKeyDown(VK_F3))
-    {
-        g_pScnManager->SetNextScene("puzzle");
-        g_pScnManager->ChangeScene("loading");
-    }
-    else if (g_pKeyManager->isOnceKeyDown('T'))
-    {
-        m_chief.SetHostile();
-    }
+    if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
+        PostQuitMessage(1);
 
     m_player.Update();
     m_chief.Update();
     m_chief.MakeBullet(m_vecBullet, m_player.GetBodyPos());
+
+    if (m_objExit.IsAlive())
+    {
+        RECT rt;
+        if (IntersectRect(&rt, &m_objExit.GetBodyRect(), &m_player.GetBodyRect()))
+        {
+            g_pScnManager->SetNextScene("field");
+            g_pScnManager->ChangeScene("loading");
+        }
+    }
 
     for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
     {
@@ -93,13 +104,9 @@ void TownScene::Update()
     for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end();)
     {
         if (iter->IsAlive() == false)
-        {
             iter = m_vecBullet.erase(iter);
-        }
         else
-        {
             ++iter;
-        }
     }
     
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
@@ -150,4 +157,14 @@ void TownScene::Render()
 
 void TownScene::Release()
 {
+    SaveGame();
+}
+
+void TownScene::SaveGame()
+{
+    m_playerData["player"]["hp"] = m_player.GetLife();
+    m_playerData["player"]["potion"] = m_player.GetHealPotion();
+    m_playerData["player"]["atk"] = 1;
+    m_playerData["player"]["scn-level"] = 0;
+    g_pFileManager->JsonSave(PLAYER_DATA_PATH, m_playerData);
 }

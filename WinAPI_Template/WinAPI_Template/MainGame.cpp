@@ -13,11 +13,15 @@ MainGame::MainGame()
 	VerInfoStamp();
 	MouseLock();
 	Start();
+
+    //  json file load
+    InitPlayerData();
 }
 
 
 MainGame::~MainGame()
 {
+    //  json file save
     g_pLogManager->WriteLog(EL_INFO, "MainGame destructor");
     Release();
 }
@@ -36,7 +40,7 @@ void MainGame::Start()
 	g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());
 	
-    g_pScnManager->SetNextScene("splash");
+    g_pScnManager->SetNextScene("town");
     g_pScnManager->ChangeScene("loading");
 }
 
@@ -116,4 +120,26 @@ void MainGame::Release()
     g_pDbManager->ReleaseInstance();
     //  SceneManager release
     g_pScnManager->ReleaseAll();
+}
+
+void MainGame::InitPlayerData()
+{
+    fstream playerData;
+    playerData.open(PLAYER_DATA_PATH, ios_base::in | ios_base::out);
+    if (playerData.is_open())
+    {
+        playerData.close();
+        g_pFileManager->JsonLoad("player", PLAYER_DATA_PATH);
+    }
+    else
+    {
+        json initPlayerData;
+        initPlayerData["player"]["scn-level"] = 0;
+        initPlayerData["player"]["hp"] = 5;
+        initPlayerData["player"]["atk"] = 1;
+        initPlayerData["player"]["potion"] = 5;
+
+        g_pFileManager->JsonSave(PLAYER_DATA_PATH, initPlayerData);
+        g_pFileManager->JsonLoad("player", PLAYER_DATA_PATH);
+    }
 }
