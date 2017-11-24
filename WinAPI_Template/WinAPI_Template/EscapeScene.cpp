@@ -23,9 +23,9 @@ void EscapeScene::Start()
     m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
-	m_player.SetupForSprites(7,8);
+	m_player.SetupForSprites(7, 8);
 	m_player.StartAnimation();
-    m_player.SetBodySize({ 64, 64 });
+	m_player.SetBodySize({ 64, 64 });
 	m_player.SetFrameDelay(6);
     m_player.SetBodyPos({ (int)350,(int)390 });
     m_player.SetHBoxMargin({ 16, 16, 16, 16 });
@@ -53,7 +53,7 @@ void EscapeScene::Start()
 
 	//Item 초기위치,bool 설정
 	m_KeyItem1.SetBodyImg(g_pImgManager->FindImage("keyItem"));
-	m_KeyItem1.SetupForSprites(1,1);
+	m_KeyItem1.SetupForSprites(1, 1);
 	m_KeyItem1.StartAnimation();
 	m_KeyItem1.SetBodySize({ 46,46 });
 	m_KeyItem1.SetBodyPos({ 420,260 });

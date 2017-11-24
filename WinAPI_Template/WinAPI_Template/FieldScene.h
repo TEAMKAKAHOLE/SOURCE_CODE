@@ -14,19 +14,29 @@ private:
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
     ImageObject*    m_imgUiBuffer;
 
+	SpritesObject* m_imgAutoButton;
+	SpritesObject* m_imgClose;
+	SpritesObject* m_imgXbox;
+	ImageObject* m_imgBill;
+	ImageObject* m_imgError;
+
 	Player		 m_player;
 	Enemy		 m_enemy;
 
 	RECT m_rtTownPortal;
 	RECT m_rtEscapePortal;
 	RECT m_rtAwareness;  //적이 플레이어를 인식하는 렉트
+	
 
     bool m_isClear;
-	bool m_isTutorial;
 	bool m_isDie;
+	bool m_isTrackingPlayer;
+	bool m_isBill;
+	bool m_isError;
 
     int m_scnLevel;
 	int m_nEnemyPosY[5];
+	int m_nscnLevel;
 
 	double m_dbAngle;
 	double m_dbCoordFromeAngle;

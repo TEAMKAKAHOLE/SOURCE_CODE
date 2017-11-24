@@ -189,6 +189,45 @@
     			"filename":"Jellyfishbmp",
     			"width":57,
     			"height":17
+    		},
+    		{
+    			"id":4,
+    			"key":"auto-button",
+    			"filename":"autobutton.bmp",
+    			"width":70,
+    			"height":30
+    		},
+    		{
+    			"id":5,
+    			"key":"bill",
+    			"filename":"bill.bmp",
+    			"width":400,
+    			"height":250
+
+    		},
+    		{
+    			"id":6,
+    			"key":"close",
+    			"filename":"CloseButton.bmp",
+    			"width":25,
+    			"height":7
+
+    		},
+    		{
+    			"id":7,
+    			"key":"Xbox",
+    			"filename":"Xbox.bmp",
+    			"width":50,
+    			"height":50
+
+    		},
+    		{
+    			"id":8,
+    			"key":"error",
+    			"filename":"error.bmp",
+    			"width":360,
+    			"height":140
+
     		}
   		]
     },
@@ -295,7 +334,7 @@
     		}
     	]
     },
-     "exit":{  
+    "exit":{  
     	"images":[
     		{
     			"id":0,
