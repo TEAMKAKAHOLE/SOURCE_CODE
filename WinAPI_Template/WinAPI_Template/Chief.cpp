@@ -6,6 +6,7 @@ Chief::Chief()
 {
 	m_sprBullet = NULL;
     m_isHostile = false;
+    m_nPhase = 0;
 }
 
 
@@ -23,7 +24,7 @@ void Chief::Start()
     m_nMarginHBox = { 6, 6, 6, 6 };
     m_dPos = { 256, 340 };
 
-    m_nLife = 20;
+    m_nLife = MAX_HP_BOSS;
 
     m_sprBullet = new SpritesObject;
     m_sprBullet->SetBodyImg(g_pImgManager->FindImage("agahnim-bullet"));
@@ -37,14 +38,8 @@ void Chief::Update()
     if (IsAlive() == false)
         return;
 
-    if (m_isHostile)
-    {
-        //  적대적 관계
-    }
-    else
-    {
-        //  우호적 관계
-    }
+    if (m_isHostile)    //  적대적 관계
+        PhaseUpdate();
 
     SpritesObject::Update();
 }
@@ -72,6 +67,16 @@ void Chief::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
 
     if (m_isHostile)
     {
+        Phase(VecBullets, Pos);
+    }
+}
+
+void Chief::Phase(vector<Projectile>& VecBullets, UnitPos Pos)
+{
+    switch (m_nPhase)
+    {
+    case 1:
+    {
         if (m_fBulletCooltime < g_pTimerManager->GetWorldTime())
         {
             Projectile genBullet;
@@ -89,5 +94,44 @@ void Chief::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
 
             m_fBulletCooltime = g_pTimerManager->GetWorldTime() + 2.0f;
         }
+        break;
+    }
+    case 2:
+        break;
+    case 3:
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    }
+}
+
+void Chief::PhaseUpdate()
+{
+    if (m_nLife > 90)
+    {
+        //  phase 1
+        //  때리고 피하기
+    }
+    else if (m_nLife > 75)
+    {
+        //  phase 2
+        //  버프
+    }
+    else if (m_nLife > 55)
+    {
+        //  phase 3
+        //  필살기
+    }
+    else if (m_nLife > 5)
+    {
+        //  phase 4
+        //  MASS GAME
+    }
+    else
+    {
+        //  phase 5
+        //  격노
     }
 }

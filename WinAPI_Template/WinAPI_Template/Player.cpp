@@ -249,8 +249,8 @@ Projectile Player::MakeArrow()
 
     Projectile moonSlash;
     moonSlash.SetTagName("player");
-    moonSlash.SetBodySize({ 100, 100 });
-    moonSlash.SetHBoxMargin({ 0, 0, 0, 0 });
+    moonSlash.SetBodySize({ 50, 50 });
+    moonSlash.SetHBoxMargin({ 15, 15, 15, 15 });
     moonSlash.SetBodySpeed(arrowSpeed);
     moonSlash.SetGenTime(g_pTimerManager->GetWorldTime());
     moonSlash.SetExistTime(5.0f);
