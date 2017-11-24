@@ -7,6 +7,9 @@ TownScene::TownScene()
     m_startPos = { 290, 375 };
     m_objExit.SetBodyRect({ 500, 390, 512, 410 });
     m_isBossLevel = false;
+
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -56,6 +59,8 @@ void TownScene::Start()
         m_objExit.SetDead();
         m_chief.SetHostile();
     }
+
+	g_pSndManager->Play("town");
 }
 
 void TownScene::Update()
@@ -197,6 +202,30 @@ void TownScene::Render()
 
     //  world render
     m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
+	
+    //  ui render
+    m_imgHud->FastRender(m_imgUiBuffer->GetMemDC(), 0, 0);
+    //  180, 25
+    //  life
+    int marginX = 180;
+    int marginY = 25;
+    for (int i = 0; i < m_player.GetLife(); i++)
+    {
+        m_sprHudLife->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
+            , marginX + i * 10, marginY
+            , 7, 7
+            , 0, 0
+            , 255.0f);
+    }
+
+    //  65, 24
+    //  number
+    m_sprHudNumber->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
+        , { 85, 28 }
+        , { 7, 7 }
+        , m_player.GetHealPotion()
+        , 255.0f);
+
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
 #ifdef _DEBUG
@@ -208,6 +237,7 @@ void TownScene::Render()
 void TownScene::Release()
 {
     SaveGame();
+	g_pSndManager->Stop("town");
 }
 
 void TownScene::SaveGame()

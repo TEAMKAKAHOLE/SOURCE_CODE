@@ -3,6 +3,8 @@
 
 FieldScene::FieldScene()
 {
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -95,7 +97,12 @@ void FieldScene::Start()
 	m_rtTownPortal = g_pDrawHelper->MakeRect({ 0,400 }, { 30,70 });
 	m_rtEscapePortal = g_pDrawHelper->MakeRect({ 500,380 }, { 20,130 });
 
+	m_isTutorial = false;
 
+	if (!m_isClear)
+	{
+		g_pSndManager->Play("tutorial");
+	}
 }
 
 void FieldScene::Update()  
@@ -336,6 +343,7 @@ void FieldScene::Release()
     m_playerData["player"]["hp"] = m_player.GetLife();
     m_playerData["player"]["potion"] = m_player.GetHealPotion();
     g_pFileManager->JsonUpdate("player", m_playerData);
+	g_pSndManager->Stop("tutorial");
 }
 
 void FieldScene::MakeEnemy(int count)

@@ -12,6 +12,8 @@ PuzzleGameScene::PuzzleGameScene()
 	m_szTagName = "puzzle-game";
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -41,6 +43,8 @@ void PuzzleGameScene::Start()
 
 	if (!m_isPlaying)
 		m_nChageSceneDelay = 4500;
+
+	g_pSndManager->Play("puzzle-game");
 }
 
 void PuzzleGameScene::Update()
@@ -141,6 +145,7 @@ void PuzzleGameScene::Render()
 
 void PuzzleGameScene::Release()
 {
+	g_pSndManager->Stop("puzzle-game");
 }
 
 void PuzzleGameScene::Suffle()

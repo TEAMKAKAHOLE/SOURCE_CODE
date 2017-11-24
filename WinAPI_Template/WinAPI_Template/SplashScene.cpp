@@ -7,7 +7,8 @@ SplashScene::SplashScene()
     m_szTagName = "splash";
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
-	
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 SplashScene::~SplashScene()
@@ -20,6 +21,7 @@ void SplashScene::Start()
 	m_nAlpha = 0;
 	m_nAlphaPlus = 2;
     m_imgLogo = g_pImgManager->FindImage("logo");
+	g_pSndManager->Play("splash");
 }
 
 void SplashScene::Update()
