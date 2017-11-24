@@ -40,8 +40,15 @@
                 "id": 5,
                 "key": "moon-slash",
                 "filename": "moon-slash.bmp",
-                "width": 600,
-                "height": 150
+                "width": 64,
+                "height": 32
+            },
+            {
+                "id": 6,
+                "key": "moon-slash-particle",
+                "filename": "moon-slash-particle.bmp",
+                "width": 32,
+                "height": 16
             }
         ]
     },

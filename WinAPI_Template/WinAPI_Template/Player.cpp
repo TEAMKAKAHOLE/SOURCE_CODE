@@ -33,7 +33,7 @@ void Player::Start()
     m_sprHudLife->SetupForSprites(3, 1);
     m_sprMoonSlash = new SpritesObject;
     m_sprMoonSlash->SetBodyImg(g_pImgManager->FindImage("moon-slash"));
-    m_sprMoonSlash->SetupForSprites(4, 1);
+    m_sprMoonSlash->SetupForSprites(4, 2);
 }
 
 void Player::Update()
@@ -100,11 +100,11 @@ void Player::Render(HDC hdc)
         , { 7, 7 }
         , GetHealPotion()
         , 255.0f);
+
 #ifdef _DEBUG
     string szWeaponType = to_string(m_weaponType);
     TextOut(hdc, m_rtBody.left, m_rtBody.top, szWeaponType.c_str(), (int)strlen(szWeaponType.c_str()));
 #endif // _DEBUG
-
 }
 
 void Player::PlayerController()
@@ -268,6 +268,7 @@ Projectile Player::MakeArrow()
     moonSlash.SetBodyPos(m_dPos);
     moonSlash.SetBodyImg(m_sprMoonSlash->GetBodyImg());
     moonSlash.SetFrameX(m_currFrameY / 2);
+    moonSlash.SetLife(3);
 
     return moonSlash;
 }
