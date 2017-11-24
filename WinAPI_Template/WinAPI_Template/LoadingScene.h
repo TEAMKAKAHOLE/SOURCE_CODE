@@ -1,6 +1,7 @@
 #pragma once
 #include "GameNode.h"
 #include "ProgressBarObject.h"
+#include "SpritesObject.h"
 
 class LoadingScene : public GameNode
 {
@@ -9,6 +10,8 @@ private:
 
     ImageObject*    m_prgBarBg;
     ImageObject*    m_prgBarFg;
+	ImageObject*    m_loadingBg;
+	SpritesObject*  m_sprLinkRun;
 
     string      m_szDestScene;
 
