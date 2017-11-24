@@ -30,13 +30,6 @@ void TownScene::Start()
 
     //  ui
     m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
-    m_imgHud = g_pImgManager->FindImage("hud");
-    m_sprHudNumber = new SpritesObject;
-    m_sprHudNumber->SetBodyImg(g_pImgManager->FindImage("hud-number"));
-    m_sprHudNumber->SetupForSprites(10, 1);
-    m_sprHudLife = new SpritesObject;
-    m_sprHudLife->SetBodyImg(g_pImgManager->FindImage("hud-life"));
-    m_sprHudLife->SetupForSprites(3, 1);
 
     m_player.SetBodyImg(g_pImgManager->FindImage("player"));
     m_player.SetupForSprites(7, 8);
@@ -45,10 +38,12 @@ void TownScene::Start()
     m_player.SetBodyPos(m_startPos);
     m_player.SetFrameDelay(6);
     m_player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_player.SetUiBuffer(m_imgUiBuffer);
     m_player.SetHBoxMargin({ 16, 16, 16, 16 });
     m_player.Update();
     m_player.SetLockArea({ 0, 0, 512, 512 });
     m_player.LockInWnd();
+    m_player.Start();
 
     m_chief.Start();
 
@@ -185,34 +180,12 @@ void TownScene::Render()
 
     //  world render
     m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
-
-    //  ui render
-    m_imgHud->FastRender(m_imgUiBuffer->GetMemDC(), 0, 0);
-    //  180, 25
-    //  life
-    int marginX = 180;
-    int marginY = 25;
-    for (int i = 0; i < m_player.GetLife(); i++)
-    {
-        m_sprHudLife->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
-            , marginX + i * 10, marginY
-            , 7, 7
-            , 0, 0
-            , 255.0f);
-    }
-
-    //  65, 24
-    //  number
-    m_sprHudNumber->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
-        , { 85, 28 }
-        , { 7, 7 }
-        , m_player.GetHealPotion()
-        , 255.0f);
-
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
+#ifdef _DEBUG
     string bulletCnt = to_string((int)m_vecBullet.size());
     TextOut(g_hDC, W_WIDTH - 20, 45, bulletCnt.c_str(), (int)strlen(bulletCnt.c_str()));
+#endif // _DEBUG
 }
 
 void TownScene::Release()

@@ -12,6 +12,8 @@ private:
 	ImageObject* m_imgWorldBuffer; // 맵 이미지를 그릴 버퍼
 	ImageObject* m_imgWorldMap;  //원본 맵 이미지
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
+    ImageObject*    m_imgUiBuffer;
+
 	Player		 m_player;
 	Enemy		 m_enemy;
 
@@ -23,6 +25,7 @@ private:
 	bool m_isTutorial;
 	bool m_isDie;
 
+    int m_scnLevel;
 	int m_nEnemyPosY[5];
 
 	double m_dbAngle;

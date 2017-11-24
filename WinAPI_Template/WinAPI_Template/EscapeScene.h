@@ -12,6 +12,8 @@ private:
 	ImageObject* m_imgWorldBuffer;
 	ImageObject* m_imgWorldMap;
 	ImageObject* m_imgTerrainBuffer;
+    ImageObject*    m_imgUiBuffer;
+
 	GameObject   m_EndPoint;   // 80,170
 	GameObject   m_StartPoint; // 350,390 
 	GameObject   m_Back;       //

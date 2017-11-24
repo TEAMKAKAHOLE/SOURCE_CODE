@@ -13,6 +13,7 @@ private:
 	ImageObject*	m_imgWorldMap;
 	//
 	ImageObject*	m_imgTerrainBuffer;
+    ImageObject*    m_imgUiBuffer;
 	
 	SpritesObject	m_Object;
 	SpritesObject	m_imgHintLetter1;

@@ -12,10 +12,8 @@ private:
     ImageObject*    m_imgWorldBuffer;
     ImageObject*    m_imgWorldMap;
     ImageObject*    m_imgTerrainBuffer;
-    ImageObject*    m_imgHud;
     ImageObject*    m_imgUiBuffer;
-    SpritesObject*  m_sprHudNumber;
-    SpritesObject*  m_sprHudLife;
+
     GameObject      m_objExit;
 
     UnitPos m_startPos;

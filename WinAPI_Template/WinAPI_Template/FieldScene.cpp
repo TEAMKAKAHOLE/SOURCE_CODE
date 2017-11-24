@@ -13,6 +13,7 @@ FieldScene::~FieldScene()
 void FieldScene::Start()
 {
 	m_playerData = g_pFileManager->JsonFind("player");
+    m_scnLevel = m_playerData["player"]["scn-level"];
 	m_vecEnemy.clear();
     m_isClear = false;
 
@@ -31,6 +32,7 @@ void FieldScene::Start()
 	m_imgWorldBuffer = g_pImgManager->FindImage("WorldBuffer");
 	m_imgWorldMap = g_pImgManager->FindImage("field-map");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("field-map-magenta");
+    m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
 	m_player.SetBodyPos({ 50, 400 });
@@ -39,10 +41,12 @@ void FieldScene::Start()
 	m_player.SetFrameDelay(3);
 	m_player.StartAnimation();
 	m_player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_player.SetUiBuffer(m_imgUiBuffer);
     m_player.SetHBoxMargin({ 16, 16, 16, 16 });
     m_player.Update();
     m_player.SetLockArea({ 0, 0, 512, 512 });
     m_player.LockInWnd();
+    m_player.Start();
 
 	m_enemy.SetBodyImg(g_pImgManager->FindImage("enemy-knight"));
 	m_enemy.SetTerrainBuffer(m_imgTerrainBuffer);
@@ -70,17 +74,14 @@ void FieldScene::Update()
 
     if (m_isClear)
     {
-        int scnLevel = m_playerData["player"]["scn-level"];
-
         RECT rt;
         if (IntersectRect(&rt, &m_rtTownPortal, &m_player.GetHBoxRect()))
         {
-            if (scnLevel == 0)
+            if (m_scnLevel == 0)
             {
-                scnLevel = 1;
+                m_scnLevel = 1;
                 g_pScnManager->SetNextScene("town");
                 g_pScnManager->ChangeScene("loading");
-                m_playerData["player"]["scn-level"] = scnLevel;
             }
             else
             {
@@ -92,7 +93,7 @@ void FieldScene::Update()
         RECT rt2;
         if (IntersectRect(&rt2, &m_rtEscapePortal, &m_player.GetHBoxRect()))
         {
-            if (scnLevel != 0)
+            if (m_scnLevel != 0)
             {
                 g_pScnManager->SetNextScene("escape");
                 g_pScnManager->ChangeScene("loading");
@@ -214,10 +215,14 @@ void FieldScene::Render()
 
 	m_player.Render(m_imgWorldBuffer->GetMemDC());
 	m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
+
+    m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 }
 
 void FieldScene::Release()
 {
+    m_playerData["player"]["scn-level"] = m_scnLevel;
+    m_playerData["player"]["hp"] = m_player.GetLife();
     m_playerData["player"]["potion"] = m_player.GetHealPotion();
     g_pFileManager->JsonUpdate("player", m_playerData);
 }

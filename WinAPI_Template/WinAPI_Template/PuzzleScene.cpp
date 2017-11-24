@@ -38,6 +38,7 @@ void PuzzleScene::Start()
 	m_imgWorldBuffer = g_pImgManager->AddImage("puzzle-map-buffer", 512, 512);
 	m_imgWorldMap = g_pImgManager->FindImage("puzzle-map");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("puzzle-terrain");
+    m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
 	//플레이어 세팅
 	m_Player.SetBodyImg(g_pImgManager->FindImage("player"));
@@ -47,6 +48,7 @@ void PuzzleScene::Start()
 	m_Player.StartAnimation();
 	m_Player.SetBodySize({ 64, 64 });
 	m_Player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_Player.SetUiBuffer(m_imgUiBuffer);
 	m_Player.SetHBoxMargin({ 16, 16, 16, 16 });
 	m_Player.SetBodyPos({ 272, 85 });
 	m_Player.Update();
@@ -54,6 +56,7 @@ void PuzzleScene::Start()
 	m_Player.LockInWnd();
 	//애니메이션 딜레이
 	m_Player.SetFrameDelay(6);
+    m_Player.Start();
 
 	//오브젝트 세팅
 	m_Object.SetBodyImg(g_pImgManager->FindImage("hint"));
@@ -207,10 +210,14 @@ void PuzzleScene::Render()
 		m_imgHardway.Render(g_hDC);
 	else if (m_isExitMessage2)
 		m_imgNormalway.Render(g_hDC);
+
+    m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 }
 
 void PuzzleScene::Release()
 {
+    m_playerData["player"]["hp"] = m_Player.GetLife();
+    m_playerData["player"]["potion"] = m_Player.GetHealPotion();
     m_playerData["player"]["scn-level"] = m_nScnLevel;
     g_pFileManager->JsonUpdate("player", m_playerData);
 }

@@ -19,6 +19,18 @@ Player::~Player()
 
 void Player::Start()
 {
+    json playerData = g_pFileManager->JsonFind("player");
+    m_nLife = playerData["player"]["hp"];
+    m_nHealPotion = playerData["player"]["potion"];
+    g_pFileManager->JsonUpdate("player", playerData);
+
+    m_imgHud = g_pImgManager->FindImage("hud");
+    m_sprHudNumber = new SpritesObject;
+    m_sprHudNumber->SetBodyImg(g_pImgManager->FindImage("hud-number"));
+    m_sprHudNumber->SetupForSprites(10, 1);
+    m_sprHudLife = new SpritesObject;
+    m_sprHudLife->SetBodyImg(g_pImgManager->FindImage("hud-life"));
+    m_sprHudLife->SetupForSprites(3, 1);
 }
 
 void Player::Update()
@@ -55,6 +67,26 @@ void Player::Update()
 void Player::Render(HDC hdc)
 {
 	SpritesObject::Render(hdc);
+    //  ui render
+    m_imgHud->FastRender(m_imgUiBuffer->GetMemDC(), 0, 0);
+    //  life
+    int marginX = 180;
+    int marginY = 25;
+    for (int i = 0; i < GetLife(); i++)
+    {
+        m_sprHudLife->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
+            , marginX + i * 10, marginY
+            , 7, 7
+            , 0, 0
+            , 255.0f);
+    }
+
+    //  number
+    m_sprHudNumber->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
+        , { 85, 28 }
+        , { 7, 7 }
+        , GetHealPotion()
+        , 255.0f);
 }
 
 void Player::PlayerController()

@@ -16,6 +16,10 @@ class Player : public SpritesObject
 {
 private:
     ImageObject*    m_imgTerrainBuffer;
+    ImageObject*    m_imgUiBuffer;
+    ImageObject*    m_imgHud;
+    SpritesObject*  m_sprHudLife;
+    SpritesObject*  m_sprHudNumber;
 
     E_PLAYER_STATUS m_playerStatus;
     E_WEAPON_TYPE   m_weaponType;
@@ -36,6 +40,8 @@ public:
     virtual void Render(HDC hdc) override;
 
     void SetTerrainBuffer(ImageObject* ImgTerrain) { m_imgTerrainBuffer = ImgTerrain; }
+    void SetUiBuffer(ImageObject* ImgUi) { m_imgUiBuffer = ImgUi; }
+
     void PlayerController();
 
     void SetIdle();

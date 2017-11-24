@@ -20,7 +20,7 @@ void EscapeScene::Start()
 	m_imgWorldBuffer     = g_pImgManager->AddImage("eacape-map-buffer", 512, 512);
 	m_imgWorldMap        = g_pImgManager->FindImage("escape-map");
 	m_imgTerrainBuffer   = g_pImgManager->FindImage("escape-terrain");
-	
+    m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
 	m_player.SetupForSprites(7,8);
@@ -30,9 +30,11 @@ void EscapeScene::Start()
     m_player.SetBodyPos({ (int)350,(int)390 });
     m_player.SetHBoxMargin({ 16, 16, 16, 16 });
     m_player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_player.SetUiBuffer(m_imgUiBuffer);
     m_player.Update();
     m_player.SetLockArea({ 0, 0, 512, 512 });
     m_player.LockInWnd();
+    m_player.Start();
 
 	m_teleportA.SetBodyPos({ (int)385, (int)300 });
 	m_teleportA.SetBodySize({ (int)20, (int)20 });
@@ -223,6 +225,7 @@ void EscapeScene::Render()
 	
 	m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
 
+    m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
 	char str[256];
 	sprintf_s(str, "player hp : %d", m_HP);
@@ -232,6 +235,8 @@ void EscapeScene::Render()
 
 void EscapeScene::Release()
 {
+    m_playerData["player"]["hp"] = m_player.GetLife();
+    m_playerData["player"]["potion"] = m_player.GetHealPotion();
     m_playerData["player"]["scn-level"] = m_Level;
     g_pFileManager->JsonUpdate("player", m_playerData);
 }
