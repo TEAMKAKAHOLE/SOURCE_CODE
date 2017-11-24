@@ -190,6 +190,22 @@
     			"width":25,
     			"height":7
 
+    		},
+    		{
+    			"id":7,
+    			"key":"Xbox",
+    			"filename":"Xbox.bmp",
+    			"width":50,
+    			"height":50
+
+    		},
+    		{
+    			"id":8,
+    			"key":"error",
+    			"filename":"error.bmp",
+    			"width":360,
+    			"height":140
+
     		}
   		]
     },

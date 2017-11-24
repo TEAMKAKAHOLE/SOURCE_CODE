@@ -13,7 +13,9 @@ private:
 	ImageObject* m_imgTerrainBuffer; // ¸¶Á¨Å¸ ¸Ê ±×¸± ¹öÆÛ
 	SpritesObject* m_imgAutoButton;
 	SpritesObject* m_imgClose;
+	SpritesObject* m_imgXbox;
 	ImageObject* m_imgBill;
+	ImageObject* m_imgError;
 	Player		 m_player;
 	Enemy		 m_enemy;
 
@@ -26,6 +28,7 @@ private:
 	bool m_isDie;
 	bool m_isTrackingPlayer;
 	bool m_isBill;
+	bool m_isError;
 
 	int m_nEnemyPosY[5];
 	int m_nscnLevel;

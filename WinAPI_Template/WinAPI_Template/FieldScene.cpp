@@ -16,6 +16,7 @@ void FieldScene::Start()
 	m_vecEnemy.clear();
     m_isClear = false;
 	m_isBill = false;
+	m_isError = false;
 
 	m_nEnemyPosY[0] = 420;
 	m_nEnemyPosY[1] = 340;
@@ -32,6 +33,7 @@ void FieldScene::Start()
 	m_imgWorldMap = g_pImgManager->FindImage("field-map");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("field-map-magenta");
 	m_imgBill = g_pImgManager->FindImage("bill");
+	m_imgError = g_pImgManager->FindImage("error");
 
 	m_player.SetBodyImg(g_pImgManager->FindImage("player"));
 	m_player.SetBodyPos({ 50, 400 });
@@ -77,6 +79,12 @@ void FieldScene::Start()
 	m_imgClose->SetupForSprites(1, 1);
 	m_imgClose->SetBodyPos({ 100,470});
 	m_imgClose->SetBodySize({ 30,15 });
+
+	m_imgXbox = new SpritesObject;
+	m_imgXbox->SetBodyImg(g_pImgManager->FindImage("Xbox"));
+	m_imgXbox->SetupForSprites(1, 1);
+	m_imgXbox->SetBodyPos({ 660,110 });
+	m_imgXbox->SetBodySize({ 50,50 });
 	
 	
 	
@@ -91,6 +99,7 @@ void FieldScene::Update()
 	m_player.Update();
 	m_imgAutoButton->Update();
 	m_imgClose->Update();
+	m_imgXbox->Update();
     m_player.MakeBullet(m_vecBullets, m_player.GetBodyPos());
 	
 	for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
@@ -228,9 +237,16 @@ void FieldScene::Update()
 		if (g_pKeyManager->isOnceKeyDown(VK_LBUTTON))
 		{
 			m_isBill = false;
+			m_isError = false;
 		}
 	}
-	
+	if (PtInRect(&m_imgXbox->GetBodyRect(), g_ptMouse))
+	{
+		if (g_pKeyManager->isOnceKeyDown(VK_LBUTTON))
+		{
+			m_isError = true;
+		}
+	}
 
 
 	//¸Ê ¿òÁ÷ÀÌ±â
@@ -262,6 +278,11 @@ void FieldScene::Render()
 	{
 		m_imgBill->AlphaRender(g_hDC, W_WIDTH / 2 - 300, W_HEIGHT / 2 - 250, 600, 400, 255);
 		m_imgClose->Render(g_hDC);
+		m_imgXbox->Render(g_hDC);
+	}
+	if (m_isError == true)
+	{
+		m_imgError->Render(g_hDC, W_WIDTH / 2 - 200, W_HEIGHT / 2 - 150, 360, 140);
 	}
 }
 
