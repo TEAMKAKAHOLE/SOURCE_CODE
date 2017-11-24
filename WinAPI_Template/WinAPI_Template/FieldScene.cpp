@@ -3,6 +3,8 @@
 
 FieldScene::FieldScene()
 {
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -56,6 +58,11 @@ void FieldScene::Start()
 	m_rtEscapePortal = g_pDrawHelper->MakeRect({ 500,380 }, { 20,130 });
 
 	m_isTutorial = false;
+
+	if (!m_isClear)
+	{
+		g_pSndManager->Play("tutorial");
+	}
 }
 
 void FieldScene::Update()  
@@ -182,6 +189,7 @@ void FieldScene::Render()
 
 void FieldScene::Release()
 {
+	g_pSndManager->Stop("tutorial");
 }
 
 void FieldScene::MakeEnemy(int count)

@@ -13,11 +13,8 @@ PuzzleScene::PuzzleScene()
 {
 	m_szTagName = "puzzle";
 
-	//제이썬에 데이터 초기화
-	
-
-	//아웃풋 스트림 열고 데이타 넣기 
-
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -99,6 +96,8 @@ void PuzzleScene::Start()
 	m_imgNormalway.SetBodySize({ 390, 282 });
 	m_imgNormalway.SetBodyPos({ W_WIDTH / 2, W_HEIGHT / 2 });
 	m_imgNormalway.Update();
+
+	g_pSndManager->Play("puzzle");
 }
 
 void PuzzleScene::Update()
@@ -212,4 +211,5 @@ void PuzzleScene::Render()
 
 void PuzzleScene::Release()
 {
+	g_pSndManager->Stop("puzzle");
 }

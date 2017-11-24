@@ -47,6 +47,15 @@
                 "width": 256,
                 "height": 200
             }
+        ],
+        "sounds":[
+			{
+				"id": 0,
+                "key": "splash",
+                "filename": "splash-bgm.mp3",
+                "bgm": false,
+                "loop": false
+			}
         ]
     },
     "title": {
@@ -79,6 +88,15 @@
                 "width": 70,
                 "height": 7
             }
+        ],
+        "sounds":[
+			{
+				"id": 0,
+                "key": "title",
+                "filename": "title.mp3",
+                "bgm": true,
+                "loop": true
+			}
         ]
     },
     "loading": {
@@ -136,7 +154,16 @@
                 "width": 144,
                 "height": 288
             }
-        ]
+        ],
+          "sounds":[
+			{
+				"id": 0,
+                "key": "town",
+                "filename": "town.mp3",
+                "bgm": true,
+                "loop": true
+			}
+		]
     },  
     "field":{
     	"images":[
@@ -168,7 +195,16 @@
     			"width":57,
     			"height":17
     		}
-  		]
+  		],
+  		"sounds":[
+			{
+				"id": 0,
+                "key": "tutorial",
+                "filename": "tutorial.mp3",
+                "bgm": true,
+                "loop": true
+			}
+		]
     },
    "escape":{
        "images": [
@@ -253,7 +289,16 @@
                 "width": 390,
                 "height": 282
             }
-        ]
+        ],
+        "sounds":[
+			{
+				"id": 0,
+                "key": "puzzle",
+                "filename": "puzzle.mp3",
+                "bgm": true,
+                "loop": true
+			}
+		]
     },
     "puzzle-game": {
     	"images": [
@@ -271,6 +316,15 @@
                 "width": 1000,
                 "height": 1000
     		}
-    	]
+    	],
+    	"sounds":[
+			{
+				"id": 0,
+                "key": "puzzle-game",
+                "filename": "puzzle-game.mp3",
+                "bgm": true,
+                "loop": true
+			}
+		]
     }
 }

@@ -5,6 +5,8 @@
 TitleScene::TitleScene()
 {
     m_szTagName = "title";
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -15,6 +17,7 @@ TitleScene::~TitleScene()
 void TitleScene::Start()
 {
     m_imgTitleBg = g_pImgManager->FindImage("title-bg");
+	g_pSndManager->Play("title");
 }
 
 void TitleScene::Update()
