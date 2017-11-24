@@ -58,20 +58,12 @@ void TownScene::Start()
 
 void TownScene::Update()
 {
-    if (g_pKeyManager->isOnceKeyDown('1'))
-    {
-        Item genItem;
-        genItem.Start();
-        genItem.SetBodyPos(m_player.GetBodyPos());
-        genItem.SetActiveTime(g_pTimerManager->GetWorldTime() + 3.0f);
-        m_vecItems.push_back(genItem);
-    }
-
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
         PostQuitMessage(1);
 
     m_player.Update();
     m_player.MakeBullet(m_vecBullet, m_player.GetBodyPos());
+    m_viewportPos = m_player.GetBodyPos();
 
     m_chief.Update();
     m_chief.MakeBullet(m_vecBullet, m_player.GetBodyPos());
@@ -159,7 +151,19 @@ void TownScene::Update()
             ++iter;
     }
     
-    g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
+    if (m_scnLevel == 5)
+    {
+        m_viewportPos.x += rand() % 10 - 5;
+        m_viewportPos.y += rand() % 10 - 5;
+        if (m_fEndTimer < g_pTimerManager->GetWorldTime())
+            g_pScnManager->ChangeScene("exit");
+    }
+    else
+    {
+        m_fEndTimer = g_pTimerManager->GetWorldTime() + 5.0f;
+    }
+
+    g_rtViewPort = g_pDrawHelper->MakeViewPort(m_viewportPos, m_imgWorldBuffer);
 }
 
 void TownScene::Render()

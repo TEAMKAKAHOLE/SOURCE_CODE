@@ -20,7 +20,9 @@ private:
     ImageObject*    m_imgHud;
     SpritesObject*  m_sprHudLife;
     SpritesObject*  m_sprHudNumber;
+    SpritesObject*  m_sprMoonSlash;
 
+    GridVector      m_playerHeadDir;
     E_PLAYER_STATUS m_playerStatus;
     E_WEAPON_TYPE   m_weaponType;
     int             m_currFrameY;
@@ -30,6 +32,7 @@ private:
     int             m_nHealPotion;
 
     float           m_fMeleeAtkCooltime;
+    float           m_fRangeAtkCooltime;
 
 public:
     Player();
@@ -45,7 +48,6 @@ public:
     void PlayerController();
 
     void SetIdle();
-    void SetAtkArea();
 
     RECT GetAtkArea() { return m_rtAtkArea; }
     int GetHealPotion() { return m_nHealPotion; }
@@ -55,4 +57,6 @@ public:
 
     void CheckCollision();
     void MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos);
+    Projectile MakeSword();
+    Projectile MakeArrow();
 };

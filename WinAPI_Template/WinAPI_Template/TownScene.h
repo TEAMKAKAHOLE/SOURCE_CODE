@@ -18,7 +18,9 @@ private:
 
     UnitPos m_startPos;
     UnitPos m_entrancePos;
-    
+
+    UnitPos m_viewportPos;
+
     int     m_scnLevel;
 
     Player  m_player;
@@ -27,6 +29,8 @@ private:
 
     vector<Item>        m_vecItems;
     vector<Projectile>  m_vecBullet;
+
+    float   m_fEndTimer;
 
 public:
     TownScene();

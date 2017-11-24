@@ -27,6 +27,11 @@ struct GridVector
     int y;
 };
 
+const GridVector V2_LEFT = { -1, 0 };
+const GridVector V2_UP = { 0, -1 };
+const GridVector V2_RIGHT = { 1, 0 };
+const GridVector V2_DOWN = { 0, 1 };
+
 struct RectMargin
 {
     int left;

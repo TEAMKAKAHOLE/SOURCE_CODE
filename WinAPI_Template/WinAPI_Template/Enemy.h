@@ -3,8 +3,6 @@
 
 enum E_DIRECTION{LEFT,TOP,RIGHT,BOTTOM,MAX};
 
-
-
 class Enemy : public SpritesObject
 {
 private:
