@@ -139,7 +139,7 @@ void PuzzleScene::Update()
 	//¿À´ä ±æ
 	if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && m_isStageClear)
 	{
-		g_pScnManager->SetNextScene("field");
+		g_pScnManager->SetNextScene("hardway");
 		g_pScnManager->ChangeScene("loading");
 	}
 	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()))
