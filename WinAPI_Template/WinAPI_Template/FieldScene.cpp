@@ -149,7 +149,7 @@ void FieldScene::Update()
             iterBullet->GetTagName() == "enemy")
         {
             iterBullet->SetDead();
-            m_player.SumLife(-1);
+            m_player.SumLife(-iterBullet->GetDamage());
         }
 
         for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
@@ -161,9 +161,21 @@ void FieldScene::Update()
                 iterBullet->IsAlive() &&
                 iterBullet->GetTagName() == "player")
             {
-                iterBullet->SetDead();
-                iterEnemy->SumLife(-1);
-
+                iterEnemy->SumLife(-iterBullet->GetDamage());
+                if (iterBullet->GetDamage() > 0)
+                {
+                    iterBullet->SetDamage(0);
+                    iterBullet->SetBodySpeed({ 0.0f, 0.0f });
+                    iterBullet->SetBodySize({ 32, 32 });
+                    iterBullet->SetHBoxMargin({ 0, 0, 0, 0 });
+                    iterBullet->SetBodyImg(g_pImgManager->FindImage("moon-slash-particle"));
+                    iterBullet->SetupForSprites(2, 1);
+                    iterBullet->StartAnimation();
+                    iterBullet->SetFrameDelay(6);
+                    iterBullet->SetGenTime(g_pTimerManager->GetWorldTime());
+                    iterBullet->SetExistTime(0.2f);
+                }
+                
 				dbAngle = g_pGeoHelper->GetAngleFromCoord(iterEnemy->GetBodyPos(), m_player.GetBodyPos());
 				iterEnemy->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-dbAngle, -7.0f));
             }		

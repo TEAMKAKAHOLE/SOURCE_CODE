@@ -10,8 +10,6 @@
 #define DIR_RIGHT   2
 #define DIR_DOWN    0
 
-#define ATK_SWORD_BOX {50, 50}
-
 class Player : public SpritesObject
 {
 private:
@@ -33,6 +31,8 @@ private:
     float           m_fMeleeAtkCooltime;
     float           m_fRangeAtkCooltime;
 
+    bool            m_isStun;
+    bool            m_isMoveImpair;
 public:
     Player();
     ~Player();

@@ -3,6 +3,7 @@
 class Projectile : public SpritesObject
 {
 private:
+    float       m_fActivateTime;
     float       m_fGenTime;
     float       m_fExistTime;
 

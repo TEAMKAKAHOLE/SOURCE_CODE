@@ -139,16 +139,19 @@ void TownScene::Update()
                 m_chief.IsHostile())
             {
                 m_chief.SumLife(-iter->GetDamage());
-                iter->SetDamage(0);
-                iter->SetBodySpeed({ 0.0f, 0.0f });
-                iter->SetBodySize({ 32, 32 });
-                iter->SetHBoxMargin({ 0, 0, 0, 0 });
-                iter->SetBodyImg(g_pImgManager->FindImage("moon-slash-particle"));
-                iter->SetupForSprites(2, 1);
-                iter->StartAnimation();
-                iter->SetFrameDelay(6);
-                iter->SetGenTime(g_pTimerManager->GetWorldTime());
-                iter->SetExistTime(0.2f);
+                if (iter->GetDamage() > 0)
+                {
+                    iter->SetDamage(0);
+                    iter->SetBodySpeed({ 0.0f, 0.0f });
+                    iter->SetBodySize({ 32, 32 });
+                    iter->SetHBoxMargin({ 0, 0, 0, 0 });
+                    iter->SetBodyImg(g_pImgManager->FindImage("moon-slash-particle"));
+                    iter->SetupForSprites(2, 1);
+                    iter->StartAnimation();
+                    iter->SetFrameDelay(6);
+                    iter->SetGenTime(g_pTimerManager->GetWorldTime());
+                    iter->SetExistTime(0.2f);
+                }
             }
         }
     }
