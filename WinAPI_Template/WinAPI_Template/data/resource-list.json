@@ -272,5 +272,37 @@
                 "height": 1000
     		}
     	]
+    },
+    "hardway": {
+		"images": [
+			{
+				"id": 0,
+                "key": "ghost",
+                "filename": "ghost.bmp",
+                "width": 43,
+                "height": 116
+			},
+			{
+				"id": 1,
+                "key": "ghost-shot",
+                "filename": "ghostShot.bmp",
+                "width": 768,
+                "height": 672
+			},
+			{
+				"id": 2,
+                "key": "maze",
+                "filename": "maze-easy.bmp",
+                "width": 512,
+                "height": 512
+			},
+			{
+				"id": 3,
+                "key": "maze-terrain",
+                "filename": "maze-terrain.bmp",
+                "width": 512,
+                "height": 512
+			}
+		]
     }
 }

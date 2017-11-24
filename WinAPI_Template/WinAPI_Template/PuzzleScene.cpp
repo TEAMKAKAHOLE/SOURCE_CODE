@@ -137,7 +137,7 @@ void PuzzleScene::Update()
 	if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && m_isStageClear)
 	{
 		g_pFileManager->JsonUpdate("player", m_playerData);
-		g_pScnManager->SetNextScene("field");
+		g_pScnManager->SetNextScene("hardway");
 		g_pScnManager->ChangeScene("loading");
 	}
 	else if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()))
