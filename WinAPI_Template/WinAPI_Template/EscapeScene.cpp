@@ -29,16 +29,11 @@ void EscapeScene::Start()
 	m_player.SetFrameDelay(6);
 	m_player.SetBodyPos({ (int)350,(int)390 });
 	m_player.SetHBoxMargin({ 16, 16, 16, 16 });
+
 	m_player.SetTerrainBuffer(m_imgTerrainBuffer);
 	m_player.Update();
 	m_player.SetLockArea({ 0, 0, 512, 512 });
 	m_player.LockInWnd();
-
-
-
-
-
-
 
 	m_teleportA.SetBodyPos({ (int)385, (int)300 });
 	m_teleportA.SetBodySize({ (int)20, (int)20 });
@@ -65,11 +60,13 @@ void EscapeScene::Start()
 
 
 	m_Trap.SetBodyImg(g_pImgManager->FindImage("Trap"));
-	m_Trap.SetupForSprites(1, 16);
+	m_Trap.SetupForSprites(1, 10);
 	m_Trap.StartAnimation();
-	m_Trap.SetBodySize({ 44,44 });
-	m_Trap.SetBodyPos({ 420,200 });
+	m_Trap.SetFrameDelay(6);
+	m_Trap.SetBodyPos({ 300,200 });
+	m_Trap.SetBodySize({ 68,68});
 
+	m_Trap.Update();
 
 
 	m_BackScene.SetBodyImg(g_pImgManager->FindImage("Diration"));
@@ -118,7 +115,7 @@ void EscapeScene::Update()
 	m_KeyItem1.Update();
 	m_EndPoint.Update();
 	m_BackScene.Update();
-
+	m_Trap.Update();
 
 	m_StartPoint.Update();
 
@@ -225,7 +222,9 @@ void EscapeScene::Render()
 	m_KeyItem1.Render(m_imgWorldBuffer->GetMemDC());
 	m_EndPoint.Render(m_imgWorldBuffer->GetMemDC());
 	m_StartPoint.Render(m_imgWorldBuffer->GetMemDC());
+	m_Trap.Render(m_imgWorldBuffer->GetMemDC());
 	m_BackScene.Render(m_imgWorldBuffer->GetMemDC());
+	
 
 	for (int i = 0; i < 3; ++i)
 	{
