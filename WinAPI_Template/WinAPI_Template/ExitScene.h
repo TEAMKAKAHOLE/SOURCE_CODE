@@ -1,10 +1,16 @@
 #pragma once
 #include "GameNode.h"
+#include "SpritesObject.h"
 
 class ExitScene : public GameNode
 {
 private:
     float m_fCurrTime;
+
+	ImageObject*  m_pImgBg;
+	ImageObject*  m_pimgGoodBye;
+
+	SpritesObject* m_sprJunimoDance;
 
 public:
     ExitScene();

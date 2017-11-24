@@ -49,6 +49,7 @@
             }
         ]
     },
+
     "title": {
         "images": [
             {
@@ -193,7 +194,7 @@
             	"width":46,
             	"height":46
             },
-             {
+            {
             	"id":3,
             	"key":"EnemyKnight",
             	"filename":"EnemyKnight.bmp",
@@ -270,6 +271,32 @@
                 "filename": "puzzle-game-bg.bmp",
                 "width": 1000,
                 "height": 1000
+    		}
+    	]
+    },
+     "exit":{  
+    	"images":[
+    		{
+    			"id":0,
+    			"key": "exit-bg",
+    			"filename":"exit-bg.bmp",
+    			"width":768,
+    			"height":672
+
+    		},
+    		{
+    			"id":1,
+    			"key":"junimo-dance",
+    			"filename":"junimo-dance.bmp",
+    			"width":295,
+    			"height":70
+    		},
+    		{
+    			"id":2,
+    			"key":"GoodBye",
+    			"filename":"GoodBye.bmp",
+    			"width":150,
+    			"height":50
     		}
     	]
     }
