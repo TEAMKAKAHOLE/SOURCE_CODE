@@ -303,6 +303,23 @@
                 "width": 512,
                 "height": 512
 			}
+		],
+		"sounds":[
+			{
+				"id": 0,
+                "key": "ghost-sound",
+                "filename": "ghost-sound.wav",
+                "bgm":false,
+                "loop":false
+			},
+			{
+				"id": 1,
+                "key": "ghost-bgm",
+                "filename": "ghost-bgm.wav",
+                "bgm":true,
+                "loop":true
+
+			}
 		]
     }
 }

@@ -22,7 +22,7 @@ private:
 	bool			m_isGoingX;
 	int				m_nPusuingDelay;
 	int				m_nRenderShotTime;
-
+	int				m_nSoundPlayerCount;
 	int				m_nShakePosX;
 	int				m_nShakePosY;
 

@@ -12,6 +12,7 @@ HardwayScene::HardwayScene()
 	, m_nRenderShotTime(400)
 	, m_nShakePosX(0)
 	, m_nShakePosY(0)
+	, m_nSoundPlayerCount(1)
 {
 	m_szTagName = "hardway";
 }
@@ -27,7 +28,9 @@ void HardwayScene::Start()
 
 	g_pImgManager->AddImageList(m_szTagName);
 	while (g_pImgManager->AddImageByJson(m_szTagName));
-
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
+	
 	m_imgWorldBuffer = g_pImgManager->AddImage("hardway-map-buffer", 512, 512);
 	m_imgWorldMap = g_pImgManager->FindImage("maze");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("maze-terrain");
@@ -62,6 +65,8 @@ void HardwayScene::Start()
 	m_rtExit->SetBodySize({ 10, 25 });
 	m_rtExit->SetBodyPos({ 513, 223 });
 	m_rtExit->SetBodyRect();
+
+	g_pSndManager->Play("ghost-bgm");
 }
 
 void HardwayScene::Update()
@@ -81,7 +86,7 @@ void HardwayScene::Update()
 	if (m_isStartGhost)
 	{
 		m_Ghost.Update();
-		//m_Ghost.CheckCollision();
+		m_Ghost.CheckCollision();
 		m_Ghost.SetDirection(E_BOTTOM);
 		m_Ghost.GhostMove();
 		if (m_Ghost.GetBodyPos().y > 429)
@@ -138,11 +143,18 @@ void HardwayScene::Update()
 		m_isDead = true;
 		m_nRenderShotTime--;
 
+		if (m_isDead && m_nSoundPlayerCount > 0)
+		{
+			g_pSndManager->Play("ghost-sound");
+			m_nSoundPlayerCount--;
+		}
+
 		if (m_nRenderShotTime < 0)
 		{
 			int m_PlayerLife = m_playerData["player"]["hp"];
 			m_PlayerLife = 0;
 			m_playerData["player"]["hp"] = m_PlayerLife;
+			g_pSndManager->Stop("ghost-bgm");
 			g_pFileManager->JsonUpdate("player", m_playerData);
 			g_pScnManager->SetNextScene("town");
 			g_pScnManager->ChangeScene("loading");
