@@ -11,16 +11,21 @@ private:
 	ImageObject* m_imgWorldBuffer; // 맵 이미지를 그릴 버퍼
 	ImageObject* m_imgWorldMap;  //원본 맵 이미지
 	ImageObject* m_imgTerrainBuffer; // 마젠타 맵 그릴 버퍼
+	SpritesObject* m_imgAutoButton;
+	SpritesObject* m_imgClose;
+	ImageObject* m_imgBill;
 	Player		 m_player;
 	Enemy		 m_enemy;
 
 	RECT m_rtTownPortal;
 	RECT m_rtEscapePortal;
 	RECT m_rtAwareness;  //적이 플레이어를 인식하는 렉트
+	
 
     bool m_isClear;
 	bool m_isDie;
 	bool m_isTrackingPlayer;
+	bool m_isBill;
 
 	int m_nEnemyPosY[5];
 	int m_nscnLevel;
