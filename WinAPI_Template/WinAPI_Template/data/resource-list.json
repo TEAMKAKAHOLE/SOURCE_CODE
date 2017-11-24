@@ -79,6 +79,20 @@
                 "filename": "HUD-Number.bmp",
                 "width": 70,
                 "height": 7
+            },
+            {
+                "id": 4,
+                "key": "sword",
+                "filename": "sword.bmp",
+                "width": 910,
+                "height": 156
+            },
+            {
+                "id": 5,
+                "key": "star",
+                "filename": "star.bmp",
+                "width": 682,
+                "height": 147
             }
         ]
     },

@@ -2,8 +2,8 @@
     "player": {
         "atk": 1,
         "gateOpen": 0,
-        "hp": 2,
-        "potion": 20,
+        "hp": 5,
+        "potion": 1,
         "scn-level": 0
     }
 }
