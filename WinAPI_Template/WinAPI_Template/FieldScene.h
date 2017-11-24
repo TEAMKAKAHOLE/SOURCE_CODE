@@ -27,7 +27,7 @@ private:
 	RECT m_rtEscapePortal;
 	RECT m_rtAwareness;  //적이 플레이어를 인식하는 렉트
 	
-
+    bool m_isTutorial;
     bool m_isClear;
 	bool m_isDie;
 	bool m_isTrackingPlayer;

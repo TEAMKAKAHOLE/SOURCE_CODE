@@ -35,6 +35,8 @@ void HardwayScene::Start()
 	m_imgWorldMap = g_pImgManager->FindImage("maze");
 	m_imgTerrainBuffer = g_pImgManager->FindImage("maze-terrain");
 	m_imgGhostShot = g_pImgManager->FindImage("ghost-shot");
+    //  ui
+    m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
 	//플레이어 세팅
 	m_Player.SetBodyImg(g_pImgManager->FindImage("player"));
@@ -42,12 +44,14 @@ void HardwayScene::Start()
 	m_Player.StartAnimation();
 	m_Player.SetBodySize({ 64, 64 });
 	m_Player.SetTerrainBuffer(m_imgTerrainBuffer);
+    m_Player.SetUiBuffer(m_imgUiBuffer);
 	m_Player.SetHBoxMargin({ 16, 16, 16, 16 });
 	m_Player.SetBodyPos({ 395, 480 });
 	m_Player.Update();
 	m_Player.SetLockArea({ 0, 0, 512, 512 });
 	m_Player.LockInWnd();
 	m_Player.SetFrameDelay(6);
+    m_Player.Start();
 
 	//고스트 세팅
 	m_Ghost.SetBodyImg(g_pImgManager->FindImage("ghost"));

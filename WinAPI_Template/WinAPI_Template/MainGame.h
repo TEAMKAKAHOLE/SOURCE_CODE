@@ -7,6 +7,7 @@
 #include "LoadingScene.h"
 #include "TownScene.h"
 #include "EscapeScene.h"
+#include "HardwayScene.h"
 #include "ExitScene.h"
 #include "FieldScene.h"
 #include "PuzzleScene.h"

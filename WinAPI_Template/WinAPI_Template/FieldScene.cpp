@@ -92,8 +92,6 @@ void FieldScene::Start()
 	m_imgXbox->SetBodyPos({ 660,110 });
 	m_imgXbox->SetBodySize({ 50,50 });
 	
-	
-	
 	m_rtTownPortal = g_pDrawHelper->MakeRect({ 0,400 }, { 30,70 });
 	m_rtEscapePortal = g_pDrawHelper->MakeRect({ 500,380 }, { 20,130 });
 

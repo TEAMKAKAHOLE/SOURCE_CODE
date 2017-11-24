@@ -38,6 +38,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("town", new TownScene());
 	g_pScnManager->AddScene("field", new FieldScene());
     g_pScnManager->AddScene("escape", new EscapeScene());
+    g_pScnManager->AddScene("hardway", new HardwayScene());
     g_pScnManager->AddScene("puzzle", new PuzzleScene());
 	g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());

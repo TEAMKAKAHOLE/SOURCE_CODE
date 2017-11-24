@@ -199,6 +199,8 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="ExitScene.h" />
     <ClInclude Include="FieldScene.h" />
     <ClInclude Include="FileDataManager.h" />
+    <ClInclude Include="Ghost.h" />
+    <ClInclude Include="HardwayScene.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="json.hpp" />
@@ -248,6 +250,8 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="ExitScene.cpp" />
     <ClCompile Include="FieldScene.cpp" />
     <ClCompile Include="FileDataManager.cpp" />
+    <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="HardwayScene.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LoadingScene.cpp" />

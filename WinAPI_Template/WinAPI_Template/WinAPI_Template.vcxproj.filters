@@ -70,6 +70,9 @@
     <Filter Include="GameFramework2D\004-Scene\GameScene\Puzzle">
       <UniqueIdentifier>{efcac3da-99e5-4a37-9844-e13f504fabbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFramework2D\004-Scene\GameScene\Outlast">
+      <UniqueIdentifier>{ca0cb893-1946-42ec-b001-f72cc5b6351c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -219,6 +222,12 @@
     <ClInclude Include="Item.h">
       <Filter>GameFramework2D\100-Source</Filter>
     </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwayScene.h">
+      <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -346,6 +355,12 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>GameFramework2D\100-Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwayScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
