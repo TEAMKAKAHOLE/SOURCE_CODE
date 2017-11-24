@@ -26,7 +26,6 @@ private:
     E_PLAYER_STATUS m_playerStatus;
     E_WEAPON_TYPE   m_weaponType;
     int             m_currFrameY;
-    RECT            m_rtAtkArea;
 
     int             m_nAtkDamage;
     int             m_nHealPotion;
@@ -49,7 +48,7 @@ public:
 
     void SetIdle();
 
-    RECT GetAtkArea() { return m_rtAtkArea; }
+    int GetAtkDamage() { return m_nAtkDamage; }
     int GetHealPotion() { return m_nHealPotion; }
 
     void UseHealPotion();
@@ -59,4 +58,8 @@ public:
     void MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos);
     Projectile MakeSword();
     Projectile MakeArrow();
+
+    void PlayerValidate();
+
+    void TestController();
 };

@@ -4,7 +4,9 @@
 
 Projectile::Projectile()
 {
+    m_fGenTime = 0.0f;
     m_fExistTime = 0.1f;
+    m_nDamage = 1;
 }
 
 

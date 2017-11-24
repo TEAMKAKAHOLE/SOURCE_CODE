@@ -46,6 +46,8 @@ void TownScene::Start()
     m_player.Start();
 
     m_chief.Start();
+    m_chief.SetVecBullets(&m_vecBullet);
+    m_chief.SetPlayerPos(m_player.GetBodyPosRef());
 
     m_scnLevel = m_playerData["player"]["scn-level"];
     if (m_scnLevel >= 4)
@@ -66,7 +68,6 @@ void TownScene::Update()
     m_viewportPos = m_player.GetBodyPos();
 
     m_chief.Update();
-    m_chief.MakeBullet(m_vecBullet, m_player.GetBodyPos());
 
     if (m_chief.GetLife() <= 0)
     {
@@ -126,7 +127,7 @@ void TownScene::Update()
             iter->GetTagName() == "enemy")
         {
             iter->SetDead();
-            m_player.SumLife(-1);
+            m_player.SumLife(-iter->GetDamage());
         }
 
         RECT rt2;
@@ -138,7 +139,7 @@ void TownScene::Update()
                 m_chief.IsHostile())
             {
                 iter->SetDead();
-                m_chief.SumLife(-1);
+                m_chief.SumLife(-iter->GetDamage());
             }
         }
     }

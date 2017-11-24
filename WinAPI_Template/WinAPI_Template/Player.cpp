@@ -6,7 +6,6 @@ Player::Player()
 {
     m_playerStatus = PLAYER_IDLE;
     m_weaponType = WEAPON_SWORD;
-    m_rtAtkArea = { 0, 0, 0, 0 };
     m_nLife = 5;
     m_currFrameY = 0;
     m_nHealPotion = 0;
@@ -39,6 +38,10 @@ void Player::Start()
 
 void Player::Update()
 {
+#ifdef _DEBUG
+    TestController();
+#endif // _DEBUG
+
     PlayerController();
 
     switch (m_playerStatus)
@@ -63,8 +66,11 @@ void Player::Update()
         break;
     }
     }
+
     CheckCollision();
+
     SpritesObject::Update();
+    PlayerValidate();
 }
 
 void Player::Render(HDC hdc)
@@ -77,8 +83,12 @@ void Player::Render(HDC hdc)
     int marginY = 25;
     for (int i = 0; i < GetLife(); i++)
     {
+        if ((i % 5 == 0) &&
+            (i != 0))
+            marginY += 10;
+
         m_sprHudLife->GetBodyImg()->SpritesRender(m_imgUiBuffer->GetMemDC()
-            , marginX + i * 10, marginY
+            , marginX + (i % 5) * 10, marginY
             , 7, 7
             , 0, 0
             , 255.0f);
@@ -155,7 +165,6 @@ void Player::PlayerController()
 void Player::SetIdle()
 {
     SetFrameX(0);
-    m_rtAtkArea = { 0, 0, 0, 0 };
     isAnimate = false;
 }
 
@@ -231,6 +240,7 @@ Projectile Player::MakeSword()
     sword.SetHBoxMargin({ 0, 0, 0, 0 });
     sword.SetBodySpeed({ 0.0f, 0.0f });
     sword.SetGenTime(g_pTimerManager->GetWorldTime());
+    sword.SetDamage(m_nAtkDamage);
     sword.SetExistTime(0.3f);
     sword.SetBodyPos(swordPos);
     sword.SetBodyImg(NULL);
@@ -253,10 +263,37 @@ Projectile Player::MakeArrow()
     moonSlash.SetHBoxMargin({ 15, 15, 15, 15 });
     moonSlash.SetBodySpeed(arrowSpeed);
     moonSlash.SetGenTime(g_pTimerManager->GetWorldTime());
+    moonSlash.SetDamage(m_nAtkDamage);
     moonSlash.SetExistTime(5.0f);
     moonSlash.SetBodyPos(m_dPos);
     moonSlash.SetBodyImg(m_sprMoonSlash->GetBodyImg());
     moonSlash.SetFrameX(m_currFrameY / 2);
 
     return moonSlash;
+}
+
+void Player::PlayerValidate()
+{
+    if (m_nLife > 10)
+        m_nLife = 10;
+}
+
+void Player::TestController()
+{
+    if (g_pKeyManager->isOnceKeyDown('Z'))
+    {
+        m_nAtkDamage += 5;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('X'))
+    {
+        m_nAtkDamage -= 5;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('C'))
+    {
+        m_nLife += 1;
+    }
+    else if (g_pKeyManager->isOnceKeyDown('V'))
+    {
+        m_nLife += 5;
+    }
 }

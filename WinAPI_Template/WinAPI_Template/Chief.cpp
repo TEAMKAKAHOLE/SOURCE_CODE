@@ -18,7 +18,11 @@ Chief::~Chief()
 
 void Chief::Start()
 {
-    m_imgBody = g_pImgManager->FindImage("chief");
+    if (m_isHostile)
+        SetHostile();
+    else
+        m_imgBody = g_pImgManager->FindImage("chief");
+
     SetupForSprites(1, 1);
     m_nSize = { 64, 64 };
     m_nMarginHBox = { 6, 6, 6, 6 };
@@ -30,7 +34,7 @@ void Chief::Start()
     m_sprBullet->SetBodyImg(g_pImgManager->FindImage("agahnim-bullet"));
     m_sprBullet->SetupForSprites(3, 6);
     
-    m_fBulletCooltime = g_pTimerManager->GetWorldTime();
+    m_fNormalAtkCooldown = g_pTimerManager->GetWorldTime();
 }
 
 void Chief::Update()
@@ -39,9 +43,17 @@ void Chief::Update()
         return;
 
     if (m_isHostile)    //  적대적 관계
+    {
+        PhaseAction();
         PhaseUpdate();
+    }
 
     SpritesObject::Update();
+
+#ifdef _DEBUG
+    if (g_pKeyManager->isOnceKeyDown('T'))
+        SetHostile();
+#endif // _DEBUG
 }
 
 void Chief::Render(HDC hdc)
@@ -49,8 +61,10 @@ void Chief::Render(HDC hdc)
     if (IsAlive())
         SpritesObject::Render(hdc);
 
+#ifdef _DEBUG
     string szLife = to_string(m_nLife);
     TextOut(hdc, m_rtBody.left, m_rtBody.top, szLife.c_str(), (int)strlen(szLife.c_str()));
+#endif // _DEBUG
 }
 
 void Chief::SetHostile()
@@ -60,44 +74,21 @@ void Chief::SetHostile()
     m_isHostile = true;
 }
 
-void Chief::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
-{
-    if (IsAlive() == false)
-        return;
-
-    if (m_isHostile)
-    {
-        Phase(VecBullets, Pos);
-    }
-}
-
-void Chief::Phase(vector<Projectile>& VecBullets, UnitPos Pos)
+void Chief::PhaseAction()
 {
     switch (m_nPhase)
     {
     case 1:
     {
-        if (m_fBulletCooltime < g_pTimerManager->GetWorldTime())
-        {
-            Projectile genBullet;
-            genBullet.SetTagName("enemy");
-            double angle = g_pGeoHelper->GetAngleFromCoord(m_dPos, Pos);
-            UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(-angle, 1.0f);
-            genBullet.SetBodySize({ 48, 48 });
-            genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
-            genBullet.SetExistTime(5.0f);
-            genBullet.SetBodySpeed(bulletSpeed);
-            genBullet.SetBodyPos(m_dPos);
-            genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
-            genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
-            VecBullets.push_back(genBullet);
-
-            m_fBulletCooltime = g_pTimerManager->GetWorldTime() + 2.0f;
-        }
+        NormalAttack(3.0f);
         break;
     }
     case 2:
+    {
+        NormalAttack(2.0f);
+        BarrageAttack(6.5f);
         break;
+    }
     case 3:
         break;
     case 4:
@@ -112,26 +103,74 @@ void Chief::PhaseUpdate()
     if (m_nLife > 90)
     {
         //  phase 1
-        //  때리고 피하기
+        m_nPhase = 1;
     }
     else if (m_nLife > 75)
     {
         //  phase 2
-        //  버프
+        m_nPhase = 2;
     }
     else if (m_nLife > 55)
     {
         //  phase 3
-        //  필살기
+        m_nPhase = 3;
     }
     else if (m_nLife > 5)
     {
         //  phase 4
-        //  MASS GAME
+        m_nPhase = 4;
     }
     else
     {
         //  phase 5
-        //  격노
+        m_nPhase = 5;
+    }
+}
+
+void Chief::NormalAttack(float Cooltime)
+{
+    if (m_fNormalAtkCooldown < g_pTimerManager->GetWorldTime())
+        m_fNormalAtkCooldown = g_pTimerManager->GetWorldTime() + Cooltime;
+    else
+        return;
+
+    double angle = g_pGeoHelper->GetAngleFromCoord(m_dPos, *m_pPlayerPos);
+    UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(-angle, 1.0f);
+
+    Projectile genBullet;
+    genBullet.SetTagName("enemy");
+    genBullet.SetBodySize({ 48, 48 });
+    genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
+    genBullet.SetExistTime(5.0f);
+    genBullet.SetBodySpeed(bulletSpeed);
+    genBullet.SetBodyPos(m_dPos);
+    genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+    genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
+
+    m_pVecBullets->push_back(genBullet);
+}
+
+void Chief::BarrageAttack(float Cooltime)
+{
+    if (m_fBarrageCooldown < g_pTimerManager->GetWorldTime())
+        m_fBarrageCooldown = g_pTimerManager->GetWorldTime() + Cooltime;
+    else
+        return;
+
+    for (int i = 0; i < 12; i++)
+    {
+        UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(i * 30.0f, 1.0f);
+
+        Projectile genBullet;
+        genBullet.SetTagName("enemy");
+        genBullet.SetBodySize({ 48, 48 });
+        genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
+        genBullet.SetExistTime(5.0f);
+        genBullet.SetBodySpeed(bulletSpeed);
+        genBullet.SetBodyPos(m_dPos);
+        genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+        genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
+
+        m_pVecBullets->push_back(genBullet);
     }
 }
