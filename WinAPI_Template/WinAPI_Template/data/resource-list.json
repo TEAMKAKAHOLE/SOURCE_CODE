@@ -125,6 +125,20 @@
                 "filename": "fg-gauge.bmp",
                 "width": 200,
                 "height": 20
+            },
+            {
+            	"id": 2,
+                "key": "Zelda-bg",
+                "filename": "Zelda-bg.bmp",
+                "width": 1280,
+                "height": 694
+            },
+            {
+            	"id": 3,
+                "key": "link-run",
+                "filename": "link-run.bmp",
+                "width": 286,
+                "height": 25
             }
         ]
     },
