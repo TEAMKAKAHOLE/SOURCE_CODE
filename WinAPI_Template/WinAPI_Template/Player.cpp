@@ -71,6 +71,19 @@ void Player::Update()
 #ifdef _DEBUG
     TestController();
 #endif // _DEBUG
+    if (m_isImmortal)
+    {
+        m_dAlpha = 128.0f;
+        if (m_fImmortalTime + 1.0f < g_pTimerManager->GetWorldTime())
+        {
+            m_isImmortal = false;
+        }
+    }
+    else
+    {
+        m_dAlpha = 255.0f;
+        m_fImmortalTime = g_pTimerManager->GetWorldTime();
+    }
 
     PlayerController();
 
@@ -216,10 +229,11 @@ void Player::PlayerController()
     m_dSpeed = speed;
 
 #ifdef _DEBUG
-    if (g_pKeyManager->isOnceKeyDown('F'))
-        m_isImmortal = !m_isImmortal;
+    if (g_pKeyManager->isToggleKy('F'))
+    {
+        m_isImmortal = true;
+    }
 #endif // _DEBUG
-
 }
 
 void Player::SetIdle()
@@ -337,7 +351,13 @@ Projectile Player::MakeArrow()
 void Player::PlayerValidate()
 {
     if (m_nLife > 10)
+    {
         m_nLife = 10;
+    }
+    else if (m_nLife < 0)
+    {
+        m_nLife = 0;
+    }
 }
 
 void Player::TestController()

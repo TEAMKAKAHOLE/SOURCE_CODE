@@ -521,6 +521,15 @@
                 "width": 768,
                 "height": 9000
             }
+        ],
+        "sounds":[
+            {
+                "id": 1,
+                "key": "ending-credit-bgm",
+                "filename": "ending-credit-bgm.mp3",
+                "bgm": true,
+                "loop": false
+            }
         ]
     },
     "cookie":{

@@ -115,6 +115,32 @@ void FieldScene::Update()
     for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
     {
         iter->Update();
+        RECT rt;
+        if (IntersectRect(&rt, &iter->GetHBoxRect(), &m_player.GetHBoxRect()))
+        {
+            if (m_player.IsImmortal() == false)
+            {
+                m_player.SumLife(-1);
+                m_player.SetImmortal();
+            }
+        }
+
+        RECT rt2;
+        //적이 플레이어를 따라온다
+        if (IntersectRect(&rt2, &iter->GetAwarenessRect(), &m_player.GetHBoxRect()))
+        {
+            iter->SetTrackingPlayer(true);
+
+            if (iter->GetTrackingPlayer() == true)
+            {
+                m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iter->GetBodyPos(), m_player.GetBodyPos());
+                iter->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-m_dbAngle, 0.5f));
+            }
+        }
+        else
+        {
+            iter->SetTrackingPlayer(false);
+        }
     }
     
     if (m_isClear)
@@ -201,24 +227,6 @@ void FieldScene::Update()
                 itemIter->Deactivate();
             }
         }
-    }
-    
-    for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
-    {
-        RECT rt3;
-        //적이 플레이어를 따라온다
-        if (IntersectRect(&rt3, &iterEnemy->GetAwarenessRect(), &m_player.GetHBoxRect()))
-        {
-            iterEnemy->SetTrackingPlayer(true);
-
-            if (iterEnemy->GetTrackingPlayer() == true)
-            {
-                m_dbAngle = g_pGeoHelper->GetAngleFromCoord(iterEnemy->GetBodyPos(), m_player.GetBodyPos());
-                iterEnemy->SetBodySpeed(g_pGeoHelper->GetCoordFromAngle(-m_dbAngle, 0.5f));            
-            }
-        }
-        else
-            iterEnemy->SetTrackingPlayer(false);
     }
 
     CheckClear();

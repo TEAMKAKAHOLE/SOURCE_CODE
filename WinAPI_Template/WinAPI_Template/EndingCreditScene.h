@@ -2,7 +2,7 @@
 #include "GameNode.h"
 #include "SpritesObject.h"
 
-#define CREDIT_SCROLL_SPEED     1.0f
+#define CREDIT_SCROLL_SPEED     1.3f
 #define CREDIT_WIDTH            W_WIDTH
 #define CREDIT_HEIGHT           9000
 

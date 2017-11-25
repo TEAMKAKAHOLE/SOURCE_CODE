@@ -31,6 +31,7 @@ private:
 
     float           m_fMeleeAtkCooltime;
     float           m_fRangeAtkCooltime;
+    float           m_fImmortalTime;
 
     bool            m_isStun;
     bool            m_isMoveImpair;

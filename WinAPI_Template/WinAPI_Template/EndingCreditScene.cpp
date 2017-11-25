@@ -7,6 +7,8 @@ EndingCreditScene::EndingCreditScene()
     m_szTagName = "ending-credit";
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
+    g_pSndManager->AddSoundList(m_szTagName);
+    while (g_pSndManager->AddSoundByJson(m_szTagName));
     m_imgEndingCreditBuffer = g_pImgManager->AddImage("ending-credit-buffer", CREDIT_WIDTH, CREDIT_HEIGHT);
     m_sprEndingCredit = NULL;
     m_dViewPortPos = GLOBAL_CENTER_POS;
@@ -21,6 +23,8 @@ EndingCreditScene::~EndingCreditScene()
 
 void EndingCreditScene::Start()
 {
+    g_pSndManager->Play("ending-credit-bgm");
+
     m_sprEndingCredit = new SpritesObject;
     m_sprEndingCredit->SetBodyImg(g_pImgManager->FindImage("ending-credit"));
     m_sprEndingCredit->SetBodyPos({ (double)W_WIDTH * 0.5f
@@ -42,6 +46,7 @@ void EndingCreditScene::Update()
     m_dViewPortPos.y += CREDIT_SCROLL_SPEED;
     if (m_dViewPortPos.y >= CREDIT_HEIGHT)
     {
+        g_pSndManager->Stop("ending-credit-bgm");
         g_pScnManager->ChangeScene("cookie");
     }
 
