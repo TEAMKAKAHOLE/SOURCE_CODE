@@ -49,11 +49,13 @@ public:
 
     void SetIdle();
 
+    void SetAtkDamage(int Damage) { m_nAtkDamage = Damage; }
     int GetAtkDamage() { return m_nAtkDamage; }
     int GetHealPotion() { return m_nHealPotion; }
 
     void UseHealPotion();
     void SumHealPotion(int Amount = 1);
+    void SetHealPotion(int Amount) { m_nHealPotion = Amount; }
 
     void CheckCollision();
     void MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos);

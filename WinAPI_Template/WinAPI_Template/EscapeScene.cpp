@@ -62,6 +62,7 @@ void EscapeScene::Start()
     if (m_scnLevel >= 4) 
     {
         m_KeyItem1.SetInvisible();
+        m_bKeyItem1 = true;
     }
     else
     {
@@ -97,18 +98,32 @@ void EscapeScene::Update()
     RECT rt;
     //탈출시 위치가 또다른 충돌박스에 있지 않게 한다.추가 위치 보정필요
     if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportA.GetBodyRect()))
+    {
         m_player.SetBodyPos({ (int)250, (int)250 + 50 });
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportB.GetBodyRect()))
+    {
         m_player.SetBodyPos({ (int)92, (int)280 + 50 });
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportC.GetBodyRect()))
+    {
         m_player.SetBodyPos({ (int)80 + 50, (int)170 });
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportD.GetBodyRect()))
+    {
         m_player.SetBodyPos({ (int)385, (int)300 + 50 });
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_EndPoint.GetBodyRect()))
+    {
         if (m_bKeyItem1)    //씬 이동을 위한 충돌 판단 부분
+        {
             SceneChange();
+        }
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_BackScene.GetBodyRect()))
+    {
         SceneBack();        //씬 이동을 위한 충돌 판단 부분
+    }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_KeyItem1.GetBodyRect()))
     {
         //key item
@@ -121,8 +136,6 @@ void EscapeScene::Update()
     {
         //죽었을 경우 체력5
         m_playerData["player"]["hp"] = 5;
-        //클래스 json에 저장
-        JsonAdd();
         //씬이동시킨다
         SceneChange();
     }
@@ -162,10 +175,7 @@ void EscapeScene::Render()
 
 void EscapeScene::Release()
 {
-    m_playerData["player"]["hp"] = m_player.GetLife();
-    m_playerData["player"]["potion"] = m_player.GetHealPotion();
-    m_playerData["player"]["scn-level"] = m_scnLevel;
-    g_pFileManager->JsonUpdate("player", m_playerData);
+    JsonAdd();
 }
 
 void EscapeScene::SceneChange()

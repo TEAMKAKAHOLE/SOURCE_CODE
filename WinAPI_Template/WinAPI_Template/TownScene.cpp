@@ -34,24 +34,18 @@ void TownScene::Start()
     //  ui
     m_imgUiBuffer = g_pImgManager->FindImage("ui-buffer");
 
-    m_player.SetBodyImg(g_pImgManager->FindImage("player"));
-    m_player.SetupForSprites(7, 8);
-    m_player.StartAnimation();
-    m_player.SetBodySize({ 64, 64 });
     m_player.SetBodyPos(m_startPos);
-    m_player.SetFrameDelay(6);
     m_player.SetTerrainBuffer(m_imgTerrainBuffer);
     m_player.SetUiBuffer(m_imgUiBuffer);
-    m_player.SetHBoxMargin({ 16, 16, 16, 16 });
-    m_player.Update();
-    m_player.SetLockArea({ 0, 0, 512, 512 });
-    m_player.LockInWnd();
     m_player.Start();
 
     m_chief.Start();
     m_chief.SetVecBullets(&m_vecBullet);
     m_chief.SetPlayerPos(m_player.GetBodyPosRef());
 
+    m_player.SetLife(m_playerData["player"]["hp"]);
+    m_player.SetAtkDamage(m_playerData["player"]["atk"]);
+    m_player.SetHealPotion(m_playerData["player"]["potion"]);
     m_scnLevel = m_playerData["player"]["scn-level"];
     if (m_scnLevel >= 4)
     {
@@ -67,6 +61,15 @@ void TownScene::Update()
 {
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
         PostQuitMessage(1);
+
+    if (m_chief.IsHostile())
+    {
+        if (m_player.IsAlive() == false)
+        {
+            g_pScnManager->SetNextScene("escape");
+            g_pScnManager->ChangeScene("loading");
+        }
+    }
 
     m_player.Update();
     m_player.MakeBullet(m_vecBullet, m_player.GetBodyPos());
@@ -127,10 +130,7 @@ void TownScene::Update()
     for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
     {
         iter->Update();
-        if (iter->GetDamage() == 5)
-        {
-            cout << "timebomb" << endl;
-        }
+
         RECT rt;
         if (IntersectRect(&rt, &m_player.GetHBoxRect(), &iter->GetHBoxRect()) &&
             iter->IsAlive() &&

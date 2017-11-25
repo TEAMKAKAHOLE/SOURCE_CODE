@@ -47,7 +47,9 @@ void Player::Start()
     SetBodySize({ 64, 64 });
     SetFrameDelay(6);
     SetLockArea({ 0, 0, 512, 512 });
+    SetAlive();
     LockInWnd();
+    SetBodyRect();
 
     m_imgHud = g_pImgManager->FindImage("hud");
     m_sprHudNumber = new SpritesObject;
@@ -71,6 +73,9 @@ void Player::Update()
 #endif // _DEBUG
 
     PlayerController();
+
+    if (m_nLife <= 0)
+        SetDead();
 
     switch (m_playerStatus)
     {

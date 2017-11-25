@@ -28,7 +28,13 @@ void SplashScene::Update()
 {
     if (m_isStart)
     {
-        m_fDestTime = g_pTimerManager->GetWorldTime() + 4.0f;        
+        m_fDestTime = g_pTimerManager->GetWorldTime();
+#ifdef _DEBUG
+        m_fDestTime += 1.0f;
+#else
+        m_fDestTime += 3.0f;
+#endif // _DEBUG
+
         m_isStart = false;
     }
     else if (m_fDestTime < g_pTimerManager->GetWorldTime())
