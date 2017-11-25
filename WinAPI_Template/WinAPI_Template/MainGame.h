@@ -13,6 +13,7 @@
 #include "PuzzleScene.h"
 #include "PuzzleGameScene.h"
 #include "EndingCreditScene.h"
+#include "CookieScene.h"
 #pragma endregion
 
 class MainGame : public GameNode

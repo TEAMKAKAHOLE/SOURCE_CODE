@@ -232,7 +232,7 @@
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
     <ClInclude Include="CookieScene.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -372,7 +372,7 @@
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClCompile>
     <ClCompile Include="CookieScene.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>GameFramework2D\004-Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

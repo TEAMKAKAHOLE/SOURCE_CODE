@@ -269,18 +269,20 @@ void ImageObject::RotateRender(HDC hdc, UnitPos KeyPos, double Angle)
                     , 0, 0
                     , SRCCOPY);
     
-    PlgBlt(m_pBlendImage->hMemDC, Pt, m_pImageInfo->hMemDC
+    PlgBlt(m_pBlendImage->hMemDC
+                    , Pt
+                    , m_pImageInfo->hMemDC
                     , 0, 0
                     , m_pImageInfo->nWidth, m_pImageInfo->nHeight
                     , NULL
                     , 0, 0);
-    
+
     GdiTransparentBlt(hdc
                     , 0, 0
-                    , m_pImageInfo->nWidth, m_pImageInfo->nHeight
+                    , W_WIDTH, W_HEIGHT
                     , m_pBlendImage->hMemDC
                     , 0, 0
-                    , m_pImageInfo->nWidth, m_pImageInfo->nHeight
+                    , W_WIDTH, W_HEIGHT
                     , m_transColor);
 }
 #pragma endregion

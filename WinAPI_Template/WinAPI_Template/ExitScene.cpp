@@ -33,7 +33,7 @@ void ExitScene::Update()
 {
     m_sprJunimoDance->Update();
 
-    if (m_fCurrTime + 4.0f < g_pTimerManager->GetWorldTime())
+    if (m_fCurrTime + 1.0f < g_pTimerManager->GetWorldTime())
     {
         PostQuitMessage(0);
     }

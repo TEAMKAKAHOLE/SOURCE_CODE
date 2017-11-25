@@ -487,6 +487,24 @@
             }
         ]
     },
+    "cookie":{
+        "images":[
+            {
+                "id": 0,
+                "key": "hots-logo",
+                "filename": "hots-logo.bmp",
+                "width": 768,
+                "height": 240
+            },
+            {
+                "id": 1,
+                "key": "hots-spinner",
+                "filename": "hots-spinner.bmp",
+                "width": 133,
+                "height": 133
+            }
+        ]
+    },
     "exit":{  
     	"images":[
     		{

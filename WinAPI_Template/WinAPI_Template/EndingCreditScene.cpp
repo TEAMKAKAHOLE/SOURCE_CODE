@@ -7,6 +7,8 @@ EndingCreditScene::EndingCreditScene()
     m_szTagName = "ending-credit";
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
+
+    m_sprEndingCredit = NULL;
 }
 
 
@@ -32,9 +34,9 @@ void EndingCreditScene::Start()
 void EndingCreditScene::Update()
 {
     m_sprEndingCredit->Update();
-    if (m_sprEndingCredit->GetBodyRect().bottom <= W_HEIGHT)
+    if (m_sprEndingCredit->GetBodyRect().bottom <= 0)
     {
-        g_pScnManager->ChangeScene("exit");
+        g_pScnManager->ChangeScene("cookie");
     }
 }
 

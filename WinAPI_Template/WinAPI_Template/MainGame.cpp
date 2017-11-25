@@ -42,9 +42,14 @@ void MainGame::Start()
     g_pScnManager->AddScene("puzzle", new PuzzleScene());
     g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("ending-credit", new EndingCreditScene());
+    g_pScnManager->AddScene("cookie", new CookieScene());
     g_pScnManager->AddScene("exit", new ExitScene());
     
+#ifdef _DEBUG
+    g_pScnManager->ChangeScene("ending-credit");
+#else
     g_pScnManager->ChangeScene("splash");
+#endif // _DEBUG
 }
 
 void MainGame::Update()
