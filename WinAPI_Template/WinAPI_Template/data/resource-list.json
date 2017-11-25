@@ -70,6 +70,13 @@
                 "filename": "gear-slash.bmp",
                 "width": 15,
                 "height": 15
+            },
+            {
+                "id": 10,
+                "key": "fade-out",
+                "filename": "fade-out.bmp",
+                "width": 128,
+                "height": 128
             }
         ]
     },
@@ -466,6 +473,17 @@
                 "bgm":true,
                 "loop":true
 
+            }
+        ]
+    },
+    "ending-credit":{
+        "images":[
+            {
+                "id": 0,
+                "key": "ending-credit",
+                "filename": "ending-credit.bmp",
+                "width": 768,
+                "height": 8200
             }
         ]
     },

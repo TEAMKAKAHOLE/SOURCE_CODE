@@ -13,7 +13,7 @@ private:
     ImageObject*    m_imgWorldMap;
     ImageObject*    m_imgTerrainBuffer;
     ImageObject*    m_imgUiBuffer;
-
+    SpritesObject*  m_sprFadeout;
     GameObject      m_objExit;
 
     UnitPos m_startPos;
@@ -22,6 +22,7 @@ private:
     UnitPos m_viewportPos;
 
     int     m_scnLevel;
+    double  m_dFadeoutAlpha;
 
     Player  m_player;
     Chief   m_chief;
@@ -32,6 +33,7 @@ private:
 
     float   m_fEndTimer;
 
+    bool    m_isGameClear;
 public:
     TownScene();
     ~TownScene();

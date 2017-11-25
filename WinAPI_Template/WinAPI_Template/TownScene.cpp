@@ -4,9 +4,15 @@
 
 TownScene::TownScene()
 {
+    m_sprFadeout = new SpritesObject;
+    m_sprFadeout->SetBodyImg(g_pImgManager->FindImage("fade-out"));
+    m_sprFadeout->SetAlpha(0.0f);
+    m_dFadeoutAlpha = 0.0f;
+
     m_startPos = { 290, 375 };
     m_objExit.SetBodyRect({ 500, 390, 512, 410 });
     m_isBossLevel = false;
+    m_isGameClear = false;
 
     g_pSndManager->AddSoundList(m_szTagName);
     while (g_pSndManager->AddSoundByJson(m_szTagName));
@@ -15,6 +21,8 @@ TownScene::TownScene()
 
 TownScene::~TownScene()
 {
+    if (m_sprFadeout != NULL)
+        SAFE_DELETE(m_sprFadeout);
 }
 
 void TownScene::Start()
@@ -59,6 +67,19 @@ void TownScene::Start()
 
 void TownScene::Update()
 {
+    if (m_isGameClear)
+    {
+        m_dFadeoutAlpha += 5.0f;
+        if (m_dFadeoutAlpha >= 255.0f)
+        {
+            g_pScnManager->ChangeScene("ending-credit");
+            m_dFadeoutAlpha = 255.0f;
+        }
+
+        m_sprFadeout->SetAlpha(m_dFadeoutAlpha);
+        return;
+    }
+
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))
         PostQuitMessage(1);
 
@@ -82,6 +103,7 @@ void TownScene::Update()
         m_vecBullet.clear();
         m_chief.SetDead();
         m_scnLevel = 5;
+        m_isGameClear = true;
     }
 
     if (m_objExit.IsAlive())
@@ -214,6 +236,11 @@ void TownScene::Render()
     
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
+    if (m_isGameClear)
+    {
+        m_sprFadeout->GetBodyImg()->AlphaRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT, (BYTE)m_sprFadeout->GetAlpha());
+        return;
+    }
 #ifdef _DEBUG
     string bulletCnt = to_string((int)m_vecBullet.size());
     TextOut(g_hDC, W_WIDTH - 20, 45, bulletCnt.c_str(), (int)strlen(bulletCnt.c_str()));

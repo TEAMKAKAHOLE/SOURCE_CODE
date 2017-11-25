@@ -41,9 +41,10 @@ void MainGame::Start()
     g_pScnManager->AddScene("hardway", new HardwayScene());
     g_pScnManager->AddScene("puzzle", new PuzzleScene());
     g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
+    g_pScnManager->AddScene("ending-credit", new EndingCreditScene());
     g_pScnManager->AddScene("exit", new ExitScene());
     
-    g_pScnManager->ChangeScene("splash");
+    g_pScnManager->ChangeScene("ending-credit");
 }
 
 void MainGame::Update()

@@ -1,8 +1,12 @@
 #pragma once
 #include "GameNode.h"
+#include "SpritesObject.h"
 
 class EndingCreditScene : public GameNode
 {
+private:
+    SpritesObject*  m_sprEndingCredit;
+
 public:
     EndingCreditScene();
     ~EndingCreditScene();

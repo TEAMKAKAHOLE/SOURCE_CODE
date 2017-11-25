@@ -229,7 +229,7 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
     </ClInclude>
     <ClInclude Include="EndingCreditScene.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>GameFramework2D\004-Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -366,7 +366,7 @@
       <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
     </ClCompile>
     <ClCompile Include="EndingCreditScene.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>GameFramework2D\004-Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

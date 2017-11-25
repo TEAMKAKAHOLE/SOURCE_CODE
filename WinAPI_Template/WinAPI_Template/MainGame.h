@@ -12,6 +12,7 @@
 #include "FieldScene.h"
 #include "PuzzleScene.h"
 #include "PuzzleGameScene.h"
+#include "EndingCreditScene.h"
 #pragma endregion
 
 class MainGame : public GameNode
