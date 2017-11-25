@@ -191,6 +191,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
   <ItemGroup>
     <ClInclude Include="AnimationHelper.h" />
     <ClInclude Include="Chief.h" />
+    <ClInclude Include="CookieScene.h" />
     <ClInclude Include="DataStructure.h" />
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="DrawHelper.h" />
@@ -244,6 +245,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
   <ItemGroup>
     <ClCompile Include="AnimationHelper.cpp" />
     <ClCompile Include="Chief.cpp" />
+    <ClCompile Include="CookieScene.cpp" />
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="DrawHelper.cpp" />
     <ClCompile Include="EndingCreditScene.cpp" />

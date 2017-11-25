@@ -69,7 +69,7 @@ void TownScene::Update()
 {
     if (m_isGameClear)
     {
-        m_dFadeoutAlpha += 5.0f;
+        m_dFadeoutAlpha += 1.0f;
         if (m_dFadeoutAlpha >= 255.0f)
         {
             g_pScnManager->ChangeScene("ending-credit");
@@ -77,7 +77,6 @@ void TownScene::Update()
         }
 
         m_sprFadeout->SetAlpha(m_dFadeoutAlpha);
-        return;
     }
 
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE))

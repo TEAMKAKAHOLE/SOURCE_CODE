@@ -44,7 +44,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("ending-credit", new EndingCreditScene());
     g_pScnManager->AddScene("exit", new ExitScene());
     
-    g_pScnManager->ChangeScene("ending-credit");
+    g_pScnManager->ChangeScene("splash");
 }
 
 void MainGame::Update()
