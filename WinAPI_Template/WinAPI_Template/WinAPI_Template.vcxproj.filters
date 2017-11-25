@@ -228,6 +228,9 @@
     <ClInclude Include="HardwayScene.h">
       <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
     </ClInclude>
+    <ClInclude Include="EndingCreditScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -361,6 +364,9 @@
     </ClCompile>
     <ClCompile Include="HardwayScene.cpp">
       <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingCreditScene.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

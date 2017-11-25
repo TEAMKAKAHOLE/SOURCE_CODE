@@ -194,6 +194,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClInclude Include="DataStructure.h" />
     <ClInclude Include="DbManager.h" />
     <ClInclude Include="DrawHelper.h" />
+    <ClInclude Include="EndingCreditScene.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EscapeScene.h" />
     <ClInclude Include="ExitScene.h" />
@@ -245,6 +246,7 @@ robocopy "$(ProjectDir)data" "$(OutDir)data" /s</Command>
     <ClCompile Include="Chief.cpp" />
     <ClCompile Include="DbManager.cpp" />
     <ClCompile Include="DrawHelper.cpp" />
+    <ClCompile Include="EndingCreditScene.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EscapeScene.cpp" />
     <ClCompile Include="ExitScene.cpp" />
