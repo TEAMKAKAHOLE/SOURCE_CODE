@@ -1,5 +1,3 @@
-/******************************************************
-*******************************************************/
 #pragma once
 #include "GameNode.h"
 #include "Player.h"
@@ -10,9 +8,9 @@
 class EscapeScene:public GameNode
 {
 private:
-    ImageObject* m_imgWorldBuffer;
-    ImageObject* m_imgWorldMap;
-    ImageObject* m_imgTerrainBuffer;
+    ImageObject*    m_imgWorldBuffer;
+    ImageObject*    m_imgWorldMap;
+    ImageObject*    m_imgTerrainBuffer;
     ImageObject*    m_imgUiBuffer;
 
     GameObject   m_EndPoint;   // 80,170
@@ -21,7 +19,7 @@ private:
     Player       m_player;
     Enemy        m_cEnemy[3];
     int          m_HP;
-    int          m_Level;
+    int          m_scnLevel;
     int          m_potion;
     int          m_atk;
     int          m_def;

@@ -90,11 +90,25 @@ void Chief::PhaseAction()
         break;
     }
     case 3:
+    {
+        NormalAttack(2.0f);
+        FireWave(3.7f);
         break;
+    }
     case 4:
+    {
+        NormalAttack(2.0f);
+        FireWave(3.7f);
+        BarrageAttack(7.5f);
         break;
+    }
     case 5:
+    {
+        NormalAttack(1.5f);
+        FireWave(3.5f);
+        TimeBomb(6.0f);
         break;
+    }
     }
 }
 
@@ -138,13 +152,15 @@ void Chief::NormalAttack(float Cooltime)
     UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(-angle, 1.0f);
 
     Projectile genBullet;
+    int margin = 20;
     genBullet.SetTagName("enemy");
     genBullet.SetBodySize({ 48, 48 });
-    genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
+    genBullet.SetHBoxMargin({ margin, margin, margin, margin });
     genBullet.SetExistTime(5.0f);
     genBullet.SetBodySpeed(bulletSpeed);
     genBullet.SetBodyPos(m_dPos);
     genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+    genBullet.SetActiveTime(g_pTimerManager->GetWorldTime());
     genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
 
     m_pVecBullets->push_back(genBullet);
@@ -157,6 +173,7 @@ void Chief::BarrageAttack(float Cooltime)
     else
         return;
 
+    int margin = 20;
     for (int i = 0; i < 12; i++)
     {
         UnitSpeed bulletSpeed = g_pGeoHelper->GetCoordFromAngle(i * 30.0f, 1.0f);
@@ -164,13 +181,72 @@ void Chief::BarrageAttack(float Cooltime)
         Projectile genBullet;
         genBullet.SetTagName("enemy");
         genBullet.SetBodySize({ 48, 48 });
-        genBullet.SetHBoxMargin({ 12, 12, 12, 12 });
+        genBullet.SetHBoxMargin({ margin, margin, margin, margin });
         genBullet.SetExistTime(5.0f);
         genBullet.SetBodySpeed(bulletSpeed);
         genBullet.SetBodyPos(m_dPos);
         genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+        genBullet.SetActiveTime(g_pTimerManager->GetWorldTime());
         genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
 
         m_pVecBullets->push_back(genBullet);
     }
+}
+
+void Chief::FireWave(float Cooltime)
+{
+    if (m_fFireWaveCooldown < g_pTimerManager->GetWorldTime())
+        m_fFireWaveCooldown = g_pTimerManager->GetWorldTime() + Cooltime;
+    else
+        return;
+
+    UnitPos bulletPos = *m_pPlayerPos;
+    double term = 48.0f;
+    int margin = 52;
+    bulletPos.x = 0.0f;
+    bulletPos.y -= term;
+    for (int i = 0; i < 3; i++)
+    {
+        Projectile genBullet;
+        genBullet.SetTagName("enemy");
+        genBullet.SetDamage(3);
+        genBullet.SetBodySize({ 128, 128 });
+        genBullet.SetHBoxMargin({ margin, margin, margin, margin });
+        genBullet.SetExistTime(20.0f);
+        genBullet.SetBodySpeed({ 2.0f, 0.0f });
+        genBullet.SetBodyPos(bulletPos);
+        genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+        genBullet.SetActiveTime(g_pTimerManager->GetWorldTime());
+        genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
+
+        m_pVecBullets->push_back(genBullet);
+        bulletPos.y += term;
+    }
+}
+
+void Chief::TimeBomb(float Cooltime)
+{
+    if (m_fTimeBombCooldown < g_pTimerManager->GetWorldTime())
+        m_fTimeBombCooldown = g_pTimerManager->GetWorldTime() + Cooltime;
+    else
+        return;
+
+    UnitPos bulletPos = *m_pPlayerPos;
+    int margin = 52;
+    bulletPos.x += (double)((rand() % 3) - 1);
+    bulletPos.y += (double)((rand() % 3) - 1);
+
+    Projectile genBullet;
+    genBullet.SetTagName("enemy");
+    genBullet.SetDamage(5);
+    genBullet.SetBodySize({ 128, 128 });
+    genBullet.SetHBoxMargin({ margin, margin, margin, margin });
+    genBullet.SetBodySpeed({ 0.0f, 0.0f });
+    genBullet.SetBodyPos(bulletPos);
+    genBullet.SetBodyImg(m_sprBullet->GetBodyImg());
+    genBullet.SetActiveTime(g_pTimerManager->GetWorldTime() + 2.0f);
+    genBullet.SetGenTime(g_pTimerManager->GetWorldTime());
+    genBullet.SetExistTime(2.5f);
+    genBullet.Deactivate();
+    m_pVecBullets->push_back(genBullet);
 }

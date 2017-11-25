@@ -13,6 +13,8 @@ private:
     bool        m_isHostile;
     float       m_fNormalAtkCooldown;
     float       m_fBarrageCooldown;
+    float       m_fFireWaveCooldown;
+    float       m_fTimeBombCooldown;
 
     int         m_nPhase;
     vector<Projectile>*     m_pVecBullets;
@@ -38,4 +40,6 @@ public:
 
     void NormalAttack(float Cooltime);
     void BarrageAttack(float Cooltime);
+    void FireWave(float Cooltime);
+    void TimeBomb(float Cooltime);
 };

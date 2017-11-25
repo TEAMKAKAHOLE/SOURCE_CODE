@@ -43,8 +43,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());
     
-    g_pScnManager->SetNextScene("splash");
-    g_pScnManager->ChangeScene("loading");
+    g_pScnManager->ChangeScene("splash");
 }
 
 void MainGame::Update()

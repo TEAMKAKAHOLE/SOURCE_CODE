@@ -76,6 +76,7 @@ void TownScene::Update()
 
     if (m_chief.GetLife() <= 0)
     {
+        m_vecBullet.clear();
         m_chief.SetDead();
         m_scnLevel = 5;
     }
@@ -126,18 +127,26 @@ void TownScene::Update()
     for (auto iter = m_vecBullet.begin(); iter != m_vecBullet.end(); iter++)
     {
         iter->Update();
+        if (iter->GetDamage() == 5)
+        {
+            cout << "timebomb" << endl;
+        }
         RECT rt;
         if (IntersectRect(&rt, &m_player.GetHBoxRect(), &iter->GetHBoxRect()) &&
             iter->IsAlive() &&
+            iter->IsActivate() && 
             iter->GetTagName() == "enemy")
         {
             iter->SetDead();
+            if (m_player.IsImmortal())
+                iter->SetDamage(0);
             m_player.SumLife(-iter->GetDamage());
         }
 
         RECT rt2;
         if (IntersectRect(&rt2, &m_chief.GetHBoxRect(), &iter->GetHBoxRect()) &&
             iter->IsAlive() &&
+            iter->IsActivate() &&
             iter->GetTagName() == "player")
         {
             if (m_chief.IsAlive() &&

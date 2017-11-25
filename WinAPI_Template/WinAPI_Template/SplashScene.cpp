@@ -33,8 +33,7 @@ void SplashScene::Update()
     }
     else if (m_fDestTime < g_pTimerManager->GetWorldTime())
     {
-        g_pScnManager->SetNextScene("title");
-        g_pScnManager->ChangeScene("loading");
+        g_pScnManager->ChangeScene("title");
     }
 
     m_nAlpha += m_nAlphaPlus;

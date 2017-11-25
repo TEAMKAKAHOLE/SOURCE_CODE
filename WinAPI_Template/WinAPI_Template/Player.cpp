@@ -24,6 +24,15 @@ void Player::Start()
     m_nHealPotion = playerData["player"]["potion"];
     g_pFileManager->JsonUpdate("player", playerData);
 
+    SetBodyImg(g_pImgManager->FindImage("player"));
+    SetHBoxMargin({ 16, 16, 16, 16 });
+    SetupForSprites(7, 8);
+    StartAnimation();
+    SetBodySize({ 64, 64 });
+    SetFrameDelay(6);
+    SetLockArea({ 0, 0, 512, 512 });
+    LockInWnd();
+
     m_imgHud = g_pImgManager->FindImage("hud");
     m_sprHudNumber = new SpritesObject;
     m_sprHudNumber->SetBodyImg(g_pImgManager->FindImage("hud-number"));
@@ -68,6 +77,15 @@ void Player::Update()
     }
 
     CheckCollision();
+
+    if (m_isImmortal)
+    {
+        m_dAlpha = 128.0f;
+    }
+    else
+    {
+        m_dAlpha = 255.0f;
+    }
 
     SpritesObject::Update();
     PlayerValidate();
@@ -160,6 +178,14 @@ void Player::PlayerController()
 
     frameY = m_currFrameY;
     m_dSpeed = speed;
+
+#ifdef _DEBUG
+    if (g_pKeyManager->isOnceKeyDown('F'))
+    {
+        m_isImmortal = !m_isImmortal;
+    }
+#endif // _DEBUG
+
 }
 
 void Player::SetIdle()
@@ -238,6 +264,7 @@ Projectile Player::MakeSword()
     sword.SetBodySize({ 50, 50 });
     sword.SetHBoxMargin({ 0, 0, 0, 0 });
     sword.SetBodySpeed({ 0.0f, 0.0f });
+    sword.SetActiveTime(g_pTimerManager->GetWorldTime());
     sword.SetGenTime(g_pTimerManager->GetWorldTime());
     sword.SetDamage(m_nAtkDamage);
     sword.SetExistTime(0.3f);
@@ -261,6 +288,7 @@ Projectile Player::MakeArrow()
     moonSlash.SetBodySize({ 50, 50 });
     moonSlash.SetHBoxMargin({ 15, 15, 15, 15 });
     moonSlash.SetBodySpeed(arrowSpeed);
+    moonSlash.SetActiveTime(g_pTimerManager->GetWorldTime());
     moonSlash.SetGenTime(g_pTimerManager->GetWorldTime());
     moonSlash.SetDamage(m_nAtkDamage);
     moonSlash.SetExistTime(5.0f);
