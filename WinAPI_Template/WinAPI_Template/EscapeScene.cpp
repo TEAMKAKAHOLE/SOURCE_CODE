@@ -58,17 +58,54 @@ void EscapeScene::Start()
 	m_KeyItem1.SetBodyPos({ 420,260 });
 	m_bKeyItem1 = false;
 
-
+	//다른 이미지를 같은 폭발 이미지를 사용하기 위해서 vector 에 담음
+	
 	m_Trap.SetBodyImg(g_pImgManager->FindImage("Trap"));
-	m_Trap.SetupForSprites(1, 10);
+	m_Trap.SetBodyPos({ 320,290 });
+    m_Trap.SetupForSprites(16, 1);
 	m_Trap.StartAnimation();
-	m_Trap.SetFrameDelay(6);
-	m_Trap.SetBodyPos({ 300,200 });
-	m_Trap.SetBodySize({ 68,68});
+	m_Trap.SetFrameDelay(3);
+	m_Trap.SetBodySize({ 32,44 });
+	m_Trap.SetVisible();
+			
+	
+	m_Trap2.SetBodyImg(g_pImgManager->FindImage("Trap2"));
+	m_Trap2.SetBodyPos({ 170,290 });
+	m_Trap2.SetupForSprites(16, 1);
+	m_Trap2.StartAnimation();
+	m_Trap2.SetFrameDelay(3);
+	m_Trap2.SetBodySize({ 32,44 });
+	m_Trap2.SetVisible();
+		
+		
+	
+	m_Bom.SetBodyImg(g_pImgManager->FindImage("Bom"));
+	m_Bom.SetupForSprites(6, 1);
+	m_Bom.StartAnimation();
+	m_Bom.SetFrameDelay(3);
+	m_Bom.SetBodyPos({ 320,290-10});
+	m_Bom.SetBodySize({ 117,128 });
+	m_Bom.SetInvisible();
 
-	m_Trap.Update();
+#pragma region  DEGUGe EFFECT
+	//m_BomFire.SetBodyImg(g_pImgManager->FindImage("BomFire"));
+	//m_BomFire.SetupForSprites(3, 3);
+	//m_BomFire.StartAnimation();
+	//m_BomFire.SetFrameDelay(6);
+	//m_BomFire.SetBodyPos({ 300,350 }); 
+	//m_BomFire.SetBodySize({ 150,150 });
+	//m_BomFire.SetInvisible();
 
-
+	//m_BomIce.SetBodyImg(g_pImgManager->FindImage("BomIce"));
+	//m_BomIce.SetupForSprites(3, 3);
+	//m_BomIce.StartAnimation();
+	//m_BomIce.SetFrameDelay(6);
+	//m_BomIce.SetBodyPos({ 400,350 });
+	//m_BomIce.SetBodySize({ 150,150 });
+	//m_BomIce.SetInvisible();
+#pragma endregion 
+	
+	
 	m_BackScene.SetBodyImg(g_pImgManager->FindImage("Diration"));
 	m_BackScene.SetupForSprites(1, 1);
 	m_BackScene.StartAnimation();
@@ -77,6 +114,7 @@ void EscapeScene::Start()
 	m_HP = 100;
 	m_bIsAct = false; //충돌상태가 아닐때
 	m_bIngAct = false;//충돌상태 판단
+	m_bInAt2 = false; //충돌시 폭발이펙트 활성화 
 
 	//처음시작과 동시에json의 데이터클 클래스 변수에 담는다
 	SetData();
@@ -116,14 +154,15 @@ void EscapeScene::Update()
 	m_EndPoint.Update();
 	m_BackScene.Update();
 	m_Trap.Update();
+	m_Trap2.Update();
+	
 
+	m_Bom.Update();
+	//m_BomFire.Update();
+	//m_BomIce.Update();
 	m_StartPoint.Update();
 
-	//적군 생성
-	/*for (int i = 0; i < 3; ++i)
-	{
-		m_cEnemy[i].Update();
-	}*/
+	
 
 	int distance = 10;
 
@@ -157,22 +196,59 @@ void EscapeScene::Update()
 	{  //씬 이동을 위한 충돌 판단 부분
 		SceneBack();
 	}
-	    //key item
+	//key item
 	else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_KeyItem1.GetBodyRect()))
 	{
 		m_bKeyItem1 = true;
 		m_KeyItem1.SetInvisible();
 	}
+	else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_Trap.GetHBoxRect())
+		&& m_Trap.IsVisible())
+	{
+		//trap에 충돌시 포탄 터지게 하기 
+		m_Trap.SetInvisible();
+		m_bInAt2 = true;
+		m_idBoom = 1;
+   }
+	else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_Trap2.GetHBoxRect())
+		&& m_Trap2.IsVisible())
+	{
+		m_Trap2.SetInvisible();
+		m_bInAt2 = true;
+		m_idBoom = 2;
+	}
+
+
+	if (m_bInAt2)
+	{
+		
+		if (m_idBoom == 1)
+		{
+			//Trap좌표에서 폭발
+			m_Bom.SetBodyPos({ 320,290-20}); 
+		}
+		//else if(m_idBoom==2)
+		//{
+		//	//Trap2좌표에서 폭발
+		//	m_Bom.SetBodyPos({ 170,290 });
+		//}
+
+		m_Bom.SetVisible();
+
+		if (m_Bom.GetFrameX() >= 5)
+		{
+			m_Bom.StopAnimation();
+			m_Bom.SetInvisible();
+			m_bInAt2 = false;
+			PlayerDie();
+		}
+	}
+
 
 	//죽었을  경우 
 	if (m_HP <= 0)
 	{
-	   //죽었을 경우 체력5
-		m_playerData["player"]["hp"] = 5;
-		//클래스 json에 저장
-		JsonAdd();
-		//씬이동시킨다
-		SceneChange();
+		PlayerDie();
 
 	}
 
@@ -223,6 +299,12 @@ void EscapeScene::Render()
 	m_EndPoint.Render(m_imgWorldBuffer->GetMemDC());
 	m_StartPoint.Render(m_imgWorldBuffer->GetMemDC());
 	m_Trap.Render(m_imgWorldBuffer->GetMemDC());
+	//m_Trap2.Render(m_imgWorldBuffer->GetMemDC());
+	m_Bom.Render(m_imgWorldBuffer->GetMemDC());
+
+	//m_BomFire.Render(m_imgWorldBuffer->GetMemDC());
+	//m_BomIce.Render(m_imgWorldBuffer->GetMemDC());
+
 	m_BackScene.Render(m_imgWorldBuffer->GetMemDC());
 	
 
@@ -304,3 +386,12 @@ void EscapeScene::SetData()
 	m_atk = m_playerData["player"]["atk"];
 }
 
+void EscapeScene::PlayerDie()
+{
+	//죽었을 경우 체력5
+	m_playerData["player"]["hp"] = 5;
+	//클래스 json에 저장
+	JsonAdd();
+	//씬이동시킨다
+	SceneChange();
+}

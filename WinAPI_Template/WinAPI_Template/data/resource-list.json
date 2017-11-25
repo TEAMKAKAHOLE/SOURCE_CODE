@@ -213,7 +213,36 @@
             	"filename":"Trap.bmp",
             	"width":512,
             	"height":44
+            },
+             {
+            	"id":6,
+            	"key":"Bom",
+            	"filename":"Bom.bmp",
+            	"width":705,
+            	"height":128
+            },
+            {
+            	"id":7,
+            	"key":"BomFire",
+            	"filename":"BomFire.bmp",
+            	"width":450,
+            	"height":450
+            },
+            {
+            	"id":8,
+            	"key":"BomIce",
+            	"filename":"BomIce.bmp",
+            	"width":450,
+            	"height":450
+            },
+             {
+            	"id":9,
+            	"key":"Trap2",
+            	"filename":"Trap2.bmp",
+            	"width":512,
+            	"height":44
             }
+            
         ]
     },
     "puzzle": {

@@ -14,7 +14,7 @@ private:
 	ImageObject* m_imgTerrainBuffer;
 	GameObject   m_EndPoint;   // 80,170
 	GameObject   m_StartPoint; // 350,390 
-	GameObject   m_Back;       //
+	GameObject   m_Back;       
 	Player       m_player;
 	Enemy        m_cEnemy[3];
 	int          m_HP;
@@ -22,16 +22,29 @@ private:
 	int          m_potion;
 	int          m_atk;
 	int          m_def;
+	int          m_idBoom; //폭발하는 트랩의 좌표를 구별하기 위해서 사용
 
 	bool         m_bIsAct; //충돌중 카운트중지
 	bool         m_bIngAct; //계속 충돌중인지 판단
+	bool        m_bInAt2; //포탄의 포발 활성화
 	json        m_playerData;
 
 
 	//마지막 탈출시 필요한 열쇠아이템 RECT이미지
 	SpritesObject m_KeyItem1;
 	//SpriteObject m_KeyItem2;
+
+
 	SpritesObject m_Trap;
+	SpritesObject m_Trap2;
+	
+
+	SpritesObject m_Bom;
+	
+
+	SpritesObject m_BomFire;
+	SpritesObject m_BomIce;
+
 	//뒤로 돌아가는 씬
 	SpritesObject m_BackScene;
 	bool m_bKeyItem1;
@@ -56,6 +69,7 @@ public:
 	void  JsonAdd();
 	void  JsonView();
 	void  SetData();
+	void  PlayerDie();
 	
 
 };
