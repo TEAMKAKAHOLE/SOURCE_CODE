@@ -46,7 +46,7 @@ void MainGame::Start()
     g_pScnManager->AddScene("exit", new ExitScene());
     
 #ifdef _DEBUG
-    g_pScnManager->ChangeScene("ending-credit");
+    g_pScnManager->ChangeScene("splash");
 #else
     g_pScnManager->ChangeScene("splash");
 #endif // _DEBUG

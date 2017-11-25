@@ -57,6 +57,7 @@ void EscapeScene::Start()
     m_HP = 100;
     m_bIsAct = false;   //충돌상태가 아닐때
     m_bIngAct = false;  //충돌상태 판단
+    m_bInAt2 = false; //충돌시 폭발이펙트 활성화
 
     //클리어 상태이므로 적과 키를 보이지 않게 한다.
     if (m_scnLevel >= 4) 
@@ -81,8 +82,31 @@ void EscapeScene::Start()
             m_cEnemy[i].LockInWnd();
         }
     }
-}
 
+    m_Trap.SetBodyImg(g_pImgManager->FindImage("Trap"));
+    m_Trap.SetBodyPos({ 320,290 });
+    m_Trap.SetupForSprites(16, 1);
+    m_Trap.StartAnimation();
+    m_Trap.SetFrameDelay(3);
+    m_Trap.SetBodySize({ 32,44 });
+    m_Trap.SetVisible();
+
+    m_Trap2.SetBodyImg(g_pImgManager->FindImage("Trap2"));
+    m_Trap2.SetBodyPos({ 170,290 });
+    m_Trap2.SetupForSprites(16, 1);
+    m_Trap2.StartAnimation();
+    m_Trap2.SetFrameDelay(3);
+    m_Trap2.SetBodySize({ 32,44 });
+    m_Trap2.SetVisible();
+
+    m_Bom.SetBodyImg(g_pImgManager->FindImage("Bom"));
+    m_Bom.SetupForSprites(6, 1);
+    m_Bom.StartAnimation();
+    m_Bom.SetFrameDelay(3);
+    m_Bom.SetBodyPos({ 320,290 - 10 });
+    m_Bom.SetBodySize({ 117,128 });
+    m_Bom.SetInvisible();
+}
 void EscapeScene::Update()
 {
     m_player.Update();
@@ -94,6 +118,10 @@ void EscapeScene::Update()
     m_BackScene.Update();
     m_StartPoint.Update();
     m_EndPoint.Update();
+
+    m_Trap.Update();
+    m_Trap2.Update();
+    m_Bom.Update();
 
     RECT rt;
     //탈출시 위치가 또다른 충돌박스에 있지 않게 한다.추가 위치 보정필요
@@ -131,6 +159,39 @@ void EscapeScene::Update()
         m_bKeyItem1 = true;
         m_KeyItem1.SetInvisible();
     }
+    else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_Trap.GetHBoxRect())
+        && m_Trap.IsVisible())
+    {
+        //trap에 충돌시 포탄 터지게 하기 
+        m_Trap.SetInvisible();
+        m_bInAt2 = true;
+        m_idBoom = 1;
+    }
+    else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_Trap2.GetHBoxRect())
+        && m_Trap2.IsVisible())
+    {
+        m_Trap2.SetInvisible();
+        m_bInAt2 = true;
+        m_idBoom = 2;
+    }
+
+    if (m_bInAt2)
+    {
+        if (m_idBoom == 1)
+        {
+            //Trap좌표에서 폭발
+            m_Bom.SetBodyPos({ 320, 290 - 20 });
+        }
+
+        m_Bom.SetVisible();
+        if (m_Bom.GetFrameX() >= 5)
+        {
+            m_Bom.StopAnimation();
+            m_Bom.SetInvisible();
+            m_bInAt2 = false;
+            PlayerDie();
+        }
+    }
 
     if (m_HP <= 0)  //죽었을  경우
     {
@@ -156,6 +217,8 @@ void EscapeScene::Render()
     m_EndPoint.Render(m_imgWorldBuffer->GetMemDC());
     m_StartPoint.Render(m_imgWorldBuffer->GetMemDC());
     m_BackScene.Render(m_imgWorldBuffer->GetMemDC());
+    m_Trap.Render(m_imgWorldBuffer->GetMemDC());
+    m_Bom.Render(m_imgWorldBuffer->GetMemDC());
 
     for (int i = 0; i < 3; ++i)
     {
@@ -209,4 +272,14 @@ void EscapeScene::SetData()
     m_scnLevel = m_playerData["player"]["scn-level"];
     m_potion = m_playerData["player"]["potion"];
     m_atk = m_playerData["player"]["atk"];
+}
+
+void EscapeScene::PlayerDie()
+{
+	//죽었을 경우 체력5
+	m_playerData["player"]["hp"] = 5;
+	//클래스 json에 저장
+	JsonAdd();
+	//씬이동시킨다
+	SceneChange();
 }

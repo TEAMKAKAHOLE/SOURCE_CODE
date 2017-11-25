@@ -18,12 +18,20 @@ private:
     GameObject   m_Back;       //
     Player       m_player;
     Enemy        m_cEnemy[3];
+
+    SpritesObject m_Trap;
+    SpritesObject m_Trap2;
+    SpritesObject m_Bom;
+    SpritesObject m_BomFire;
+    SpritesObject m_BomIce;
+
     int          m_HP;
     int          m_scnLevel;
     int          m_potion;
     int          m_atk;
     int          m_def;
-
+    int          m_idBoom;
+    bool         m_bInAt2;
     bool         m_bIsAct; //충돌중 카운트중지
     bool         m_bIngAct; //계속 충돌중인지 판단
     json         m_playerData;
@@ -54,6 +62,6 @@ public:
     void  SceneChange();
     void  SceneBack();
     void  JsonAdd();
-    void  JsonView();
     void  SetData();
+    void  PlayerDie();
 };
