@@ -18,7 +18,6 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-
 }
 
 void Enemy::Update()
@@ -30,11 +29,9 @@ void Enemy::Update()
 
     CheckCollision();
 
-    m_rtAwareness = g_pDrawHelper->MakeRect(m_dPos, { 150,150 });
-    
+    m_rtAwareness = g_pDrawHelper->MakeRect(m_dPos, { 150, 150 });
 
     SpritesObject::Update();
-
 }
 
 void Enemy::Render(HDC hdc)
@@ -42,9 +39,7 @@ void Enemy::Render(HDC hdc)
 #ifdef _DEBUG
     g_pDrawHelper->DrawRect(hdc, m_rtAwareness);
 #endif // _DEBUG
-
     SpritesObject::Render(hdc);
-
 }
 
 void Enemy::EnemyMove()
@@ -107,7 +102,6 @@ void Enemy::EnemyMove()
 
 int Enemy::GetRandom(int min, int max)
 {
-
     // 0 ~ 5 : 5 - 0 + 1 => 0 ~ 5
     // 5 ~ 9 : 9 - 5 + 1 => 0 ~ 4 + 5 => 5 ~ 9
     return rand() % (max - min + 1) + min;

@@ -4,6 +4,11 @@
 
 Player::Player()
 {
+    m_sprMoonSlash = NULL;
+    m_sprHudNumber = NULL;
+    m_sprHudLife = NULL;
+    m_sprSwordIcon = NULL;
+
     m_playerStatus = PLAYER_IDLE;
     m_weaponType = WEAPON_SWORD;
     m_nLife = 5;
@@ -15,6 +20,17 @@ Player::Player()
 
 Player::~Player()
 {
+    if (m_sprMoonSlash != NULL)
+        SAFE_DELETE(m_sprMoonSlash);
+
+    if (m_sprHudNumber != NULL)
+        SAFE_DELETE(m_sprHudNumber);
+
+    if (m_sprHudLife != NULL)
+        SAFE_DELETE(m_sprHudLife);
+
+    if (m_sprSwordIcon != NULL)
+        SAFE_DELETE(m_sprSwordIcon);
 }
 
 void Player::Start()
@@ -43,6 +59,9 @@ void Player::Start()
     m_sprMoonSlash = new SpritesObject;
     m_sprMoonSlash->SetBodyImg(g_pImgManager->FindImage("moon-slash"));
     m_sprMoonSlash->SetupForSprites(4, 2);
+    m_sprSwordIcon = new SpritesObject;
+    m_sprSwordIcon->SetBodyImg(g_pImgManager->FindImage("gear-sword"));
+    m_sprSwordIcon->SetupForSprites(1, 1);
 }
 
 void Player::Update()
@@ -119,6 +138,10 @@ void Player::Render(HDC hdc)
         , GetHealPotion()
         , 255.0f);
 
+    //  gear icon
+    m_sprSwordIcon->GetBodyImg()->TransRender(m_imgUiBuffer->GetMemDC()
+        , { 40, 23, 55, 38 });
+
 #ifdef _DEBUG
     string szWeaponType = to_string(m_weaponType);
     TextOut(hdc, m_rtBody.left, m_rtBody.top, szWeaponType.c_str(), (int)strlen(szWeaponType.c_str()));
@@ -167,6 +190,14 @@ void Player::PlayerController()
     {
         m_weaponType = (E_WEAPON_TYPE)(m_weaponType + 1);
         m_weaponType = m_weaponType >= WEAPON_END ? WEAPON_SWORD : m_weaponType;
+        if (m_weaponType == WEAPON_SWORD)
+        {
+            m_sprSwordIcon->SetBodyImg(g_pImgManager->FindImage("gear-sword"));
+        }
+        else if (m_weaponType == WEAPON_BOW)
+        {
+            m_sprSwordIcon->SetBodyImg(g_pImgManager->FindImage("gear-slash"));
+        }
     }
     else
     {
@@ -181,9 +212,7 @@ void Player::PlayerController()
 
 #ifdef _DEBUG
     if (g_pKeyManager->isOnceKeyDown('F'))
-    {
         m_isImmortal = !m_isImmortal;
-    }
 #endif // _DEBUG
 
 }

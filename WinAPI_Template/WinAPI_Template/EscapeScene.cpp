@@ -8,7 +8,6 @@ EscapeScene::EscapeScene()
 {
 }
 
-
 EscapeScene::~EscapeScene()
 {
 }

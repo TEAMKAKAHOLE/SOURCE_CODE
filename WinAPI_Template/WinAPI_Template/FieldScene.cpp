@@ -299,10 +299,6 @@ void FieldScene::Update()
 void FieldScene::Render()
 {
     m_imgWorldMap->Render(m_imgWorldBuffer->GetMemDC(), 0, 0);
-    g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtTownPortal);
-
-    g_pDrawHelper->DrawRect(m_imgWorldBuffer->GetMemDC(), m_rtEscapePortal);
-
     for (auto iter = m_vecEnemy.begin(); iter != m_vecEnemy.end(); ++iter)
     {
         iter->Render(m_imgWorldBuffer->GetMemDC());
@@ -324,12 +320,14 @@ void FieldScene::Render()
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
     m_imgAutoButton->Render(g_hDC);
+
     if (m_isBill == true)
     {
         m_imgBill->AlphaRender(g_hDC, W_WIDTH / 2 - 300, W_HEIGHT / 2 - 250, 600, 400, 255);
         m_imgClose->Render(g_hDC);
         m_imgXbox->Render(g_hDC);
     }
+
     if (m_isError == true)
     {
         m_imgError->Render(g_hDC, W_WIDTH / 2 - 200, W_HEIGHT / 2 - 150, 360, 140);

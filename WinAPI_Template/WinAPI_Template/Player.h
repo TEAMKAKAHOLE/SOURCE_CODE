@@ -19,6 +19,7 @@ private:
     SpritesObject*  m_sprHudLife;
     SpritesObject*  m_sprHudNumber;
     SpritesObject*  m_sprMoonSlash;
+    SpritesObject*  m_sprSwordIcon;
 
     GridVector      m_playerHeadDir;
     E_PLAYER_STATUS m_playerStatus;

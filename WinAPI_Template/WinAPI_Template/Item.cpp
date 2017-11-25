@@ -4,6 +4,9 @@
 
 Item::Item()
 {
+    m_imgBody = g_pImgManager->FindImage("item-potion");
+    SetupForSprites(1, 1);
+
     m_fActiveTime = -1.0f;
     m_fExpireTime = -1.0f;
     m_onField = false;
