@@ -75,7 +75,7 @@ void Player::Update()
 
 void Player::Render(HDC hdc)
 {
-	SpritesObject::Render(hdc);
+    SpritesObject::Render(hdc);
     //  ui render
     m_imgHud->FastRender(m_imgUiBuffer->GetMemDC(), 0, 0);
     //  life
@@ -222,7 +222,6 @@ void Player::MakeBullet(vector<Projectile>& VecBullets, UnitPos Pos)
             break;
         }
         }
-        
     }
 }
 

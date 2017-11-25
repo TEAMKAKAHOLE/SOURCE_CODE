@@ -8,8 +8,8 @@ TownScene::TownScene()
     m_objExit.SetBodyRect({ 500, 390, 512, 410 });
     m_isBossLevel = false;
 
-	g_pSndManager->AddSoundList(m_szTagName);
-	while (g_pSndManager->AddSoundByJson(m_szTagName));
+    g_pSndManager->AddSoundList(m_szTagName);
+    while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -60,7 +60,7 @@ void TownScene::Start()
         m_chief.SetHostile();
     }
 
-	g_pSndManager->Play("town");
+    g_pSndManager->Play("town");
 }
 
 void TownScene::Update()
@@ -202,7 +202,7 @@ void TownScene::Render()
 
     //  world render
     m_imgWorldBuffer->ViewportRender(g_hDC, g_rtViewPort);
-	
+    
     m_imgUiBuffer->TransRender(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
 
 #ifdef _DEBUG
@@ -214,7 +214,7 @@ void TownScene::Render()
 void TownScene::Release()
 {
     SaveGame();
-	g_pSndManager->Stop("town");
+    g_pSndManager->Stop("town");
 }
 
 void TownScene::SaveGame()

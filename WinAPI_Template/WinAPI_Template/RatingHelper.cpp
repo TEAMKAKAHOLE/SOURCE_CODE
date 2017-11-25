@@ -22,15 +22,15 @@ void RatingHelper::EloCalc(int * Rating1, int * Rating2, int Winner)
     switch (Winner)
     {
     case 1:
-        //	P1 Win
+        //    P1 Win
         varWDL1 = 1.0f;
         break;
     case 2:
-        //	P2 Win
+        //    P2 Win
         varWDL2 = 1.0f;
         break;
     case 3:
-        //	Draw
+        //    Draw
         varWDL1 = 0.5f;
         varWDL2 = 0.5f;
     default:

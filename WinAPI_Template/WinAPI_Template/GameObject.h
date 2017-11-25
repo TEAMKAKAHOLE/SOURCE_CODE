@@ -124,10 +124,10 @@ public:
     //  HitBox
     void SetHBoxMargin(RectMargin HBoxMargin) { m_nMarginHBox = HBoxMargin; }
     void SetHBox();
-	//	Snap shot
-	void SetStartPos(UnitPos Pos) { m_startPos = Pos; }
-	void SetViaPos(UnitPos Pos) { m_viaPos = Pos; }
-	void SetDestPos(UnitPos Pos) { m_destPos = Pos; }
+    //    Snap shot
+    void SetStartPos(UnitPos Pos) { m_startPos = Pos; }
+    void SetViaPos(UnitPos Pos) { m_viaPos = Pos; }
+    void SetDestPos(UnitPos Pos) { m_destPos = Pos; }
     //  Lock area
     void SetLockArea(RECT Area) { m_rtLockArea = Area; }
     void LockInWnd()    { m_isLockInWnd = true; }

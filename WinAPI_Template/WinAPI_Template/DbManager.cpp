@@ -158,12 +158,12 @@ BOOL CAdo::SQLInsert(char * szTableName, char * szValues)
 //_bstr_t bKeyContents;
 //while(!pRs->EndOfFile)
 //{
-//	szNum[count]=pRs->GetCollect("nNum").intVal;  //정수형 일때 
-//	bKeyContents=pRs->Fields->GetItem("szString")->Value;  //문자형 일때 
-// 	szString[count].Format("%s",(LPCSTR)bKeyContents);
-//	printf(szNum[count], szString[count]); .........
-// 	pRs->MoveNext();
-// 	count++;
+//    szNum[count]=pRs->GetCollect("nNum").intVal;  //정수형 일때 
+//    bKeyContents=pRs->Fields->GetItem("szString")->Value;  //문자형 일때 
+//     szString[count].Format("%s",(LPCSTR)bKeyContents);
+//    printf(szNum[count], szString[count]); .........
+//     pRs->MoveNext();
+//     count++;
 // }
 _RecordsetPtr CAdo::SQLSelect(char * szTableName)
 {
@@ -219,9 +219,9 @@ BOOL CAdo::SQLUpdate(char * szTableName, char * szSet, char * szWhere)
             , "UPDATE %s set %s where %s"
             , szTableName, szSet, szWhere);
 
-        //		m_pConn->BeginTrans();
+        //        m_pConn->BeginTrans();
         m_pConn->Execute(szSQL, NULL, adExecuteNoRecords);
-        //		m_pConn->CommitTrans();
+        //        m_pConn->CommitTrans();
     }
     catch (...)
     {
@@ -255,9 +255,9 @@ BOOL CAdo::SQLDelete(char * szTableName, char * szWhere)
             , "DELETE from %s where %s"
             , szTableName, szWhere);
 
-        //		m_pConn->BeginTrans();
+        //        m_pConn->BeginTrans();
         m_pConn->Execute(szSQL, NULL, adExecuteNoRecords);
-        //		m_pConn->CommitTrans();
+        //        m_pConn->CommitTrans();
     }
     catch (...)
     {
@@ -268,7 +268,7 @@ BOOL CAdo::SQLDelete(char * szTableName, char * szWhere)
 
 /*
 CODE SAMPLE
-int nTemp;	// select문 잘 되는지 디버깅용 임시 변수
+int nTemp;    // select문 잘 되는지 디버깅용 임시 변수
 
 _RecordsetPtr rs = NULL;
 CADO myADO;
@@ -289,8 +289,8 @@ if(rs==0)
 printf("Select Fail\n");
 else
 nTemp = rs->GetCollect("nNum").intVal;
-//	else
-//		printf("Effected query successfully\n");
+//    else
+//        printf("Effected query successfully\n");
 
 if(!myADO.SQLUpdate("dbo.TEST", "szString='nice'", "nNum=1"))
 printf("Update Fail\n");
@@ -308,8 +308,8 @@ if(rs==0)
 printf("Select Fail\n");
 else
 nTemp = rs->GetCollect("nNum").intVal;
-//	else
-//		printf("Effected query successfully\n");
+//    else
+//        printf("Effected query successfully\n");
 
 if(!myADO.SQLExecute("Insert into dbo.TEST values(100,'lion')"))
 printf("Insert Fail\n");

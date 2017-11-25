@@ -36,7 +36,7 @@ private:
 
     //  FOR ALPHA BLEND
     BLENDFUNCTION   m_stBlendFunc;
-    LPIMAGE_INFO	m_pBlendImage;
+    LPIMAGE_INFO    m_pBlendImage;
 
     //  FOR SPRITES
     int             m_spritesWidth;
@@ -84,7 +84,7 @@ public:
     void TransRender(HDC hdc);
     void TransRender(HDC hdc, int DestX, int DestY);
     void TransRender(HDC hdc, int DestX, int DestY, int DestW, int DestH);
-	void TransRender(HDC hdc, RECT DrawBox);
+    void TransRender(HDC hdc, RECT DrawBox);
     void TransRender(HDC hdc, int DestX, int DestY, int MaxWidth, int MaxHeight, double WidthRatio);
 #pragma endregion
 

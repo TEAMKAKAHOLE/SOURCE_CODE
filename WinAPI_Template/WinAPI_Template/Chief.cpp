@@ -4,7 +4,7 @@
 
 Chief::Chief()
 {
-	m_sprBullet = NULL;
+    m_sprBullet = NULL;
     m_isHostile = false;
     m_nPhase = 0;
 }
@@ -12,8 +12,8 @@ Chief::Chief()
 
 Chief::~Chief()
 {
-	if(m_sprBullet != NULL)
-		SAFE_DELETE(m_sprBullet);
+    if(m_sprBullet != NULL)
+        SAFE_DELETE(m_sprBullet);
 }
 
 void Chief::Start()

@@ -8,14 +8,14 @@
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
-HINSTANCE	g_hInst;                                // 현재 인스턴스입니다.
-HWND		g_hWnd;									// 윈도우 핸들
-POINT		g_ptMouse = { 0, 0 };					// 마우스 포지션
+HINSTANCE    g_hInst;                                // 현재 인스턴스입니다.
+HWND        g_hWnd;                                    // 윈도우 핸들
+POINT        g_ptMouse = { 0, 0 };                    // 마우스 포지션
 HDC         g_hDC;
 RECT        g_rtViewPort = { 0, 0, W_WIDTH, W_HEIGHT };
 
 // 메인 게임 클래스
-MainGame	mg;
+MainGame    mg;
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -141,7 +141,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 //==================================================================
-//		## 윈도우 크기 조정 ## (클라이언트 영역의 사이즈를 정확히 잡아준다)
+//        ## 윈도우 크기 조정 ## (클라이언트 영역의 사이즈를 정확히 잡아준다)
 //==================================================================
 void setWindowSize(int x, int y, int width, int height)
 {

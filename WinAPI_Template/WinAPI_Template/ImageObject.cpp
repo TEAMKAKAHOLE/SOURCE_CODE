@@ -539,14 +539,14 @@ void ImageObject::TransRender(HDC hdc, int DestX, int DestY, int DestW, int Dest
 
 void ImageObject::TransRender(HDC hdc, RECT DrawBox)
 {
-	POINT boxSize = { DrawBox.right - DrawBox.left, DrawBox.bottom - DrawBox.top };
-	GdiTransparentBlt(hdc
-		, DrawBox.left, DrawBox.top
-		, boxSize.x, boxSize.y
-		, m_pImageInfo->hMemDC
-		, 0, 0
-		, m_pImageInfo->nWidth, m_pImageInfo->nHeight
-		, m_transColor);
+    POINT boxSize = { DrawBox.right - DrawBox.left, DrawBox.bottom - DrawBox.top };
+    GdiTransparentBlt(hdc
+        , DrawBox.left, DrawBox.top
+        , boxSize.x, boxSize.y
+        , m_pImageInfo->hMemDC
+        , 0, 0
+        , m_pImageInfo->nWidth, m_pImageInfo->nHeight
+        , m_transColor);
 }
 void ImageObject::TransRender(HDC hdc, int DestX, int DestY, int MaxWidth, int MaxHeight, double WidthRatio)
 {

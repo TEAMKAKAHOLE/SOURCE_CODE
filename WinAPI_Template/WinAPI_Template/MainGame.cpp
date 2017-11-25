@@ -3,16 +3,16 @@
 
 MainGame::MainGame()
 {
-	g_pLogManager->Setup("\\Log\\");
-	g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
-	g_pKeyManager->Setup();
-	g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
-	g_pImgManager->AddImageList("global");
-	while (g_pImgManager->AddImageByJson("global"));
+    g_pLogManager->Setup("\\Log\\");
+    g_pLogManager->WriteLog(EL_INFO, "MainGame constructor");
+    g_pKeyManager->Setup();
+    g_pFileManager->JsonLoad(RSC_LIST_KEY, RSC_LIST_PATH);
+    g_pImgManager->AddImageList("global");
+    while (g_pImgManager->AddImageByJson("global"));
 
-	VerInfoStamp();
-	MouseLock();
-	Start();
+    VerInfoStamp();
+    MouseLock();
+    Start();
 
     //  json file load
     InitPlayerData();
@@ -23,8 +23,8 @@ MainGame::~MainGame()
 {
     //  json file save
     g_pLogManager->WriteLog(EL_INFO, "MainGame destructor");
-	g_pFileManager->JsonSave("data/player.json", g_pFileManager->JsonFind("player"));
-	
+    g_pFileManager->JsonSave("data/player.json", g_pFileManager->JsonFind("player"));
+    
     Release();
 }
 
@@ -36,13 +36,13 @@ void MainGame::Start()
     g_pScnManager->AddScene("title", new TitleScene());
     g_pScnManager->AddScene("loading", new LoadingScene());
     g_pScnManager->AddScene("town", new TownScene());
-	g_pScnManager->AddScene("field", new FieldScene());
+    g_pScnManager->AddScene("field", new FieldScene());
     g_pScnManager->AddScene("escape", new EscapeScene());
     g_pScnManager->AddScene("hardway", new HardwayScene());
     g_pScnManager->AddScene("puzzle", new PuzzleScene());
-	g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
+    g_pScnManager->AddScene("puzzle-game", new PuzzleGameScene());
     g_pScnManager->AddScene("exit", new ExitScene());
-	
+    
     g_pScnManager->SetNextScene("splash");
     g_pScnManager->ChangeScene("loading");
 }

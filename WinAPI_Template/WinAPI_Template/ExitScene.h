@@ -7,10 +7,10 @@ class ExitScene : public GameNode
 private:
     float m_fCurrTime;
 
-	ImageObject*  m_pImgBg;
-	ImageObject*  m_pimgGoodBye;
+    ImageObject*  m_pImgBg;
+    ImageObject*  m_pimgGoodBye;
 
-	SpritesObject* m_sprJunimoDance;
+    SpritesObject* m_sprJunimoDance;
 
 public:
     ExitScene();

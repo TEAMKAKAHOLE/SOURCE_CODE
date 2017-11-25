@@ -7,8 +7,8 @@ SplashScene::SplashScene()
     m_szTagName = "splash";
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
-	g_pSndManager->AddSoundList(m_szTagName);
-	while (g_pSndManager->AddSoundByJson(m_szTagName));
+    g_pSndManager->AddSoundList(m_szTagName);
+    while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 SplashScene::~SplashScene()
@@ -18,17 +18,17 @@ SplashScene::~SplashScene()
 void SplashScene::Start()
 {
     m_isStart = true;
-	m_nAlpha = 0;
-	m_nAlphaPlus = 2;
+    m_nAlpha = 0;
+    m_nAlphaPlus = 2;
     m_imgLogo = g_pImgManager->FindImage("logo");
-	g_pSndManager->Play("splash");
+    g_pSndManager->Play("splash");
 }
 
 void SplashScene::Update()
 {
     if (m_isStart)
     {
-        m_fDestTime = g_pTimerManager->GetWorldTime() + 4.0f;		
+        m_fDestTime = g_pTimerManager->GetWorldTime() + 4.0f;        
         m_isStart = false;
     }
     else if (m_fDestTime < g_pTimerManager->GetWorldTime())
@@ -37,13 +37,12 @@ void SplashScene::Update()
         g_pScnManager->ChangeScene("loading");
     }
 
-	m_nAlpha += m_nAlphaPlus;
-	if (m_nAlpha >= 255)
-	{
-		m_nAlphaPlus = 0;
-		m_nAlpha = 255;
-	}
-	
+    m_nAlpha += m_nAlphaPlus;
+    if (m_nAlpha >= 255)
+    {
+        m_nAlphaPlus = 0;
+        m_nAlpha = 255;
+    }
 }
 
 void SplashScene::Render()

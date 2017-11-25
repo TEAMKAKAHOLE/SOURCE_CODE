@@ -33,5 +33,5 @@ public:
     //  Renderer
     void Render(string Key, HDC hdc);
     void Render(string Key, HDC hdc, UnitPos DestPos);
-	void Render(string Key, HDC hdc, int destX, int destY, int destW, int destH, int srcX, int srcY, int srcW, int srcH, int alpha);
+    void Render(string Key, HDC hdc, int destX, int destY, int destW, int destH, int srcX, int srcY, int srcW, int srcH, int alpha);
 };

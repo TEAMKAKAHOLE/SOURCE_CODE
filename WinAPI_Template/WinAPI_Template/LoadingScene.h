@@ -10,8 +10,8 @@ private:
 
     ImageObject*    m_prgBarBg;
     ImageObject*    m_prgBarFg;
-	ImageObject*    m_loadingBg;
-	SpritesObject*  m_sprLinkRun;
+    ImageObject*    m_loadingBg;
+    SpritesObject*  m_sprLinkRun;
 
     string      m_szDestScene;
 

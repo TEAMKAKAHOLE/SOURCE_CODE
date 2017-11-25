@@ -87,7 +87,7 @@ void LoadingScene::Start()
     m_entirePrgsBar.SetGaugeRatioX(0.0f);
     m_entirePrgsBar.SetBgBar(g_pImgManager->FindImage("bg-gauge"));
     m_entirePrgsBar.SetBodyImg(g_pImgManager->FindImage("fg-gauge"));
-	m_entirePrgsBar.SetBodyPos({W_WIDTH * 0.5f, W_HEIGHT - 60});
+    m_entirePrgsBar.SetBodyPos({W_WIDTH * 0.5f, W_HEIGHT - 60});
     m_entirePrgsBar.SetBodySize({ 1200, 20 });
     m_entirePrgsBar.Update();
 
@@ -102,7 +102,7 @@ void LoadingScene::Start()
     m_partPrgsBar.Update();
 
 
-	m_loadingBg = g_pImgManager->FindImage("Zelda-bg");
+    m_loadingBg = g_pImgManager->FindImage("Zelda-bg");
 }
 
 void LoadingScene::Update()
@@ -144,12 +144,9 @@ void LoadingScene::Update()
 
 void LoadingScene::Render()
 {
-	m_loadingBg->Render(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
+    m_loadingBg->Render(g_hDC, 0, 0, W_WIDTH, W_HEIGHT);
     m_entirePrgsBar.Render(g_hDC);
     m_partPrgsBar.Render(g_hDC);
-	
-
-
 #ifdef _DEBUG
     TextOut(g_hDC, W_WIDTH - 100, 0, m_szTagName.c_str(), (int)strlen(m_szTagName.c_str()));
 #endif // _DEBUG

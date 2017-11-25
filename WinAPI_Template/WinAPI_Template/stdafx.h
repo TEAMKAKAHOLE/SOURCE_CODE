@@ -31,19 +31,19 @@ using namespace std;
 using json = nlohmann::json;
 
 //==================================================================
-//		## 디파인문 - 메크로 ## (윈도우창 초기화)
+//        ## 디파인문 - 메크로 ## (윈도우창 초기화)
 //==================================================================
 #define W_NAME (LPCWSTR)(TEXT("THE LEGEND OF ZELDA : A LINK TO THE PAST"))
-#define W_START_POS_X		0
-#define W_START_POS_Y		0
-#define W_WIDTH		        768
-#define W_HEIGHT		    672
+#define W_START_POS_X        0
+#define W_START_POS_Y        0
+#define W_WIDTH                768
+#define W_HEIGHT            672
 
 #define VIEWPORT_WIDTH      256
 #define VIEWPORT_HEIGHT     224
 
-#define WINDOW_STYLE		WS_CAPTION | WS_SYSMENU
-#define PURE			    = 0
+#define WINDOW_STYLE        WS_CAPTION | WS_SYSMENU
+#define PURE                = 0
 
 #define MAGENTA_COLOR       RGB(255, 0, 255)
 
@@ -51,7 +51,7 @@ using json = nlohmann::json;
 #define PLAYER_DATA_PATH "data/player.json"
 //#define FPS_TEST
 //==================================================================
-//		## MACRO FUNCTION ##
+//        ## MACRO FUNCTION ##
 //==================================================================
 #define SAFE_DELETE(p)          { if(p) { delete(p); (p) = NULL; } }
 #define SAFE_DELETE_ARRAY(p)    { if(p) { delete[]{(p); (p) = NULL; } } }
@@ -63,7 +63,7 @@ using json = nlohmann::json;
 #include "DataStructure.h"
 #include "EnumState.h"
 //==================================================================
-//		## 매니져 추가 ##
+//        ## 매니져 추가 ##
 //==================================================================
 #include "DbManager.h"
 #include "FileDataManager.h"
@@ -77,7 +77,7 @@ using json = nlohmann::json;
 
 
 //==================================================================
-//		## Helper 추가 ##
+//        ## Helper 추가 ##
 //==================================================================
 #include "DrawHelper.h"
 #include "GeometryHelper.h"
@@ -90,10 +90,10 @@ using json = nlohmann::json;
 #define GLOBAL_CENTER_POS   UnitPos{W_WIDTH * 0.5f, W_HEIGHT * 0.5f}
 
 //==================================================================
-//		## 전역변수 ##
+//        ## 전역변수 ##
 //==================================================================
-extern HINSTANCE	g_hInst;
-extern HWND			g_hWnd;
-extern POINT		g_ptMouse;
+extern HINSTANCE    g_hInst;
+extern HWND            g_hWnd;
+extern POINT        g_ptMouse;
 extern HDC          g_hDC;
 extern RECT         g_rtViewPort;
