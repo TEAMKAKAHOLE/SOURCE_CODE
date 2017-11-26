@@ -2,8 +2,8 @@
 #include "SingletonBase.h"
 #include "SoundObject.h"
 
-#define SOUND_BUFFER 20
-#define EXTRA_CHANNEL_BUFFER 5
+#define SOUND_BUFFER 512
+#define EXTRA_CHANNEL_BUFFER 128
 #define TOTAL_SOUND_BUFFER (SOUND_BUFFER + EXTRA_CHANNEL_BUFFER)
 
 #define g_pSndManager  SoundManager::GetInstance()

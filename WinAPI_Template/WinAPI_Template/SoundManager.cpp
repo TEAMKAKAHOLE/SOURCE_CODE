@@ -53,7 +53,7 @@ void SoundManager::Play(string Key, float volume)
     m_iterSounds = m_mapSounds.find(Key);
     if (m_iterSounds != m_mapSounds.end())
     {
-        m_pSystem->playSound(FMOD_CHANNEL_FREE
+        m_pSystem->playSound(FMOD_CHANNEL_REUSE
             , m_iterSounds->second->m_pSound
             , false
             , &m_iterSounds->second->m_pChannel);

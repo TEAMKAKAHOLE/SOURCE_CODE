@@ -77,6 +77,7 @@ void TownScene::Update()
         m_dFadeoutAlpha += 1.0f;
         if (m_dFadeoutAlpha >= 255.0f)
         {
+            g_pSndManager->Stop("boss");
             g_pScnManager->ChangeScene("ending-credit");
             m_dFadeoutAlpha = 255.0f;
         }
