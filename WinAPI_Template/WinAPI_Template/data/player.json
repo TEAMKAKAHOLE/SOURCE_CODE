@@ -1,8 +1,8 @@
 {
     "player": {
         "atk": 1,
-        "hp": 8,
-        "potion": 127,
+        "hp": 10,
+        "potion": 53,
         "scn-level": 0
     }
 }
