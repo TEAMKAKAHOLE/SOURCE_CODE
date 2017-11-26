@@ -16,6 +16,7 @@ void EscapeScene::Start()
 {
     SetData();
 
+	m_nSoundPlayCount = 1;
     m_imgWorldBuffer     = g_pImgManager->AddImage("eacape-map-buffer", 512, 512);
     m_imgWorldMap        = g_pImgManager->FindImage("escape-map");
     m_imgTerrainBuffer   = g_pImgManager->FindImage("escape-terrain");
@@ -106,6 +107,8 @@ void EscapeScene::Start()
     m_Bom.SetBodyPos({ 320,290 - 10 });
     m_Bom.SetBodySize({ 117,128 });
     m_Bom.SetInvisible();
+
+	g_pSndManager->Play("escape");
 }
 void EscapeScene::Update()
 {
@@ -128,18 +131,42 @@ void EscapeScene::Update()
     if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportA.GetBodyRect()))
     {
         m_player.SetBodyPos({ (int)250, (int)250 + 50 });
+
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("potal");
+			m_nSoundPlayCount--;
+		}
     }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportB.GetBodyRect()))
     {
         m_player.SetBodyPos({ (int)92, (int)280 + 50 });
+
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("potal");
+			m_nSoundPlayCount--;
+		}
     }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportC.GetBodyRect()))
     {
         m_player.SetBodyPos({ (int)80 + 50, (int)170 });
+
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("potal");
+			m_nSoundPlayCount--;
+		}
     }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_teleportD.GetBodyRect()))
     {
         m_player.SetBodyPos({ (int)385, (int)300 + 50 });
+
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("potal");
+			m_nSoundPlayCount--;
+		}
     }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_EndPoint.GetBodyRect()))
     {
@@ -154,6 +181,12 @@ void EscapeScene::Update()
     }
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_KeyItem1.GetBodyRect()))
     {
+		if (m_bKeyItem1 == false && m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("key");
+			m_nSoundPlayCount--;
+		}
+
         //key item
         m_scnLevel = 4;
         m_bKeyItem1 = true;
@@ -162,6 +195,12 @@ void EscapeScene::Update()
     else if (IntersectRect(&rt, &m_player.GetHBoxRect(), &m_Trap.GetHBoxRect())
         && m_Trap.IsVisible())
     {
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("explosion");
+			m_nSoundPlayCount--;
+		}
+
         //trap에 충돌시 포탄 터지게 하기 
         m_Trap.SetInvisible();
         m_bInAt2 = true;
@@ -200,7 +239,7 @@ void EscapeScene::Update()
         //씬이동시킨다
         SceneChange();
     }
-
+	m_nSoundPlayCount = 1;
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 }
 
@@ -239,6 +278,7 @@ void EscapeScene::Render()
 void EscapeScene::Release()
 {
     JsonAdd();
+	g_pSndManager->Stop("escape");
 }
 
 void EscapeScene::SceneChange()

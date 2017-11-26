@@ -37,6 +37,7 @@ private:
     int m_scnLevel;
     int m_nEnemyPosY[5];
     int m_nscnLevel;
+	int m_nSoundPlayCount;
 
     double m_dbAngle;
     double m_dbCoordFromeAngle;

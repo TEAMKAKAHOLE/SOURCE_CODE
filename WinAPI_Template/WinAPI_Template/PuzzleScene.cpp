@@ -12,9 +12,6 @@ PuzzleScene::PuzzleScene()
 , m_isHintCheck(false)
 {
     m_szTagName = "puzzle";
-
-    g_pSndManager->AddSoundList(m_szTagName);
-    while (g_pSndManager->AddSoundByJson(m_szTagName));
 }
 
 
@@ -30,6 +27,8 @@ void PuzzleScene::Start()
 
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
 
     //버퍼는 애드 이미지로 추가
     m_imgWorldBuffer = g_pImgManager->AddImage("puzzle-map-buffer", 512, 512);
@@ -115,6 +114,7 @@ void PuzzleScene::Update()
         g_pKeyManager->isOnceKeyDown(VK_SPACE))
     {
         g_pScnManager->ChangeScene("puzzle-game");
+		g_pSndManager->Stop("puzzle");
     }
 
     //힌트 충돌
@@ -138,6 +138,7 @@ void PuzzleScene::Update()
     //오답 길
     if (IntersectRect(&rt3, &m_Player.GetHBoxRect(), &m_Exit1.GetBodyRect()) && m_isStageClear)
     {
+		g_pSndManager->Stop("puzzle");
         g_pScnManager->SetNextScene("hardway");
         g_pScnManager->ChangeScene("loading");
     }
@@ -157,6 +158,7 @@ void PuzzleScene::Update()
         playerAtk = m_playerData["player"]["atk"];
         playerAtk = 8;
         m_playerData["player"]["atk"] = playerAtk;
+		g_pSndManager->Stop("puzzle");
         g_pScnManager->SetNextScene("field");
         g_pScnManager->ChangeScene("loading");
     }
@@ -219,5 +221,4 @@ void PuzzleScene::Release()
     m_playerData["player"]["potion"] = m_Player.GetHealPotion();
     m_playerData["player"]["scn-level"] = m_nScnLevel;
     g_pFileManager->JsonUpdate("player", m_playerData);
-    g_pSndManager->Stop("puzzle");
 }

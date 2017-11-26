@@ -14,6 +14,7 @@ FieldScene::~FieldScene()
 
 void FieldScene::Start()
 {
+	m_nSoundPlayCount = 1;
     m_playerData = g_pFileManager->JsonFind("player");
     m_scnLevel = m_playerData["player"]["scn-level"];
     m_vecEnemy.clear();
@@ -151,11 +152,13 @@ void FieldScene::Update()
             if (m_scnLevel == 0)
             {
                 m_scnLevel = 1;
+				g_pSndManager->Stop("tutorial");
                 g_pScnManager->SetNextScene("town");
                 g_pScnManager->ChangeScene("loading");
             }
             else
             {
+				g_pSndManager->Stop("tutorial");
                 g_pScnManager->SetNextScene("puzzle");
                 g_pScnManager->ChangeScene("loading");
             }
@@ -184,6 +187,7 @@ void FieldScene::Update()
             m_player.SumLife(-iterBullet->GetDamage());
         }
 
+
         for (auto iterEnemy = m_vecEnemy.begin(); iterEnemy != m_vecEnemy.end(); ++iterEnemy)
         {
             RECT rt2;
@@ -194,9 +198,16 @@ void FieldScene::Update()
                 iterBullet->GetTagName() == "player")
             {
                 iterEnemy->SumLife(-iterBullet->GetDamage());
+			
                 if (iterBullet->GetDamage() > 0)
                 {
-                    iterBullet->SetDamage(0);
+					if (m_nSoundPlayCount > 0)
+					{
+						g_pSndManager->Play("hit");
+						m_nSoundPlayCount--;
+					}
+
+				    iterBullet->SetDamage(0);
                     iterBullet->SetBodySpeed({ 0.0f, 0.0f });
                     iterBullet->SetBodySize({ 32, 32 });
                     iterBullet->SetHBoxMargin({ 0, 0, 0, 0 });
@@ -300,6 +311,7 @@ void FieldScene::Update()
         }
     }
 
+	m_nSoundPlayCount = 1;
     //¸Ê ¿òÁ÷ÀÌ±â
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_player.GetBodyPos(), m_imgWorldBuffer);
 }
@@ -348,7 +360,6 @@ void FieldScene::Release()
     m_playerData["player"]["hp"] = m_player.GetLife();
     m_playerData["player"]["potion"] = m_player.GetHealPotion();
     g_pFileManager->JsonUpdate("player", m_playerData);
-    g_pSndManager->Stop("tutorial");
 }
 
 void FieldScene::MakeEnemy(int count)

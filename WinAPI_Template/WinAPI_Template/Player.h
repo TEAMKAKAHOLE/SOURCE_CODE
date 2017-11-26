@@ -35,6 +35,8 @@ private:
 
     bool            m_isStun;
     bool            m_isMoveImpair;
+
+	int				m_nSoundPlayDelay;
 public:
     Player();
     ~Player();

@@ -365,14 +365,14 @@
     <ClCompile Include="Ghost.cpp">
       <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
     </ClCompile>
-    <ClCompile Include="HardwayScene.cpp">
-      <Filter>GameFramework2D\004-Scene\GameScene\Outlast</Filter>
-    </ClCompile>
     <ClCompile Include="EndingCreditScene.cpp">
       <Filter>GameFramework2D\004-Scene</Filter>
     </ClCompile>
     <ClCompile Include="CookieScene.cpp">
       <Filter>GameFramework2D\004-Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="HardwayScene.cpp">
+      <Filter>GameFramework2D\004-Scene\GameScene\Puzzle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -232,6 +232,20 @@
                 "filename": "town.mp3",
                 "bgm": true,
                 "loop": true
+			},
+			{
+				"id": 1,
+                "key": "boss",
+                "filename": "boss.mp3",
+                "bgm": true,
+                "loop": true
+			},
+			{
+				"id": 0,
+                "key": "hit",
+                "filename": "hit.wav",
+                "bgm": false,
+                "loop": false
 			}
 		]
     },  
@@ -312,6 +326,13 @@
                 "filename": "tutorial.mp3",
                 "bgm": true,
                 "loop": true
+			},
+			{
+				"id": 1,
+                "key": "hit",
+                "filename": "hit.wav",
+                "bgm": false,
+                "loop": false
 			}
 		]
     },
@@ -388,7 +409,37 @@
             	"height":44
             }
             
-        ]
+        ],
+       "sounds":[
+			{
+				"id": 0,
+                "key": "escape",
+                "filename": "escape-bgm.mp3",
+                "bgm": true,
+                "loop": true
+			},
+			{
+				"id": 1,
+                "key": "explosion",
+                "filename": "explosion.mp3",
+                "bgm": false,
+                "loop": false
+			},
+			{
+				"id": 2,
+                "key": "key",
+                "filename": "key.mp3",
+                "bgm": false,
+                "loop": false
+			},
+			{
+				"id": 3,
+                "key": "potal",
+                "filename": "potal.wav",
+                "bgm": false,
+                "loop": false
+			}
+		]
     },
     "puzzle": {
         "images": [
@@ -461,7 +512,30 @@
                 "width": 1000,
                 "height": 1000
     		}
-    	]
+    	],
+    	"sounds":[
+			{
+				"id": 0,
+                "key": "puzzle-game",
+                "filename": "puzzle-game.mp3",
+                "bgm": true,
+                "loop": true
+			},
+			{
+				"id": 1,
+                "key": "complete",
+                "filename": "complete.mp3",
+                "bgm": false,
+                "loop": false
+			},
+			{
+				"id": 2,
+                "key": "slide",
+                "filename": "slide.wav",
+                "bgm": false,
+                "loop": false
+			}
+		]
     },
     "hardway": {
         "images": [
@@ -548,6 +622,24 @@
                 "width": 133,
                 "height": 133
             }
+        ]
+    },
+    "Player":{
+        "sounds":[
+			{
+				"id": 0,
+                "key": "hit",
+                "filename": "hit.wav",
+                "bgm": false,
+                "loop": false
+			},
+			{
+				"id": 1,
+                "key": "sword-wind",
+                "filename": "sword-wind.wav",
+                "bgm": false,
+                "loop": false
+			}
         ]
     },
     "exit":{  

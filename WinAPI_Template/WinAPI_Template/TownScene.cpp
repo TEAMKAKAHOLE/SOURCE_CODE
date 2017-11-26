@@ -16,6 +16,8 @@ TownScene::TownScene()
 
     g_pSndManager->AddSoundList(m_szTagName);
     while (g_pSndManager->AddSoundByJson(m_szTagName));
+
+	m_nSoundPlayCount = 1;
 }
 
 
@@ -55,14 +57,17 @@ void TownScene::Start()
     m_player.SetAtkDamage(m_playerData["player"]["atk"]);
     m_player.SetHealPotion(m_playerData["player"]["potion"]);
     m_scnLevel = m_playerData["player"]["scn-level"];
+
+
     if (m_scnLevel >= 4)
     {
         m_isBossLevel = true;
         m_objExit.SetDead();
         m_chief.SetHostile();
+		g_pSndManager->Play("boss");
     }
-
-    g_pSndManager->Play("town");
+	else
+		g_pSndManager->Play("town");
 }
 
 void TownScene::Update()
@@ -170,24 +175,30 @@ void TownScene::Update()
             iter->IsActivate() &&
             iter->GetTagName() == "player")
         {
-            if (m_chief.IsAlive() &&
-                m_chief.IsHostile())
-            {
-                m_chief.SumLife(-iter->GetDamage());
-                if (iter->GetDamage() > 0)
-                {
-                    iter->SetDamage(0);
-                    iter->SetBodySpeed({ 0.0f, 0.0f });
-                    iter->SetBodySize({ 32, 32 });
-                    iter->SetHBoxMargin({ 0, 0, 0, 0 });
-                    iter->SetBodyImg(g_pImgManager->FindImage("moon-slash-particle"));
-                    iter->SetupForSprites(2, 1);
-                    iter->StartAnimation();
-                    iter->SetFrameDelay(6);
-                    iter->SetGenTime(g_pTimerManager->GetWorldTime());
-                    iter->SetExistTime(0.2f);
-                }
-            }
+			if (m_chief.IsAlive() &&
+				m_chief.IsHostile())
+			{
+				m_chief.SumLife(-iter->GetDamage());
+				if (iter->GetDamage() > 0)
+				{
+					if (m_nSoundPlayCount > 0)
+					{
+						g_pSndManager->Play("hit");
+						m_nSoundPlayCount--;
+					}
+					
+					iter->SetDamage(0);
+					iter->SetBodySpeed({ 0.0f, 0.0f });
+					iter->SetBodySize({ 32, 32 });
+					iter->SetHBoxMargin({ 0, 0, 0, 0 });
+					iter->SetBodyImg(g_pImgManager->FindImage("moon-slash-particle"));
+					iter->SetupForSprites(2, 1);
+					iter->StartAnimation();
+					iter->SetFrameDelay(6);
+					iter->SetGenTime(g_pTimerManager->GetWorldTime());
+					iter->SetExistTime(0.2f);
+				}
+			}
         }
     }
 
@@ -211,6 +222,7 @@ void TownScene::Update()
         m_fEndTimer = g_pTimerManager->GetWorldTime() + 5.0f;
     }
 
+	m_nSoundPlayCount = 1;
     g_rtViewPort = g_pDrawHelper->MakeViewPort(m_viewportPos, m_imgWorldBuffer);
 }
 
@@ -250,6 +262,7 @@ void TownScene::Release()
 {
     SaveGame();
     g_pSndManager->Stop("town");
+	g_pSndManager->Stop("boss");
 }
 
 void TownScene::SaveGame()

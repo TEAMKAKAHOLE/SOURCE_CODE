@@ -16,6 +16,8 @@ Player::Player()
     m_nHealPotion = 0;
     m_nAtkDamage = 1;
     m_playerHeadDir = V2_DOWN;
+
+	m_szTagName = "Player";
 }
 
 Player::~Player()
@@ -35,6 +37,9 @@ Player::~Player()
 
 void Player::Start()
 {
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
+
     json playerData = g_pFileManager->JsonFind("player");
     m_nLife = playerData["player"]["hp"];
     m_nHealPotion = playerData["player"]["potion"];
@@ -64,6 +69,8 @@ void Player::Start()
     m_sprSwordIcon = new SpritesObject;
     m_sprSwordIcon->SetBodyImg(g_pImgManager->FindImage("gear-sword"));
     m_sprSwordIcon->SetupForSprites(1, 1);
+
+	m_nSoundPlayDelay = 17;
 }
 
 void Player::Update()
@@ -199,10 +206,17 @@ void Player::PlayerController()
     }
     else if (g_pKeyManager->isStayKeyDown(VK_SPACE))
     {
+		m_nSoundPlayDelay--;
         if (m_playerStatus == PLAYER_RUN)
             frameX = 0;
 
         m_playerStatus = PLAYER_ATTACK;
+		if (m_nSoundPlayDelay < 0)
+		{
+			g_pSndManager->Play("sword-wind");
+			m_nSoundPlayDelay = 17;
+		}
+		
     }
     else if (g_pKeyManager->isOnceKeyDown(VK_TAB))
     {

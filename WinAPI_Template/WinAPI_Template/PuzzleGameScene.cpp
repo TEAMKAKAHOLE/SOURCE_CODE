@@ -7,13 +7,9 @@ PuzzleGameScene::PuzzleGameScene()
     , m_isPuzzleClear(false)
     , m_nAlpha(0)
     , m_nChageSceneDelay(300)
+	, m_nSoundPlayCount(1)
 {
-    //로딩없이 퍼즐게임으로 전환
-    m_szTagName = "puzzle-game";
-    g_pImgManager->AddImageList(m_szTagName);
-    while (g_pImgManager->AddImageByJson(m_szTagName));
-    g_pSndManager->AddSoundList(m_szTagName);
-    while (g_pSndManager->AddSoundByJson(m_szTagName));
+	m_szTagName = "puzzle-game";
 }
 
 
@@ -23,6 +19,13 @@ PuzzleGameScene::~PuzzleGameScene()
 
 void PuzzleGameScene::Start()
 {
+	//로딩없이 퍼즐게임으로 전환
+
+	g_pImgManager->AddImageList(m_szTagName);
+	while (g_pImgManager->AddImageByJson(m_szTagName));
+	g_pSndManager->AddSoundList(m_szTagName);
+	while (g_pSndManager->AddSoundByJson(m_szTagName));
+
     m_playerData = g_pFileManager->JsonFind("player");
     g_pImgManager->AddImageList(m_szTagName);
     while (g_pImgManager->AddImageByJson(m_szTagName));
@@ -53,22 +56,26 @@ void PuzzleGameScene::Update()
     {
         if (g_pKeyManager->isOnceKeyDown(VK_LEFT) && m_nLastBlock % 3 > 0)
         {
+			g_pSndManager->Play("slide");
             Swap(m_nLastBlock, m_nLastBlock - 1);
             // 스왑 후 마지막칸 위치 변경
             m_nLastBlock -= 1;
         }
         else if (g_pKeyManager->isOnceKeyDown(VK_RIGHT) && m_nLastBlock % 3 < 2)
         {
+			g_pSndManager->Play("slide");
             Swap(m_nLastBlock, m_nLastBlock + 1);
             m_nLastBlock += 1;
         }
         else if (g_pKeyManager->isOnceKeyDown(VK_UP) && m_nLastBlock / 3 > 0)
         {
+			g_pSndManager->Play("slide");
             Swap(m_nLastBlock, m_nLastBlock - 3);
             m_nLastBlock -= 3;
         }
         else if (g_pKeyManager->isOnceKeyDown(VK_DOWN) && m_nLastBlock / 3 < 2)
         {
+			g_pSndManager->Play("slide");
             Swap(m_nLastBlock, m_nLastBlock + 3);
             m_nLastBlock += 3;
         }
@@ -110,6 +117,12 @@ void PuzzleGameScene::Update()
 
         //클리어 후 씬 자동전환
         m_nChageSceneDelay--;
+
+		if (m_nSoundPlayCount > 0)
+		{
+			g_pSndManager->Play("complete");
+			m_nSoundPlayCount--;
+		}
     }
 
     if (g_pKeyManager->isOnceKeyDown(VK_ESCAPE) ||
@@ -146,6 +159,7 @@ void PuzzleGameScene::Render()
 void PuzzleGameScene::Release()
 {
     g_pSndManager->Stop("puzzle-game");
+	g_pSndManager->Play("puzzle");
 }
 
 void PuzzleGameScene::Suffle()

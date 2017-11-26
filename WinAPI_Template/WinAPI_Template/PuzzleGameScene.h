@@ -15,6 +15,7 @@ private:
     tagBlock            m_stBlock[9];
     int                    m_nLastBlock;
     int                    m_nChageSceneDelay;
+	int					m_nSoundPlayCount;
     bool                m_isPlaying;
     bool                m_isPuzzleClear;
     int m_nAlpha;

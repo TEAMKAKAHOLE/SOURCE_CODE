@@ -7,6 +7,7 @@ Chief::Chief()
     m_sprBullet = NULL;
     m_isHostile = false;
     m_nPhase = 0;
+	m_nSoundPlayCount = 1;
 }
 
 

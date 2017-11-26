@@ -34,6 +34,8 @@ private:
     float   m_fEndTimer;
 
     bool    m_isGameClear;
+
+	int		m_nSoundPlayCount;
 public:
     TownScene();
     ~TownScene();

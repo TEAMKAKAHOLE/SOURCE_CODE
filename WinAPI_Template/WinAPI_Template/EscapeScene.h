@@ -50,6 +50,7 @@ private:
     TelePort m_teleportC;
     TelePort m_teleportD;
 
+	int m_nSoundPlayCount;
 
 public:
     EscapeScene();

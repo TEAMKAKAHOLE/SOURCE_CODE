@@ -20,6 +20,8 @@ private:
     vector<Projectile>*     m_pVecBullets;
     UnitPos*    m_pPlayerPos;
 
+	int			m_nSoundPlayCount;
+
 public:
     Chief();
     ~Chief();
